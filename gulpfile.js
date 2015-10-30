@@ -67,7 +67,20 @@ gulp.task('browserify', function() {
     .on('error', gutil.log.bind(gutil, 'Browserify ' +
       'Error: in browserify gulp task'))
     // vinyl-source-stream makes the bundle compatible with gulp
-    .pipe(source('application.js')) // Desired filename
+    .pipe(source('application.js')) // filename
     // Output the file
     .pipe(gulp.dest('./public/js/'));
 });
+
+gulp.task('build', ['jade', 'less', 'static-files',
+  'images', 'browserify'
+]);
+
+gulp.task('watch', function() {
+  gulp.watch(paths.jade, ['jade']);
+  gulp.watch(paths.styles, ['less']);
+  gulp.watch(paths.scripts, ['browserify']);
+});
+
+gulp.task('production', ['nodemon', 'build']);
+gulp.task('default', ['nodemon', 'watch', 'build']);
