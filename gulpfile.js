@@ -15,14 +15,14 @@ var paths = {
   scripts: 'app/**/*.js',
   styles: 'app/styles/*.+(less|css)',
   jade: ['!app/shared/**', 'app/**/*.jade']
-}
+};
 
 gulp.task('less', function() {
   gulp.src(paths.styles)
     .pipe(less({
       paths: [path.join(__dirname, './app/styles')]
     }))
-    .pipe(gulp.dest('./public/css'))
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('jade', function() {
