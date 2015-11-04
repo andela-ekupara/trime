@@ -1,0 +1,42 @@
+@text-color: #009090;
+#overlay {
+  background: @text-color url('background.png');
+}
+
+.text-color {
+  color: @text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0 0 10px 0;
+}
+
+#box {
+  width: 100px;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px -5px 0 0;
+  vertical-align: center;
+  background: #fff;
+}
+
+.overlay-container {
+  margin: 100px auto 0;
+  max-width: 500px;
+}
+
+#overlay2 {
+  background-color: white;
+  display: inline-block;
+  max-width: 380px;
+  margin: 0;
+  & > div {
+    text-align: left;
+    padding: 20px;
+  }
+}
