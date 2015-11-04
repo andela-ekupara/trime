@@ -24,7 +24,7 @@ var Sequalize = require('sequalize'),
 
       password: {
         type: Sequalize.STRING,
-        comment: "Should be hashed"
+        comment: 'Should be hashed'
       }
     },
 
