@@ -1,0 +1,19 @@
+{
+  "name": "trime",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "andela-gnyenyeshi"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/andela/trime",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ]
+}
