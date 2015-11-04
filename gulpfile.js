@@ -84,9 +84,10 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['browserify']);
 });
 
-gulp.task('production', ['nodemon', 'build']);
+gulp.task('production', ['build']);
+gulp.task('heroku:production', ['production']);
+gulp.task('heroku:staging', ['production']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
-
 gulp.task('build', ['jade', 'less',
   'images', 'browserify', 'bower'
 ]);
