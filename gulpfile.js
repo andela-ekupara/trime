@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   gutil = require('gulp-util'),
   jshint = require('jshint'),
+  bower = require('gulp-bower'),
   jade = require('gulp-jade'),
   nodemon = require('gulp-nodemon'),
   browserify = require('gulp-browserify'),
@@ -41,7 +42,7 @@ gulp.task('lint', function() {
 
 gulp.task('nodemon', function() {
   nodemon({
-      script: 'app.js',
+      script: 'index.js',
       ext: 'js',
       ignore: ['public/', 'node_modules/']
     })
@@ -61,6 +62,11 @@ gulp.task('images', function() {
     .pipe(gulp.dest('./public/images/'));
 });
 
+gulp.task('bower', function() {
+  return bower()
+    .pipe(gulp.dest('public/lib/'));
+});
+
 gulp.task('browserify', function() {
   return browserify('./app/scripts/application.js').bundle()
     .on('success', gutil.log.bind(gutil, 'Browserify Rebundled'))
@@ -72,10 +78,6 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('build', ['jade', 'less', 'static-files',
-  'images', 'browserify'
-]);
-
 gulp.task('watch', function() {
   gulp.watch(paths.jade, ['jade']);
   gulp.watch(paths.styles, ['less']);
@@ -84,3 +86,7 @@ gulp.task('watch', function() {
 
 gulp.task('production', ['nodemon', 'build']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
+
+gulp.task('build', ['jade', 'less',
+  'images', 'browserify', 'bower'
+]);

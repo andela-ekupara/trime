@@ -1,10 +1,17 @@
-@text-color: #009090;
+@primary-color: #009090;
+@accent-color: #999999;
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500|PT+Sans:400,500);
+body {
+  font: 1em 'Roboto', Verdana, Arial;
+  color: #444;
+}
+
 #overlay {
-  background: @text-color url('background.png');
+  background: @primary-color url("../images/background.png");
 }
 
 .text-color {
-  color: @text-color;
+  color: @primary-color;
 }
 
 h1,
@@ -13,6 +20,12 @@ h3,
 h4,
 h5 {
   margin: 0 0 10px 0;
+  font-family: "PT Sans", "Trebuchet MS";
+}
+
+img {
+  margin: 0;
+  max-width: 100%;
 }
 
 #box {
@@ -20,7 +33,7 @@ h5 {
   padding: 5px;
   display: inline-block;
   vertical-align: top;
-  margin: 20px -5px 0 0;
+  margin: 20px 0 0 0;
   vertical-align: center;
   background: #fff;
 }
