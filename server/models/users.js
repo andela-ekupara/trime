@@ -1,16 +1,10 @@
 var Sequalize = require('sequalize'),
   db = require('../config/db-connect'),
-  Users = db.define('users', {
-
-    id: {
-      type: Sequalize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
-    },
+  users = db.define('users', {
 
     username: {
       type: Sequalize.STRING,
+      allowNull: false,
       unique: true
     },
 
@@ -23,7 +17,9 @@ var Sequalize = require('sequalize'),
     },
 
     email: {
-      type: Sequalize.STRING
+      type: Sequalize.STRING,
+      allowNull: false,
+      unique: true
     },
 
     password: {
@@ -40,3 +36,5 @@ var Sequalize = require('sequalize'),
       timestamps: true
     }
   });
+
+module.exports = users;

@@ -1,16 +1,10 @@
 var Sequelize = require('sequelize'),
   db = require('../config/db-connect'),
-  Orgs = db.define('orgs', {
-    // 
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
-    },
+  orgs = db.define('orgs', {
 
     name: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
 
     description: {
@@ -28,3 +22,5 @@ var Sequelize = require('sequelize'),
     }
 
   });
+
+module.exports = orgs;
