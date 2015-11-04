@@ -3,27 +3,28 @@ var Sequelize = require('sequelize'),
   users = require('./users'),
   projects = require('./projects'),
   project_users = db.define('project_users', {
-    role: {
-      type: Sequelize.ENUM('owner', 'admin', 'co-worker'),
-      allowNull: false
-    },
+      role: {
+        type: Sequelize.ENUM('owner', 'admin', 'co-worker'),
+        allowNull: false
+      },
 
-    // foreign keys
-    user_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: users,
-        key: 'id'
-      }
-    },
+      // foreign keys
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: users,
+          key: 'id'
+        }
+      },
 
-    project_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: projects,
-        key: 'id'
+      project_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: projects,
+          key: 'id'
+        }
       }
     },
 
@@ -34,6 +35,6 @@ var Sequelize = require('sequelize'),
       freezeTableName: true,
       // add created_at and modified_at columns
       timestamps: true
-    }
-  });
+    });
+
 module.exports = project_users;
