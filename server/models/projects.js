@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize'),
-  db = require('../config/db_connect)'),
+  db = require('../config/db-connect'),
   orgs = require('./orgs'),
   projects = db.define('projects', {
       title: {
