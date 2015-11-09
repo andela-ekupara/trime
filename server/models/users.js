@@ -1,32 +1,27 @@
-var Sequalize = require('sequalize'),
+var Sequelize = require('sequelize'),
   db = require('../config/db-connect'),
   users = db.define('users', {
-
       username: {
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-
       firstname: {
-        type: Sequalize.STRING
+        type: Sequelize.STRING
       },
-
       lastname: {
-        type: Sequalize.STRING
+        type: Sequelize.STRING
       },
-
       email: {
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
         validate: {
           isEmail: true
         }
       },
-
       password: {
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         comment: 'Should be hashed'
       }
     },

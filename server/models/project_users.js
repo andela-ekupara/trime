@@ -7,8 +7,6 @@ var Sequelize = require('sequelize'),
         type: Sequelize.ENUM('owner', 'admin', 'co-worker'),
         allowNull: false
       },
-
-      // foreign keys
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -17,7 +15,6 @@ var Sequelize = require('sequelize'),
           key: 'id'
         }
       },
-
       project_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

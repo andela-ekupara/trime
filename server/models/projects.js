@@ -2,19 +2,14 @@ var Sequelize = require('sequelize'),
   db = require('../config/db_connect)'),
   orgs = require('./orgs'),
   projects = db.define('projects', {
-      //primary key
-
       title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-
       description: {
         type: Sequelize.STRING,
         allowNull: true
       },
-
-      // foreign key
       org_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
