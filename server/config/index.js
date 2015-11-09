@@ -1,5 +1,4 @@
 var envVariables = {
-
     db: {
       name: process.env.DATABASE_NAME,
       dialect: process.env.DATABASE_DIALECT,
