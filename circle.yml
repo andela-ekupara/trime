@@ -1,1 +1,13 @@
-
+dependencies:
+ post:
+  - npm install module-deps
+  - npm install gulp -g
+deployment:
+  staging:
+    branch: staging
+    heroku:
+      appname: trime-staging
+  production:
+    branch: master
+    heroku:
+      appname: trime-prod
