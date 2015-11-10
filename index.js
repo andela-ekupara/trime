@@ -1,9 +1,14 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development') {
+  require('dotenv').load();
+}
+
 var express = require('express'),
   path = require('path'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  routes = require('./routes'),
+  routes = require('./server/routes'),
   app = express();
 
 // view engine setup
