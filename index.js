@@ -9,7 +9,8 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   routes = require('./server/routes'),
-  app = express();
+  app = express(),
+  config = require('./server/config')[env];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
