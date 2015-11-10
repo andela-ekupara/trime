@@ -1,7 +1,6 @@
+var users = require('../controllers/users');
 module.exports = function(app) {
   'use strict';
 
-  app.get('/users', function(req, res) {
-    res.send([]);
-  });
+  app.post('/users/signup', users.signup);
 };
