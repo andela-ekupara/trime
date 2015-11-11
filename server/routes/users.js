@@ -1,6 +1,9 @@
-var users = require('../controllers/users');
-module.exports = function(app) {
+(function() {
   'use strict';
+  var users = require('../controllers/users');
 
-  app.post('/users/signup', users.signup);
-};
+  module.exports = function(app) {
+    app.post('/users/signup', users.signup);
+    app.post('/users/login', users.login);
+  };
+})();
