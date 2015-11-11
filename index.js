@@ -10,7 +10,10 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   routes = require('./server/routes'),
   app = express(),
-  config = require('./server/config')[env];
+  config = require('./server/config')[env],
+  passport = require('passport'),
+  session = require('express-session'),
+  auth = require('./server/services/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -25,6 +28,37 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// call auth
+auth(passport);
+// serialize the user to maintain the auth state in session
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+// deserialize user
+passport.deserializeUser(function(id, done) {
+  User.findOne({
+      where: {
+        id: id
+      }
+    })
+    .then(function(user) {
+      done(null, user);
+    })
+    .catch(function(err) {
+      done(err);
+    })
+});
+// passport config
+app.use(session({
+  secret: config.expressSessionKey,
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}))
+
+// passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
 
 routes(app);
 // error handlers
@@ -51,9 +85,8 @@ app.use(function(err, req, res) {
   });
 });
 
-var PORT =  process.env.PORT || '3000';
+var PORT = process.env.PORT || '3000';
 app.listen(PORT, function() {
   console.log('Listening on ', PORT);
 });
 
-module.exports = app;
