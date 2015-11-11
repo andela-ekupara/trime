@@ -25,7 +25,7 @@ var Sequelize = require('sequelize'),
         comment: 'Should be hashed'
       }
     },
-
+    
     {
       // auto created column fields should use snake case
       underscore: true,
