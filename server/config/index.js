@@ -1,4 +1,5 @@
 var envVariables = {
+    expressSessionKey: process.env.EXPRESS_SESSION_KEY,
     db: {
       name: process.env.DATABASE_NAME,
       dialect: process.env.DATABASE_DIALECT,
