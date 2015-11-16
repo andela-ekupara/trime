@@ -28,41 +28,23 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 // call auth
 auth(passport, config);
-// serialize the user to maintain the auth state in session
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-// deserialize user
-passport.deserializeUser(function(id, done) {
-  User.findOne({
-      where: {
-        id: id
-      }
-    })
-    .then(function(user) {
-      done(null, user);
-    })
-    .catch(function(err) {
-      done(err);
-    })
-});
+
 // passport config
 app.use(session({
   secret: config.expressSessionKey,
   proxy: true,
   resave: true,
   saveUninitialized: true
-}))
+}));
 
 // passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
 routes(app, passport);
-// error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -81,7 +63,7 @@ app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: err
   });
 });
 
