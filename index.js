@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // call auth
-auth(passport);
+auth(passport, config);
 // serialize the user to maintain the auth state in session
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -60,7 +60,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-routes(app);
+routes(app, passport);
 // error handlers
 
 // development error handler

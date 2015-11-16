@@ -1,6 +1,7 @@
 (function() {
-  "use strict";
-  module.exports = function(passport) {
-    require("./local-auth")(passport);
+  'use strict';
+  module.exports = function(passport, config) {
+    require('./local-auth')(passport);
+    require('./github-auth')(passport, config);
   };
 })();

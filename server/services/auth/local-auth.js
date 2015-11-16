@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
   module.exports = function(passport) {
     var Users = require('../../models/users'),
       bcrypt = require('bcrypt-nodejs'),
@@ -14,7 +14,7 @@
       },
       function(req, username, password, done) {
         // get signup details from input args of the func
-        return Users.create({
+        Users.create({
             username: req.body.username,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -49,12 +49,12 @@
           .then(function(user) {
             if (!user) {
               return done(null, false, {
-                message: "The user does not exist"
+                message: 'The user does not exist'
               });
             } else if (!bcrypt.compareSync(password, user.password)) {
               // if password does not match
               return done(null, false, {
-                message: "Wrong password"
+                message: 'Wrong password'
               });
             } else {
               // everything is OK

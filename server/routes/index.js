@@ -1,7 +1,8 @@
 (function() {
   'use strict';
-  module.exports = function(app) {
+  module.exports = function(app, passport) {
     require('./users')(app);
+    require('./auth/github-auth')(app, passport);
     /* GET home page. */
     app.get('*', function(req, res) {
       res.sendFile('index.html', {

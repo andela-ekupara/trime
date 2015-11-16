@@ -1,6 +1,6 @@
 (function() {
-  "use strict";
-    var passport = require('passport');
+  'use strict';
+  var passport = require('passport');
 
   module.exports = {
     signup: function(req, res, next) {
