@@ -3,7 +3,7 @@ var express = require('express'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  routes = require('./routes'),
+  routes = require('./server/routes'),
   app = express();
 
 // view engine setup
