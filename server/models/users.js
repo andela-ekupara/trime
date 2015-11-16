@@ -28,6 +28,14 @@ var Sequelize = require('sequelize'),
         type: Sequelize.STRING,
         allowNull: true
       },
+      google_auth_id: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      google_auth_token: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       password: {
         type: Sequelize.STRING,
         comment: 'Should be hashed'

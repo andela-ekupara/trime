@@ -3,6 +3,7 @@
   module.exports = function(app, passport) {
     require('./users')(app);
     require('./auth/github-auth')(app, passport);
+    require('./auth/google-auth')(app, passport);
     /* GET home page. */
     app.get('*', function(req, res) {
       res.sendFile('index.html', {

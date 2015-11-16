@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
   // If access was granted, the user will be logged in.
   // Otherwise, authentication has failed.
   app.get('/auth/github/callback', passport.authenticate('github', {
-    failureRedirect: '/users/signup',
+    failureRedirect: '/users/login',
     successRedirect: '/'
       // session: false
   }));

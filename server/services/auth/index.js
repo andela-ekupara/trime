@@ -22,5 +22,6 @@
     });
     require('./local-auth')(passport);
     require('./github-auth')(passport, config);
+    require('./google-auth')(passport, config);
   };
 })();
