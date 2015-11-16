@@ -1,3 +1,8 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development') {
+  require('dotenv').load();
+}
+
 var express = require('express'),
   path = require('path'),
   logger = require('morgan'),
