@@ -85,7 +85,23 @@
             error: err.message
           });
         });
-    }
+    },
+
+    delete: function(req, res) {
+      Orgs.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(function(ok) {
+        return res.sendStatus(204);
+      })
+      .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
   };
 
 })();
