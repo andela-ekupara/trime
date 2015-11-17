@@ -20,6 +20,22 @@ var Sequelize = require('sequelize'),
           isEmail: true
         }
       },
+      github_auth_id: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      github_auth_token: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      google_auth_id: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      google_auth_token: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       password: {
         type: Sequelize.STRING,
         comment: 'Should be hashed'

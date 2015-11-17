@@ -9,7 +9,11 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   routes = require('./server/routes'),
-  app = express();
+  app = express(),
+  config = require('./server/config')[env],
+  passport = require('passport'),
+  session = require('express-session'),
+  auth = require('./server/services/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -25,9 +29,22 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-routes(app);
-// error handlers
+// call auth
+auth(passport, config);
 
+// passport config
+app.use(session({
+  secret: config.expressSessionKey,
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
+
+// passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
+
+routes(app, passport);
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -46,13 +63,12 @@ app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: err
   });
 });
 
-var PORT =  process.env.PORT || '3000';
+var PORT = process.env.PORT || '3000';
 app.listen(PORT, function() {
   console.log('Listening on ', PORT);
 });
 
-module.exports = app;
