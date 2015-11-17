@@ -7,5 +7,8 @@
     app.route('/api/orgs')
       .post(Orgs.create)
       .get(Orgs.all);
+
+    app.route('/api/orgs/:id')
+      .get(Orgs.get)
   };
 })();

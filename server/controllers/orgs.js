@@ -44,6 +44,29 @@
             error: err.message
           });
         });
+    },
+
+    get: function(req, res) {
+      Orgs.sync().then(function() {
+          return Orgs.findOne({
+              where: {
+                id: req.params.id
+              }
+            })
+            .then(function(org) {
+              if (!org) {
+                return res.status(404).json({
+                  error: "Organization Not Found"
+                });
+              }
+              return res.json(org);
+            })
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
     }
   }
 
