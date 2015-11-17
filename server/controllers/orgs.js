@@ -20,7 +20,7 @@
               })
               .then(function(org) {
                 return res.json(org);
-              })
+              });
           })
           .catch(function(err) {
             return res.status(500).json({
@@ -37,7 +37,7 @@
           return Orgs.findAll()
             .then(function(orgs) {
               return res.json(orgs);
-            })
+            });
         })
         .catch(function(err) {
           return res.status(500).json({
@@ -60,14 +60,32 @@
                 });
               }
               return res.json(org);
-            })
+            });
         })
         .catch(function(err) {
           return res.status(500).json({
             error: err.message
           });
         });
+    },
+
+    update: function(req, res) {
+      Orgs.sync().then(function() {
+        return Orgs.update(req.body, {
+          where: {
+            id: req.params.id
+          }
+        })
+        .then(function(org) {
+          return res.json(org);
+        });
+      })
+      .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
     }
-  }
+  };
 
 })();

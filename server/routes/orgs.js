@@ -10,5 +10,6 @@
 
     app.route('/api/orgs/:id')
       .get(Orgs.get)
+      .put(Orgs.update);
   };
 })();
