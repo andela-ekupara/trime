@@ -2,6 +2,7 @@
   'use strict';
 
   var Orgs = require('../models/orgs');
+  var OrgUsers = require('../models/org-users');
 
   module.exports = {
     // Create an org
@@ -56,7 +57,7 @@
             .then(function(org) {
               if (!org) {
                 return res.status(404).json({
-                  error: "Organization Not Found"
+                  error: 'Organization Not Found'
                 });
               }
               return res.json(org);
@@ -71,16 +72,16 @@
 
     update: function(req, res) {
       Orgs.sync().then(function() {
-        return Orgs.update(req.body, {
-          where: {
-            id: req.params.id
-          }
+          return Orgs.update(req.body, {
+              where: {
+                id: req.params.id
+              }
+            })
+            .then(function(org) {
+              return res.json(org);
+            });
         })
-        .then(function(org) {
-          return res.json(org);
-        });
-      })
-      .catch(function(err) {
+        .catch(function(err) {
           return res.status(500).json({
             error: err.message
           });
