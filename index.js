@@ -13,7 +13,8 @@ var express = require('express'),
   config = require('./server/config')[env],
   passport = require('passport'),
   session = require('express-session'),
-  auth = require('./server/services/auth');
+  auth = require('./server/services/auth'),
+  models = require('./server/models');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -28,6 +29,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Set the models attribute on the app object
+app.set('models', models);
 
 // call auth
 auth(passport, config);
@@ -71,4 +75,3 @@ var PORT = process.env.PORT || '3000';
 app.listen(PORT, function() {
   console.log('Listening on ', PORT);
 });
-
