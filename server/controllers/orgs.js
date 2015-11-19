@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  var Orgs = require('../models/orgs');
-  var OrgUsers = require('../models/org-users');
+  var Orgs = require('../models').Orgs;
+  var Users = require('../models').Users;
 
   module.exports = {
-    // Create an org
+    // Create an org and add the logged in user as the owner
     create: function(req, res) {
       // The name is required
       if (req.body.name === '') {
@@ -20,6 +20,17 @@
                 description: req.body.description
               })
               .then(function(org) {
+                Users.findById(req.session.user.id)
+                  .then(function(user) {
+                    user.addOrg(org, {
+                        role: 'owner'
+                      })
+                      .catch(function(err) {
+                        return res.status(500).json({
+                          error: err.message
+                        });
+                      });
+                  });
                 return res.json(org);
               });
           })
@@ -32,7 +43,7 @@
     },
 
     // Get all orgs
-    // TODO: Should get only orgs a user belongs to
+    // TODO: Should only return orgs a user belongs to
     all: function(req, res) {
       Orgs.sync().then(function() {
           return Orgs.findAll()
