@@ -6,13 +6,9 @@ html
     #card
       #header
       #back.mdl-grid
-        //- .mdl-cell.mdl-cell--6-col
-        //- .mdl-cell.mdl-cell--6-col
-        //-   #call
-        //-     p How important is your time to you?
-        //-     button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored
-        //-      |Start Triming 
-      #action 
+      #action
+        p
+         a(href='./views/login.jade') Hello 
       #grid
         p Your company mission statement or your ultimate value.
         .mdl-grid
@@ -33,5 +29,7 @@ html
           img.responsive-image(src='./images/three.jpeg')
           p WE ARE THE BEST
           p What does your company offer that will improve or solve a problem? Explain the pain point being alleviated
-    script(src="./js/app.js")
-    include shared/footer
+
+  #login
+  script(src="./js/app.js")
+  include shared/footer

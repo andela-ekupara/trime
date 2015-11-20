@@ -1,20 +1,18 @@
 (function() {
   var React = require('react');
   var ReactDOM = require('react-dom');
-  
+  var ReactRouter = require('flux-react-router');
+
   var Header = require('./components/header.jsx'); // Our custom react component
-  var Card = require('./components/card.jsx'); //Card
-  var Grid = require('./components/grid.jsx');
+  var Login = require('./components/modal-login.jsx'); // Login page
+
 
   window.React = React;
-  ReactDOM.render(
-  	<Header />, 
-  	document.getElementById('header'));
 
-  // ReactDOM.render(<Card/>, document.getElementById('card'));
+  ReactDOM.render( <Header/> ,
+    document.getElementById('header'));
 
-  //window.React = React;
-  ReactDOM.render(
-  	<Grid />, 
-  	document.getElementById('grid'));
+  ReactDOM.render( <Login/> ,
+    document.getElementById('login'));
+
 })();
