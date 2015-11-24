@@ -4,7 +4,7 @@
 
     var Projects = require('../controllers/projects');
 
-    app.route('/api/projects')
+    app.route('/api/orgs/:org_id/projects')
       .post(Projects.create);
     //   .get(Projects.all);
 
