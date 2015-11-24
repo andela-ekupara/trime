@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('project_users', {
       role: {
-        type: DataTypes.ENUM('owner', 'admin', 'co-worker'),
+        type: DataTypes.ENUM('owner', 'admin', 'user'),
         allowNull: false
       },
     },

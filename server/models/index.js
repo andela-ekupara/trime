@@ -25,7 +25,8 @@
   // Can now be imported through `require('models').ModelName`
   models.forEach(function(model) {
     // sequelize.import loads already created models
-    module.exports[ucModels(model)] = sequelize.import(__dirname + '/' + model);
+    module.exports[ucModels(model)] = sequelize.import(__dirname + '/' +
+      model);
   });
 
   // Declare the relationships between models
@@ -36,6 +37,8 @@
     m.Orgs.belongsToMany(m.Users, {
       through: m.OrgUsers
     });
+    m.Orgs.hasMany(m.Projects);
+    m.Projects.belongsTo(m.Orgs);
   })(module.exports);
 
   // export connection
