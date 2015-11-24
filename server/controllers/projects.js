@@ -72,5 +72,50 @@
         });
     },
 
+    // TODO: only authorized users should update
+    update: function(req, res) {
+      Projects.sync().then(function() {
+          Projects.update(req.body, {
+              where: {
+                id: req.params.project_id
+              }
+            })
+            .then(function(err) {
+              if (err) {
+                res.status(500).json({
+                  error: 'Could not update project'
+                });
+              } else {
+                res.json({
+                  message: 'Project has been updated.'
+                });
+              }
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
+    delete: function(req, res) {
+      Projects.destroy({
+          where: {
+            id: req.params.project_id
+          }
+        })
+        .then(function() {
+          res.status(200).json({
+            message: 'Project deleted successfully'
+          });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
   };
 })();

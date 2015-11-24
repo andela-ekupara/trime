@@ -101,14 +101,16 @@
 
     delete: function(req, res) {
       Orgs.destroy({
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(function(ok) {
-        return res.sendStatus(204);
-      })
-      .catch(function(err) {
+          where: {
+            id: req.params.id
+          }
+        })
+        .then(function() {
+          return res.status(200).json({
+            message: 'Organization deleted successfully'
+          });
+        })
+        .catch(function(err) {
           return res.status(500).json({
             error: err.message
           });
