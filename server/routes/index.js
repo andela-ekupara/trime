@@ -3,6 +3,7 @@
   module.exports = function(app, passport) {
     require('./users')(app);
     require('./orgs')(app);
+    require('./projects')(app);
     require('./auth/github-auth')(app, passport);
     require('./auth/google-auth')(app, passport);
     /* GET home page. */
