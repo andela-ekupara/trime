@@ -8,8 +8,8 @@
       .post(Projects.create)
       .get(Projects.all);
 
-    // app.route('/api/projects/:id')
-    //   .get(Projects.get)
+    app.route('/api/orgs/:org_id/projects/:project_id')
+      .get(Projects.get);
     //   .put(Projects.update)
     //   .delete(Projects.delete);
 

@@ -49,6 +49,28 @@
         });
     },
 
+    get: function(req, res) {
+      Projects.sync().then(function() {
+          return Projects.findOne({
+              where: {
+                id: req.params.project_id
+              }
+            })
+            .then(function(project) {
+              if (!project) {
+                return res.status(404).json({
+                  error: 'Project Not Found'
+                });
+              }
+              return res.json(project);
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
 
   };
 })();
