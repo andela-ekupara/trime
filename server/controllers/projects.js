@@ -31,5 +31,24 @@
       }
     },
 
+    all: function(req, res) {
+      Projects.sync().then(function() {
+          return Projects.findAll({
+              where: {
+                org_id: req.params.org_id
+              }
+            })
+            .then(function(projects) {
+              return res.json(projects);
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
+
   };
 })();
