@@ -8,12 +8,14 @@ var gulp = require('gulp'),
   browserify = require('browserify'),
   source = require('vinyl-source-stream'),
   imagemin = require('gulp-imagemin'),
-  path = require('path');
+  path = require('path'),
+  reactify = require('reactify'),
+  babelify = require('babelify');
 
 var paths = {
   public: 'public/**',
   images: 'app/images/**/*',
-  scripts: 'app/**/*.js',
+  scripts: 'app/**/*.+(jsx|js)',
   styles: 'app/styles/*.+(less|css)',
   jade: ['!app/shared/**', 'app/**/*.jade']
 };
@@ -33,7 +35,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['./app/**/*.js', './*.js',
+  return gulp.src(['./app/**/*.+(js|jsx)', './index.js', +
       './server/**/*.js', './tests/**/*.js'
     ])
     .pipe(jshint())
@@ -68,21 +70,31 @@ gulp.task('bower', function() {
 });
 
 gulp.task('browserify', function() {
-  return browserify('./app/scripts/application.js').bundle()
+  var bundler = browserify({
+    entries: ['./app/scripts/app.jsx'],
+    debug: true,
+    fullPaths: true,
+    transform: [reactify, babelify]
+  });
+
+  bundler.bundle()
     .on('success', gutil.log.bind(gutil, 'Browserify Rebundled'))
     .on('error', gutil.log.bind(gutil, 'Browserify ' +
       'Error: in browserify gulp task'))
     // vinyl-source-stream makes the bundle compatible with gulp
-    .pipe(source('application.js')) // filename
+    .pipe(source('app.js')) // filename
     // Output the file
     .pipe(gulp.dest('./public/js/'));
+  return bundler;
 });
+
 
 gulp.task('watch', function() {
   gulp.watch(paths.jade, ['jade']);
   gulp.watch(paths.styles, ['less']);
   gulp.watch(paths.scripts, ['browserify']);
 });
+
 
 gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
