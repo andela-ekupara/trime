@@ -9,4 +9,5 @@ var Sequelize = require('sequelize'),
 sequelize.sync({
   force: false
 });
+
 module.exports = sequelize;

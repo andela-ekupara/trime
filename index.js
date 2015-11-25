@@ -13,8 +13,7 @@ var express = require('express'),
   config = require('./server/config')[env],
   passport = require('passport'),
   session = require('express-session'),
-  auth = require('./server/services/auth'),
-  models = require('./server/models');
+  auth = require('./server/services/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -29,9 +28,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
-
-// Set the models attribute on the app object
-app.set('models', models);
 
 // call auth
 auth(passport, config);

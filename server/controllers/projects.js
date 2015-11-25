@@ -2,34 +2,45 @@
   'use strict';
 
   var Projects = require('../models').Projects;
+  var Users = require('../models').Users;
 
   module.exports = {
     // Create a project
     create: function(req, res) {
       // The project title is required
-      if (req.body.title === '' || req.params.org_id === '') {
+      if (!req.body.name || !req.params.org_id) {
         return res.status(400)
           .json({
-            error: 'The project title is required'
+            error: 'The project name is required'
           });
       } else {
         Projects.sync().then(function() {
-            return Projects.create({
-                title: req.body.title,
-                description: req.body.description,
-                org_id: req.params.org_id
-              })
-              .then(function(project) {
-                return res.json(project);
-              });
-          })
-          .catch(function(err) {
-            return res.status(500).json({
-              error: err.message
+          return Projects.create({
+              name: req.body.name,
+              description: req.body.description,
+              org_id: req.params.org_id
+            })
+            .then(function(project) {
+              Users.findById(req.session.user.id)
+                .then(function(user) {
+                  user.addProject(project, {
+                      role: 'owner'
+                    }).then(function() {
+                      res.json(project);
+                    })
+                    .catch(function(err) {
+                      project.destroy().then(function() {
+                        res.status(500).json({
+                          error: err.message
+                        });
+                      });
+                    });
+                });
             });
-          });
+        });
       }
     },
+
 
     all: function(req, res) {
       Projects.sync().then(function() {

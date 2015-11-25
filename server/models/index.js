@@ -39,6 +39,12 @@
     });
     m.Orgs.hasMany(m.Projects);
     m.Projects.belongsTo(m.Orgs);
+    m.Projects.belongsToMany(m.Users, {
+      through: m.ProjectUsers
+    });
+    m.Users.belongsToMany(m.Projects, {
+      through: m.ProjectUsers
+    });
   })(module.exports);
 
   // export connection

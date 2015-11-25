@@ -8,7 +8,7 @@
     // Create an org and add the logged in user as the owner
     create: function(req, res) {
       // The name is required
-      if (req.body.name === '') {
+      if (!req.body.name) {
         return res.status(400)
           .json({
             error: 'The name field cannot be empty'
@@ -24,14 +24,17 @@
                   .then(function(user) {
                     user.addOrg(org, {
                         role: 'owner'
+                      }).then(function() {
+                        res.json(org);
                       })
                       .catch(function(err) {
-                        return res.status(500).json({
-                          error: err.message
+                        org.destroy().then(function() {
+                          res.status(500).json({
+                            error: err.message
+                          });
                         });
                       });
                   });
-                return res.json(org);
               });
           })
           .catch(function(err) {
