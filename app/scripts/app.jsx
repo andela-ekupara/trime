@@ -1,20 +1,13 @@
 (function() {
-  var React = require('react');
-  var ReactDOM = require('react-dom');
-  
-  var Header = require('./components/header.jsx'); // Our custom react component
-  var Card = require('./components/card.jsx'); //Card
-  var Grid = require('./components/grid.jsx');
+	'use strict';
 
-  window.React = React;
-  ReactDOM.render(
-  	<Header />, 
-  	document.getElementById('header'));
+	var React = require('react'),
+		ReactDOM = require('react-dom'),
+		Router = require('react-router'),
+		routes = require('./routes/routes');
+		
+	Router.run(routes, function (Root) {
+		ReactDOM.render(<Root />, document.getElementById('card'));
+	});
 
-  // ReactDOM.render(<Card/>, document.getElementById('card'));
-
-  //window.React = React;
-  ReactDOM.render(
-  	<Grid />, 
-  	document.getElementById('grid'));
 })();
