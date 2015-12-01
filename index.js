@@ -51,7 +51,10 @@ app.use(function(err, req, res) {
 });
 
 var PORT =  process.env.PORT || '3000';
-app.listen(PORT, function() {
+app.listen(PORT, function(err) {
+  if(err){
+    console.log(err);
+  }
   console.log('Listening on ', PORT);
 });
 

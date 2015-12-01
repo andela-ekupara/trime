@@ -4,10 +4,10 @@
 	var React = require('react'),
 		ReactDOM = require('react-dom'),
 		Router = require('react-router'),
-		routes = require('./routes/routes');
+		routes = require('./routes');
 		
 	Router.run(routes, function (Root) {
-		ReactDOM.render(<Root />, document.getElementById('card'));
+		React.render(<Root />, document.getElementById('card'));
 	});
 
 })();
