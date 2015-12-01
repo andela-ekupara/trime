@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var AppDispatcher = require('../dispatcher/AppDispatcher'),
     request = require('superagent'),
     EventEmitter = require('events').EventEmitter,
@@ -36,11 +38,12 @@
 
   // Register callback to handle all updates
   AppDispatcher.register(function(action) {
-    var name;
+    var description, name;
 
     switch (action.actionType) {
       case TrimeConstants.ORG_CREATE:
         name = action.name.trim();
+        description = action.description.trim();
         if (name !== '') {
           createOrg(name, description, TrimeStore.emitChange);
         }
@@ -48,6 +51,10 @@
       default:
         // no op
     }
+
+    return true; // No errors. Needed by promise in Dispatcher.
   });
+
   module.exports = TrimeStore;
+
 })();
