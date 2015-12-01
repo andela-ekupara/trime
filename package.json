@@ -36,8 +36,6 @@
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
     "react": "^0.13.3",
-    "react-dom": "^0.14.2",
-    "react-jade": "^2.5.0",
     "react-router": "^0.13.3",
     "reactify": "^1.1.1",
     "sequelize": "~3.13.0",
