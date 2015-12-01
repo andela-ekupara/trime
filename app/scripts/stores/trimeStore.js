@@ -7,7 +7,7 @@
 
   function createOrg(name, description, callback) {
     request
-      .post('/api/.orgs')
+      .post('/api/orgs')
       .send({
         name: name,
         description: description
