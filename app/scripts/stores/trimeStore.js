@@ -4,7 +4,7 @@
   var AppDispatcher = require('../dispatcher/AppDispatcher'),
     request = require('superagent'),
     EventEmitter = require('events').EventEmitter,
-    TrimeConstants = require('../constants/trimeConstants'),
+    TrimeConstants = require('../constants/TrimeConstants'),
     assign = require('object-assign');
 
   function createOrg(name, description, callback) {

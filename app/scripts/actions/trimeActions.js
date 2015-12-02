@@ -2,7 +2,7 @@
   'use strict';
 
   var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    TrimeConstants = require('../constants/trimeConstants');
+    TrimeConstants = require('../constants/TrimeConstants');
 
   var TrimeActions = {
     createOrg: function(name, description) {
