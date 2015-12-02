@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
   less = require('gulp-less'),
   gutil = require('gulp-util'),
-  jshint = require('jshint'),
+  jshint = require('gulp-jshint'),
   bower = require('gulp-bower'),
   jade = require('gulp-jade'),
   nodemon = require('gulp-nodemon'),
@@ -46,9 +46,9 @@ gulp.task('nodemon', function() {
   nodemon({
       script: 'index.js',
       ext: 'js',
+      tasks: ['lint'],
       ignore: ['public/', 'node_modules/']
     })
-    .on('change', ['lint'])
     .on('restart', function() {
       console.log('>> node restart');
     });

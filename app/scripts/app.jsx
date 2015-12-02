@@ -8,5 +8,4 @@
 	Router.run(routes, function (Root) {
 		React.render(<Root />, document.getElementById('card'));
 	});
-
 })();
