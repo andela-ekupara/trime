@@ -6,5 +6,8 @@ var Sequelize = require('sequelize'),
     dialect: config.db.dialect || 'postgres'
   });
 
-sequelize.sync();
+sequelize.sync({
+  force: false
+});
+
 module.exports = sequelize;

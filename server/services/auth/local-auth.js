@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   module.exports = function(passport) {
-    var Users = require('../../models/users'),
+    var Users = require('../../models').Users,
       bcrypt = require('bcrypt-nodejs'),
       LocalStrategy = require('passport-local').Strategy;
 
