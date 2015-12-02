@@ -21,6 +21,22 @@
       });
   }
 
+  function login(username, password, callback) {
+      request
+        .post('/api/users/login')
+        .send({
+          username: username,
+          password: password
+        })
+        .end(function(err, user) {
+          if(err){
+            console.log("GERTY" +err);
+          }
+            callback(user); 
+          
+        });
+  }
+
   var TrimeStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function() {
@@ -47,6 +63,14 @@
         if (name !== '') {
           createOrg(name, description, TrimeStore.emitChange);
         }
+        break;
+
+      case TrimeConstants.USER_LOGIN:
+        var username = action.username;
+        var password = action.password;
+        login(username, password, function(user) {
+          console.log(user);
+        });
         break;
       default:
         // no op

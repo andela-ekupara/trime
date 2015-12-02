@@ -1,19 +1,41 @@
 'use strict';
 
 var React = require('react');
+var trimeActions = require('../../actions/trimeActions');
 
 var LoginForm = React.createClass({
+	getInitialState: function() {
+		return {
+			username: '',
+			password: ''
+		}
+	},
+	handleUsernameChange: function(event) {
+		return this.setState({
+			username: this.state.username
+		});
+	},
+	handlePasswordChange: function(event) {
+		return this.setState({
+			password: this.state.password
+		});
+	},
+	onSubmit: function(event) {
+		event.preventDefault();
+		console.log("THIS "+this.state.username);
+		trimeActions.login("shekini", "abc123");
+	},
 	render: function() {
 		return (
 			<div className="row">
-        <form className="col s12">
+        <form className="col s12" onSubmit={this.onSubmit}>
           <div className="input-field col s6">
           	<i className="material-icons prefix">account_circle</i>
-            <input id="username" placeholder="email" type="text" className="validate" />
+            <input id="username" placeholder="email" type="text" className="validate" onChange={this.handleUsernameChange}/>
           </div>
           <div className="input-field col s6">
           	<i className="material-icons prefix">security</i>
-            <input id="password" placeholder="password" type="password" className="validate" />
+            <input id="password" placeholder="password" type="password" className="validate" onChange={this.handlePasswordChange}/>
           </div>  
           <button class="btn waves-effect waves-light" type="submit" name="action">Login
     				<i class="material-icons right">send</i>
@@ -45,4 +67,4 @@ var NavBar = React.createClass({
 	}
 });
 
-module.exports = NavBar;
+module.exports = LoginForm;
