@@ -12,7 +12,6 @@
 						      <div className="mdl-cell mdl-cell--8-col">
 						        <ul>
 						          <li className="login">TRIME  </li>
-						          <li className="right btn-start"><a href="#">Start Triming</a></li> 
 						        </ul>
 						      </div>
 						    </div>
