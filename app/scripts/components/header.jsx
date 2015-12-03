@@ -1,11 +1,20 @@
 var React = require('react'),
-AppBar = require('material-ui').AppBar,
-Greeting = React.createClass({
-  render: function() {
-    return (
-        <AppBar
-          title="TRIME" />);
-  }
-});
-
-module.exports = Greeting;
+		RouteHandler =require('react-router').RouteHandler,
+		Header = React.createClass({
+		render: function() {
+		  return (
+					<div id="header">
+					  <div id="nav">
+					    <div className="row">
+					      <div className="col s8">
+					        <ul>
+					          <li className="login">TRIME </li>
+					        </ul>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+		      );
+		}
+		});
+module.exports = Header;
