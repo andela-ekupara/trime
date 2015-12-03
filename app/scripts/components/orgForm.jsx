@@ -1,19 +1,36 @@
 (function(){
   'use strict';
-  var React = require('react'),
-      trimeActions = require('../actions/TrimeActions'),
-      trimeStore = require('../stores/TrimeStore');
+  var React = require('react');
+  var TrimeActions = require('../actions/TrimeActions');
+  var TrimeStore = require('../stores/TrimeStore');
 
-  var OrgForm = React.createClass ({
+  var OrgForm = React.createClass({
     getInitialState: function() {
       return {
         name: '',
-        description: ''
+        description: '',
+        result: ''
       };
+    },
+    componentDidMount: function() {
+      TrimeStore.addChangeListener(this.handleUpdate);
+    },
+
+    handleUpdate: function() {
+      var data = TrimeStore.getData();
+      if (data.error) {
+        this.setState({result: 'Error Creating the Org!'});
+      } else{
+        this.setState({result: 'Successfully created the Organisation'});
+      }
     },
 
     handleDescriptionChange: function(e) {
       this.setState({description: e.target.value});
+    },
+
+    componentWillUnmount: function(){
+      console.log('component about to unmount');
     },
 
     handleNameChange: function(e) {
@@ -22,7 +39,7 @@
 
     onSubmit: function(e) {
       e.preventDefault();
-      trimeActions.createOrg(this.state.name, this.state.description);
+      TrimeActions.createOrg(this.state.name, this.state.description);
     },
 
     render: function() {
@@ -32,7 +49,7 @@
               <div className="row">
                 <div className="input-field col s6">
                   <input id="name" type="text" name="name" onChange={this.handleNameChange}
-                  className="validate" />
+                  className="validate" required />
                   <label className="active" for="name"> Organisation Name </label>
                 </div>
               </div>
@@ -46,6 +63,7 @@
               <button className="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i className="material-icons right">send</i>
               </button>
+              <p>{this.state.result}</p>
             </form>
           </div>
       );

@@ -1,16 +1,17 @@
 (function() {
   'use strict';
 
-  var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    TrimeConstants = require('../constants/TrimeConstants');
+  var TrimeConstants = require('../constants/TrimeConstants');
+  var baseActions = require('./BaseActions');
 
   var TrimeActions = {
     createOrg: function(name, description) {
-      AppDispatcher.dispatch({
-        actionType: TrimeConstants.ORG_CREATE,
+      var data = {
         name: name,
         description: description
-      });
+      };
+      // Call the helper function, passing in the URL, data and actionType
+      baseActions('/api/orgs', data, TrimeConstants.ORG_CREATE);
     }
   };
 
