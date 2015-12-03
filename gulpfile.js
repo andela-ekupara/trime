@@ -35,7 +35,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['./app/**/*.+(js|jsx)', './index.js',
+  return gulp.src(['./app/**/*.js', './index.js',
       './server/**/*.js', './tests/**/*.js'
     ])
     .pipe(jshint())

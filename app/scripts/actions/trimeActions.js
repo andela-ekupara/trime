@@ -11,14 +11,6 @@
         name: name,
         description: description
       });
-    },
-
-    login: function(username, password) {
-      AppDispatcher.dispatch({
-        actionType: TrimeConstants.USER_LOGIN,
-        username: username,
-        password: password
-      });
     }
   };
 

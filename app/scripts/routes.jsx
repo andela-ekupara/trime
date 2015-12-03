@@ -18,6 +18,8 @@
 			<Route path="/login" handler={require('./components/login/login-page.jsx')}>
 				<DefaultRoute handler={require('./components/login/signupForm.jsx')} />
 			</Route>
+			<Route path="/user" handler={require('./components/tests/login-page.js')} />
+				
 		</Route>
 	);
 	module.exports = routes;
