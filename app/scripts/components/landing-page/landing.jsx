@@ -18,19 +18,24 @@
   </div>
 </div>
 <div className="row">
-  <div className="col s4"><img src="./images/one.jpeg" className="responsive-image"/>
+
+  <div className="col s12 m6 l4"><img src="./images/one.jpeg" className="responsive-image"/>
     <p>WE ARE THE BEST</p>
     <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
   </div>
-  <div className="col s4"><img src="./images/five.jpeg" className="responsive-image"/>
+
+  <div className="col s12 m6 l4"><img src="./images/five.jpeg" className="responsive-image"/>
     <p>WE ARE THE BEST</p>
     <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
   </div>
-  <div className="col s4"><img src="./images/three.jpeg" className="responsive-image"/>
+
+  <div className="col s12 m6 l4"><img src="./images/three.jpeg" className="responsive-image"/>
     <p>WE ARE THE BEST</p>
     <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
   </div>
+  
 </div>
+
         </div>
         );
     }

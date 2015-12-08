@@ -5,11 +5,11 @@
 		Link = require('react-router').Link,
 		Header = React.createClass({
 		  render: function() {
-		    return (
+		    return(
 						<div id="header">
 						  <div id="nav">
-						    <div className="mdl-grid">
-						      <div className="mdl-cell mdl-cell--8-col">
+						    <div className="row">
+						      <div className="col s1">
 						        <ul>
 						          <li className="login">TRIME  </li>
 						        </ul>

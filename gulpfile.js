@@ -100,6 +100,5 @@ gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
 gulp.task('heroku:staging', ['production']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
-gulp.task('build', ['jade', 'less',
-  'images', 'browserify', 'bower'
+gulp.task('build', ['jade', 'less', 'browserify', 'bower'
 ]);

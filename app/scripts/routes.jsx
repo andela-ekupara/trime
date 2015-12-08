@@ -14,11 +14,12 @@
 			<Route path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
         <Route path="/orgs" handler={require('./components/orgForm.jsx')} />
+        <Route path="/dashboard" handler={require('./components/orgForm.jsx')} />
 			</Route>
 			<Route path="/login" handler={require('./components/login/login-page.jsx')}>
 				<DefaultRoute handler={require('./components/login/signupForm.jsx')} />
+				<Route path="/user" handler={require('./components/tests/login-page.js')} />
 			</Route>
-			<Route path="/user" handler={require('./components/tests/login-page.js')} />
 				
 		</Route>
 	);
