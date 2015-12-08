@@ -4,62 +4,22 @@
     request = require('superagent'),
     EventEmitter = require('events').EventEmitter,
     TrimeConstants = require('../constants/trimeConstants'),
-    assign = require('object-assign');
+    assign = require('object-assign'),
+    BaseStore = require('./BaseStore');
 
-  function login(user, callback) {
-    request
-      .post('/api/users/login')
-      .send(user)
-      .end(function(err, user) {
-        if (err) {
-          console.log('GERTY' + err);
-        }
-        console.log('dbfjahh');
-        callback(user);
-      });
-  }
+    var UserStore = assign({}, BaseStore);
 
-  function signup(user, callback) {
-    request
-      .post('/api/users')
-      .send(user)
-      .end(function(err, user) {
-        if (err) {
-          throw err;
-        } else {
-          callback(user);
-        }
-      });
-  }
-
-  var UserStore = assign({}, EventEmitter.prototype, {
-    emitChange: function() {
-      this.emit('change');
-    },
-    addChangeListener: function(callback) {
-      this.on('change', callback);
-    },
-    removeChangeListener: function(callback) {
-      this.removeListener('change', callback);
-    }
-  });
-
-  AppDispatcher.register(function(action) {
-    switch (action.actionType) {
-      case TrimeConstants.USER_LOGIN:
-        login(action.data, function(user) {
-          console.log(user);
-        });
-        // UserStore.emitChange();
-        break;
-      case TrimeConstants.USER_SIGNUP:
-        signup(action.data, function(user) {
-          console.log(user);
-        });
-        break;
-      default:
-        // no operation
-    }
+    AppDispatcher.register(function(action) {
+    	switch(action.actionType) {
+    		case TrimeConstants.USER_LOGIN:
+            UserStore.setData(action.data);
+          break;
+        case TrimeConstants.USER_SIGNUP:
+          UserStore.setData(action.data);
+          break;
+        default:
+        	// no operation
+  		}
 
     return true;
   });

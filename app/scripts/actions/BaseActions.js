@@ -8,11 +8,10 @@
     request
       .post(url)
       .send(data)
-      .end(function(err, org) {
-        var result = err ? err : org;
+      .end(function(err, result) {
         AppDispatcher.dispatch({
           actionType: actionType,
-          data: result
+          data: result.body
         });
       });
   };

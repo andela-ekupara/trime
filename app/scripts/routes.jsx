@@ -11,10 +11,9 @@
 	var routes =  (
 		<Route>
 			<Redirect from="/" to="/landing-page" />
-			<Route path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
+			<Route name="landing" path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
-        <Route path="/orgs" handler={require('./components/orgForm.jsx')} />
-        <Route path="/dashboard" handler={require('./components/orgForm.jsx')} />
+        <Route path="/orgs" handler={require('./components/org-page/orgs-page.jsx')} />
 			</Route>
 			<Route path="/login" handler={require('./components/login/login-page.jsx')}>
 				<DefaultRoute handler={require('./components/login/signupForm.jsx')} />
