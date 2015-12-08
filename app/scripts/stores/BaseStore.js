@@ -14,10 +14,6 @@
     getData: function() {
       return this.data;
     },
-    setError: function(data) {
-      this.error = data;
-      this.emitChange();
-    },
     emitChange: function() {
       this.emit('change');
     },

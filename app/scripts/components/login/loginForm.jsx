@@ -1,16 +1,31 @@
 'use strict';
 
 var React = require('react'),
-  UserActions = require('../../actions/userActions');
-require('../../stores/userStore');
+  UserActions = require('../../actions/userActions'),
+	UserStore = require('../../stores/userStore'),
+	Navigation = require('react-router').Navigation;
 
 var LoginForm = React.createClass({
+	mixins: [Navigation],
 	getInitialState: function() {
 		return {
 			user: {
 				username: '',
 				password: ''
-			}
+			},
+			result: ''
+		}
+	},
+	componentDidMount: function() {
+		UserStore.addChangeListener(this.handleLogin);
+	},
+	handleLogin: function() {
+		var data = UserStore.getData();
+		if(data.error) {
+			this.setState({result: data.error});
+		} else {
+			this.setState({result: 'successful'});
+			this.transitionTo('/orgs');
 		}
 	},
 	handleFieldChange: function(event) {
@@ -37,6 +52,7 @@ var LoginForm = React.createClass({
           <div className="col s3"> 
           <button className="btn waves-effect waves-light" type="submit" name="action">sign in</button>  
           </div> 
+          <span>{this.state.result}</span>
         </form>
       </div>
 		);

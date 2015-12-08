@@ -7,12 +7,13 @@
       passport.authenticate('signup', function(err, user) {
         if (err) {
           return res.status(500).send({
-            error: err.errors || err.message
+            error: err.errors[0] || err.message
           });
         }
         if (!user) {
+          console.log("Err2+++ ", err);
           return res.status(500).send({
-            error: 'User already exists'
+            error: 'Error creating user.'
           });
         }
         user.password = null;
@@ -23,13 +24,14 @@
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {
-          return res.status(500).send(err);
+          return res.send(err);
         }
         if (!user) {
           return res.status(500).send({
-            error: 'User doesn\'t exist'
+            error: 'wrong email password combination'
           });
         }
+        console.log("alright");
         // initialize user password to null sto avoid pswd being saved to session
         user.password = null;
         req.session.user = user;

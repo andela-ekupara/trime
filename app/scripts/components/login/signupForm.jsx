@@ -2,19 +2,31 @@
 	'use strict';
 
 	var React = require('react'),
-    UserActions = require('../../actions/userActions');
-  require('../../stores/userStore');
+    UserActions = require('../../actions/userActions'),
+    UserStore = require('../../stores/userStore'),
+    Navigation = require('react-router').Navigation;
 
 	var SignupForm = React.createClass({
+    mixins: [Navigation],
     getInitialState: function() {
       return {
         user: {
-          firstName: '',
-          lastName: '',
-          username: '',
           email: '',
           password: ''
-        }
+        },
+        result: ''
+      }
+    },
+    componentDidMount: function() {
+      UserStore.addChangeListener(this.handleSignup);
+    },
+    handleSignup: function() {
+      var data = UserStore.getData();
+      if(data.error) {
+        this.setState({result: data.error.message});
+      } else {
+        this.setState({result: 'Success!'});
+        // this.transitionTo('/dashboard');
       }
     },
     handleFieldChange: function(event) {
@@ -31,42 +43,30 @@
 			return (
 				<div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
+          <span>{this.state.result}</span>
             <div className="row">
-              <div className="input-field col s6">
-              	<i className="material-icons prefix">account_circle</i>
-                <input name="firstName" id="first_name" type="text" className="validate" onChange={this.handleFieldChange} />
-                <label for="first_name">First Name</label>
-              </div>
-              <div className="input-field col s6">
-              	<i className="material-icons prefix">account_circle</i>
-                <input name="lastName" id="last_name" type="text" className="validate" onChange={this.handleFieldChange}/>
-                <label for="last_name">Last Name</label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s6">
-              	<i className="material-icons prefix">account_circle</i>
-                <input name="username" id="username" type="text" className="validate" onChange={this.handleFieldChange}/>
-                <label for="username">User Name</label>
-              </div>
-              <div className="input-field col s6">
+              <div className="input-field col s12">
               	<i className="material-icons prefix">email</i>
-                <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange}/>
+                <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required/>
                 <label for="email">Email</label>
               </div>
             </div>
             <div className="row">
-              <div className="input-field col s6">
+              <div className="input-field col s12">
               	<i className="material-icons prefix">security</i>
-                <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange}/>
+                <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required/>
                 <label for="password">Password</label>
               </div>
-              <div className="input-field col s6">
+            </div>
+            <div className="row">
+              <div className="input-field col s12">
               	<i className="material-icons prefix">security</i>
-                <input id="password" type="password" className="validate" />
+                <input id="password" type="password" className="validate" required/>
                 <label for="password">Password</label>
               </div>
-              <div className="col"> 
+            </div>
+            <div className="row">
+              <div className="col s12"> 
                 <button className="btn waves-effect waves-light" type="submit" name="action">start trimming</button>  
               </div> 
             </div>
