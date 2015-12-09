@@ -11,7 +11,6 @@
           });
         }
         if (!user) {
-          console.log("Err2+++ ", err);
           return res.status(500).send({
             error: 'Error creating user.'
           });
@@ -31,7 +30,6 @@
             error: 'wrong email password combination'
           });
         }
-        console.log("alright");
         // initialize user password to null sto avoid pswd being saved to session
         user.password = null;
         req.session.user = user;

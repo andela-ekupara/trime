@@ -45,18 +45,15 @@
           })
           .then(function(user) {
             if (!user) {
-              console.log("No such user");
               return done(null, false, {
                 message: 'The user does not exist'
               });
             } else if (!bcrypt.compareSync(password, user.password)) {
               // if password does not match
-              console.log("No matching password");
               return done(null, false, {
                 message: 'Wrong password'
               });
             } else {
-              console.log("okey");
               // everything is OK
               return done(null, user);
             }
