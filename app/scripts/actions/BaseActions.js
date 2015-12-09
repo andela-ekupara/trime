@@ -4,16 +4,53 @@
   var AppDispatcher = require('../dispatcher/AppDispatcher');
   var request = require('superagent');
 
-  module.exports = function baseActions(url, data, actionType) {
-    request
-      .post(url)
-      .send(data)
-      .end(function(err, result) {
-        AppDispatcher.dispatch({
-          actionType: actionType,
-          data: result.body
+  module.exports = {
+    get: function(url, actionType) {
+      request
+        .get(url)
+        .end(function(err, result) {
+          AppDispatcher.dispatch({
+            actionType: actionType,
+            data: result.body
+          });
         });
-      });
+    },
+
+    delete: function(url, data, actionType) {
+      request
+        .delete(url)
+        .send(data || {})
+        .end(function(err, result) {
+          AppDispatcher.dispatch({
+            actionType: actionType,
+            data: result.body
+          });
+        });
+    },
+
+    put: function(url, data, mactionType) {
+      request
+        .get(url)
+        .send(data)
+        .end(function(err, result) {
+          AppDispatcher.dispatch({
+            actionType: actionType,
+            data: result.body
+          });
+        });
+    },
+
+    post: function(url, data, actionType) {
+      request
+        .post(url)
+        .send(data)
+        .end(function(err, result) {
+          AppDispatcher.dispatch({
+            actionType: actionType,
+            data: result.body
+          });
+        });
+    }
   };
 
 })();

@@ -1,9 +1,8 @@
 (function() {
-  var keyMirror = require('keymirror');
-
-  module.exports = keyMirror({
+  module.exports = require('keymirror')({
     ORG_CREATE: null,
     USER_LOGIN: null,
-    USER_SIGNUP: null
+    USER_SIGNUP: null,
+    USER_SESSION: null
   });
 })();

@@ -7,6 +7,7 @@ var React = require('react'),
 
 var LoginForm = React.createClass({
 	mixins: [Navigation],
+	
 	getInitialState: function() {
 		return {
 			user: {
@@ -16,28 +17,33 @@ var LoginForm = React.createClass({
 			result: ''
 		}
 	},
+
 	componentDidMount: function() {
 		UserStore.addChangeListener(this.handleLogin);
 	},
+
 	handleLogin: function() {
 		var data = UserStore.getData();
 		if(data.error) {
 			this.setState({result: data.error});
 		} else {
 			this.setState({result: 'successful'});
-			this.transitionTo('/orgs');
+			// this.transitionTo('/orgs');
 		}
 	},
+
 	handleFieldChange: function(event) {
 		var field = event.target.name;
 		var value = event.target.value;
 		this.state.user[field]= value;
-		return this.setState({user: this.state.user});
+		this.setState({user: this.state.user});
 	},
+
 	onSubmit: function(event) {
 		event.preventDefault();
 		UserActions.login(this.state.user);
 	},
+
 	render: function() {
 		return (
 			<div className="row login-form">
@@ -79,4 +85,4 @@ var NavBar = React.createClass({
 	}
 });
 
-module.exports = NavBar;
+module.exports = LoginForm;

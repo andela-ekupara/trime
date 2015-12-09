@@ -1,26 +1,21 @@
 (function() {
 	'use strict';
-	var React = require('react');
-	var Router = require('react-router');
-	var DefaultRoute = Router.DefaultRoute;
-	var Route = Router.Route;
-	var RouteHandler = Router.RouteHandler;
-	var Redirect = Router.Redirect;
 
+	var React = require('react'),
+		Router = require('react-router'),
+		DefaultRoute = Router.DefaultRoute,
+		Route = Router.Route,
+		RouteHandler = Router.RouteHandler,
+		Redirect = Router.Redirect;
 
-	var routes =  (
+	module.exports = (
 		<Route>
 			<Redirect from="/" to="/landing-page" />
 			<Route name="landing" path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
+				<Route path="/join" handler={require('./components/login/SignupPage.jsx')} />
         <Route path="/orgs" handler={require('./components/org-page/orgs-page.jsx')} />
 			</Route>
-			<Route path="/login" handler={require('./components/login/login-page.jsx')}>
-				<DefaultRoute handler={require('./components/login/signupForm.jsx')} />
-				<Route path="/user" handler={require('./components/tests/login-page.js')} />
-			</Route>
-				
 		</Route>
 	);
-	module.exports = routes;
 })();

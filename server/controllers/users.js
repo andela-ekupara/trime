@@ -30,11 +30,21 @@
             error: 'wrong email password combination'
           });
         }
-        // initialize user password to null sto avoid pswd being saved to session
+        // Initialize user password to null
         user.password = null;
         req.session.user = user;
         res.json(user);
       })(req, res, next);
+    },
+
+    session: function(req, res) {
+      if (req.session.user) {
+        res.send(req.session.user);
+      } else {
+        res.status(401).send({
+          error: {} // You are not logged in.
+        });
+      }
     },
 
     authenticate: function(req, res, next) {

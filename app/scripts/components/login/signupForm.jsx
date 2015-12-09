@@ -71,6 +71,9 @@
               </div> 
             </div>
           </form>
+          <p>or</p>
+          <a class="waves-effect btn"><i class="material-icons left"></i>GitHub</a><br />
+          <a class="waves-effect btn"><i class="material-icons left"></i>Google</a>
         </div>
 			);
 		}

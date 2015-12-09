@@ -6,6 +6,6 @@
 		routes = require('./routes.jsx');
 
 	Router.run(routes, function (Root) {
-		React.render(<Root />, document.getElementById('card'));
+		React.render(<Root />, document.getElementById('ui-view'));
 	});
 })();

@@ -6,14 +6,15 @@
 
   var BaseStore = assign({}, EventEmitter.prototype, {
     data: null,
-    error: null,
     setData: function(data) {
       this.data = data;
       this.emitChange();
     },
+
     getData: function() {
       return this.data;
     },
+    
     emitChange: function() {
       this.emit('change');
     },
