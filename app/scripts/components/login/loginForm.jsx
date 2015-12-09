@@ -69,8 +69,8 @@ var NavBar = React.createClass({
 		return (
 			<div id="header">
 			  <div id="nav">
-			    <div className="mdl-grid">
-			      <div className="mdl-cell mdl-cell--12-col">
+			    <div className="row">
+			      <div className="col s12">
 			        <ul>
 			          <li className="logo">TRIME  </li>
 			          <div className="row login">
