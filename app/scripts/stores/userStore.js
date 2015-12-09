@@ -15,7 +15,7 @@
             UserStore.setData(action.data);
           break;
         case TrimeConstants.USER_SIGNUP:
-          UserStore.setData(action.data);
+            UserStore.setData(action.data);
           break;
         default:
         	// no operation

@@ -36,7 +36,6 @@ var LoginForm = React.createClass({
 	},
 	onSubmit: function(event) {
 		event.preventDefault();
-		console.log(this.state.user);
 		UserActions.login(this.state.user);
 	},
 	render: function() {
@@ -44,7 +43,7 @@ var LoginForm = React.createClass({
 			<div className="row login-form">
         <form className="col s12" onSubmit={this.onSubmit}>
           <div className="input-field col s4">
-            <input name="username" id="username" placeholder="email" type="text" className="validate" onChange={this.handleFieldChange}/>
+            <input name="email" id="email" placeholder="email" type="text" className="validate" onChange={this.handleFieldChange}/>
           </div>
           <div className="input-field col s4">
             <input name="password" id="password" placeholder="password" type="password" className="validate" onChange={this.handleFieldChange}/>
