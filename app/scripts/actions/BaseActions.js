@@ -9,7 +9,6 @@
       request
         .get(url)
         .end(function(err, result) {
-          console.log(result);
           AppDispatcher.dispatch({
             actionType: actionType,
             data: result.body

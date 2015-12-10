@@ -26,7 +26,6 @@
 
     handleSignup: function() {
       var data = UserStore.getData();
-      console.log('this  executed');
       if(data.error) {
         this.setState({result: data.error.message});
       } else {

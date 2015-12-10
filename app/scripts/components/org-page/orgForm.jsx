@@ -29,10 +29,6 @@
       this.setState({description: e.target.value});
     },
 
-    componentWillUnmount: function(){
-      console.log('component about to unmount');
-    },
-
     handleNameChange: function(e) {
       this.setState({name: e.target.value});
     },
