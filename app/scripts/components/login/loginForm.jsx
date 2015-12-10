@@ -25,7 +25,9 @@ var LoginForm = React.createClass({
 	handleLogin: function() {
 		var data = UserStore.getData();
 		if(data.error) {
-			this.setState({result: data.error});
+			if(typeof data.error === 'string') {
+				window.Materialize.toast(data.error, 2000);	
+			}
 		} else {
 			this.setState({result: 'successful'});
 			// this.transitionTo('/orgs');
@@ -46,18 +48,18 @@ var LoginForm = React.createClass({
 
 	render: function() {
 		return (
-			<div className="row login-form">
-        <form className="col s12" onSubmit={this.onSubmit}>
-          <div className="input-field col s4">
-            <input name="email" id="email" placeholder="email" type="text" className="validate" onChange={this.handleFieldChange}/>
+			<div className="row">
+        <form className="col s12 md-inline-block" onSubmit={this.onSubmit}>
+          <div className="col">
+            <input className="header-input validate" name="email" id="email" placeholder="email" type="text" onChange={this.handleFieldChange}/>
           </div>
-          <div className="input-field col s4">
-            <input name="password" id="password" placeholder="password" type="password" className="validate" onChange={this.handleFieldChange}/>
+          <div className="col">
+            <input className="header-input validate" name="password" id="password" placeholder="password" type="password" onChange={this.handleFieldChange}/>
           </div> 
-          <div className="col s3"> 
-          <button className="btn waves-effect waves-light" type="submit" name="action">sign in</button>  
+          <div className="col right"> 
+          	<button className="btn waves-effect header-btn" type="submit" name="action"><i className="fa fa-sign-in"></i></button>  
           </div> 
-          <span>{this.state.result}</span>
+          
         </form>
       </div>
 		);

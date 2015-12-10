@@ -3,20 +3,33 @@
 	var React = require('react'),
 		RouteHandler =require('react-router').RouteHandler,
 		LoginForm = require('../login/loginForm.jsx'),
+		UserStore = require('../../stores/userStore'),
+		UserActions = require('../../actions/userActions');
 
-		Header = React.createClass({
+		module.exports = React.createClass({
+			componentDidMount: function() {
+				UserActions.session();
+				UserStore.addChangeListener(this.getSession);
+			},
+
+			getSession: function () {
+				var data = UserStore.getData();
+				if(data && !data.error) {
+					this.props.setUser(data);
+				}
+			},
+
 		  render: function() {
 		    return(
 						<div id="header">
 						  <div id="nav">
-						    <div className="row">
-						      <div className="col s1">
-						        <ul>
-						          <li className="login">TRIME</li>
-						        </ul>
+						    <div>
+						      <div className="md-inline-block">
+						        <a>
+						        	<span className="title">TRIME</span>
+						        </a>
 						      </div>
-
-						      <div className="row col right">
+						      <div className="right login-form">
 						      { !this.props.user.id ? 
 						      		<LoginForm 
 						      			user={this.props.user}  
@@ -28,7 +41,5 @@
 	        );
 		  }
 	});
-
-	module.exports = Header;
 })();
 

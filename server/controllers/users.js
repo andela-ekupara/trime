@@ -27,7 +27,7 @@
         }
         if (!user) {
           return res.status(500).send({
-            error: 'wrong email password combination'
+            error: 'Wrong email password combination'
           });
         }
         // Initialize user password to null

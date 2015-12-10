@@ -6,26 +6,52 @@
     z-index: 10;
     #nav {
         background: rgba(0, 0, 0, 0.12);
-        top: 0;
-        padding: 1px;
         p {
             font-size: 2px;
             padding: 1px;
             color: #fff;
         }
-        ul {
+        .row {
             margin: 0;
+            &:after {
+                display: inline-block;
+            }
         }
-        li {
+        span.title {
+            .md-padding;
             list-style: none;
             text-decoration: none;
             display: inline-block;
             font-size: 25px;
             color: #fff;
             text-shadow: 0 3px 3px #333;
-            padding: 1px;
+        }
+        .login-form {
+            .md-padding;
+            padding-bottom: 0;
+            background-color: rgba(0, 0, 0, 0.25)
+        }
+        .header-input {
+            height: 2rem;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+        .header-btn {
+            padding: 0 1rem;
         }
     }
+}
+
+.md-inline-block {
+    display: inline-block;
+}
+
+.md-padding {
+    padding: 10px;
+}
+
+.md-margin {
+    padding: 10px;
 }
 
 #back {
@@ -191,11 +217,6 @@ img {
     margin: 5px;
 }
 
-.login-form {
-    padding: 0px;
-    margin: 0px;
-}
-
 .logo {
     margin: 0px 0px 0px 20px;
 }
@@ -207,14 +228,6 @@ img {
 
 .mdl-grid {
     padding: 0px;
-}
-
-input .login-form {
-    border: 2px solid red;
-}
-
-.container {
-    // border: 1px solid green;
 }
 
 .signupcard {
