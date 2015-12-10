@@ -18,6 +18,12 @@
       case TrimeConstants.USER_SESSION:
         UserStore.setData(action.data);
         break;
+      case TrimeConstants.GITHUB_LOGIN:
+        UserStore.setData(action.data);
+        break;
+      case TrimeConstants.GOOGLE_LOGIN:
+        UserStore.setData(action.data);
+        break;
       default:
         // no operation
     }

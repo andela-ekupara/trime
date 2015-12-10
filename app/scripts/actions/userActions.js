@@ -14,6 +14,14 @@
 
     session: function() {
       BaseActions.get('/api/users/session', TrimeConstants.USER_SESSION);
+    },
+
+    githubLogin: function() {
+      BaseActions.get('/auth/github', TrimeConstants.GITHUB_LOGIN);
+    },
+
+    googleLogin: function() {
+      BaseActions.get('/auth/google', TrimeConstants.GOOGLE_LOGIN);
     }
   };
 })();

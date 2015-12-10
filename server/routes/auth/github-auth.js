@@ -1,4 +1,5 @@
 module.exports = function(app, passport) {
+  'use strict';
 
   // Redirect the user to GitHub for authentication.
   app.get('/auth/github', passport.authenticate('github', {
@@ -11,8 +12,8 @@ module.exports = function(app, passport) {
   // Otherwise, authentication has failed.
   app.get('/auth/github/callback', passport.authenticate('github', {
     failureRedirect: '/users/login',
-    successRedirect: '/'
-      // session: false
+    successRedirect: '/',
+    // session: true
   }));
 
 };

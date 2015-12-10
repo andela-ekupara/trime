@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	var React = require('react'),
 		RouteHandler = require('react-router').RouteHandler,
 		Header = require('./header.jsx'),
@@ -9,7 +11,7 @@
 			getInitialState: function() {
 				return {
 					user: {}
-				}
+				};
 			},
 
 			componentDidMount: function() {

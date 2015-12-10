@@ -15,7 +15,7 @@ var LoginForm = React.createClass({
 				password: ''
 			},
 			result: ''
-		}
+		};
 	},
 
 	componentDidMount: function() {
@@ -64,25 +64,6 @@ var LoginForm = React.createClass({
 	}
 });
 
-var NavBar = React.createClass({
-	render: function() {
-		return (
-			<div id="header">
-			  <div id="nav">
-			    <div className="row">
-			      <div className="col s12">
-			        <ul>
-			          <li className="logo">TRIME  </li>
-			          <div className="row login">
-			          	<LoginForm className="center-align"/>
-			          </div>
-			        </ul>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-		);
-	}
-});
+
 
 module.exports = LoginForm;

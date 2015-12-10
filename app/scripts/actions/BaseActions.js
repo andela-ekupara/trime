@@ -9,6 +9,7 @@
       request
         .get(url)
         .end(function(err, result) {
+          console.log(result);
           AppDispatcher.dispatch({
             actionType: actionType,
             data: result.body
@@ -28,7 +29,7 @@
         });
     },
 
-    put: function(url, data, mactionType) {
+    put: function(url, data, actionType) {
       request
         .get(url)
         .send(data)
