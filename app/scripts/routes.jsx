@@ -5,17 +5,20 @@
 		Router = require('react-router'),
 		DefaultRoute = Router.DefaultRoute,
 		Route = Router.Route,
+		NotFoundRoute = Router.NotFoundRoute,
 		RouteHandler = Router.RouteHandler,
 		Redirect = Router.Redirect;
 
 	module.exports = (
 		<Route>
-			<Redirect from="/" to="/landing-page" />
-			<Route name="landing" path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
+			<Route name="landing" path="/" handler={require('./components/landing-page/main.jsx')} >
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
 				<Route path="/join" handler={require('./components/login/SignupPage.jsx')} />
         <Route path="/orgs" handler={require('./components/org-page/orgs-page.jsx')} />
+        <NotFoundRoute handler={require('./components/notfound/notfound.jsx')} />
+        <Redirect from="about" to="landing" />
+        <Redirect from="sign" to="/join" />
 			</Route>
-		</Route>
+		</Route> 
 	);
 })();
