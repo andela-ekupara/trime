@@ -1,8 +1,8 @@
 (function(){
   'use strict';
   var React = require('react');
-  var TrimeActions = require('../actions/TrimeActions');
-  var TrimeStore = require('../stores/TrimeStore');
+  var TrimeActions = require('../../actions/TrimeActions');
+  var TrimeStore = require('../../stores/TrimeStore');
 
   var OrgForm = React.createClass({
     getInitialState: function() {
@@ -29,10 +29,6 @@
       this.setState({description: e.target.value});
     },
 
-    componentWillUnmount: function(){
-      console.log('component about to unmount');
-    },
-
     handleNameChange: function(e) {
       this.setState({name: e.target.value});
     },
@@ -56,7 +52,7 @@
               <div className="row">
                 <div className="input-field col s12">
                   <textarea id="textarea1" name="description" onChange={this.handleDescriptionChange}
-                  className="materialize-textarea"></textarea>
+                  className="materialize-textarea" required></textarea>
                   <label for="Description">Description</label>
                 </div>
               </div>

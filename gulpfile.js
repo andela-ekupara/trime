@@ -35,7 +35,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['./app/**/*.+(js|jsx)', './index.js',
+  return gulp.src(['./app/**/*.js', './index.js',
       './server/**/*.js', './tests/**/*.js'
     ])
     .pipe(jshint())
@@ -100,6 +100,5 @@ gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
 gulp.task('heroku:staging', ['production']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
-gulp.task('build', ['jade', 'less',
-  'images', 'browserify', 'bower'
+gulp.task('build', ['jade', 'less', 'browserify', 'bower'
 ]);

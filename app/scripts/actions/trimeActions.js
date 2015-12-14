@@ -1,19 +1,17 @@
 (function() {
   'use strict';
 
-  var TrimeConstants = require('../constants/TrimeConstants');
-  var baseActions = require('./BaseActions');
+  var TrimeConstants = require('../constants/TrimeConstants'),
+    BaseActions = require('./BaseActions');
 
-  var TrimeActions = {
+  module.exports = {
     createOrg: function(name, description) {
       var data = {
         name: name,
         description: description
       };
       // Call the helper function, passing in the URL, data and actionType
-      baseActions('/api/orgs', data, TrimeConstants.ORG_CREATE);
+      BaseActions.post('/api/orgs', data, TrimeConstants.ORG_CREATE);
     }
   };
-
-  module.exports = TrimeActions;
 })();

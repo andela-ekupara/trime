@@ -2,26 +2,44 @@
 	'use strict';
 	var React = require('react'),
 		RouteHandler =require('react-router').RouteHandler,
-		Link = require('react-router').Link,
-		Header = React.createClass({
+		LoginForm = require('../login/loginForm.jsx'),
+		UserStore = require('../../stores/userStore'),
+		UserActions = require('../../actions/userActions');
+
+		module.exports = React.createClass({
+			componentDidMount: function() {
+				UserActions.session();
+				UserStore.addChangeListener(this.getSession);
+			},
+
+			getSession: function () {
+				var data = UserStore.getData();
+				if(data && !data.error) {
+					this.props.setUser(data);
+				}
+			},
+
 		  render: function() {
-		    return (
+		    return(
 						<div id="header">
 						  <div id="nav">
-						    <div className="mdl-grid">
-						      <div className="mdl-cell mdl-cell--8-col">
-						        <ul>
-						          <li className="login">TRIME  </li>
-						          <li className="right btn-start"><a href="#">Start Triming</a></li> 
-						        </ul>
+						    <div>
+						      <div className="md-inline-block">
+						        <a>
+						        	<span className="title">TRIME</span>
+						        </a>
 						      </div>
+						      <div className="right login-form">
+						      { !this.props.user.id ? 
+						      		<LoginForm 
+						      			user={this.props.user}  
+						      			className="center-align" /> : null }
+		          		</div>
 						    </div>
 						  </div>
 						</div>
 	        );
 		  }
 	});
-
-	module.exports = Header;
 })();
 

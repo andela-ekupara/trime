@@ -8,16 +8,13 @@
     // local signup
     passport.use('signup', new LocalStrategy({
         // set the field name
-        usernameField: 'username',
+        usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
       },
       function(req, username, password, done) {
         // get signup details from input args of the func
         Users.create({
-            username: req.body.username,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password)
           })
@@ -34,16 +31,16 @@
 
     // local login
     passport.use('login', new LocalStrategy({
-        usernameField: 'username',
+        usernameField: 'email',
         passwordField: 'password',
         session: true
       },
-      function(username, password, done) {
+      function(email, password, done) {
         // get username and pswd from input args
         // fetch the user from the database
         Users.findOne({
             where: {
-              username: username
+              email: email
             }
           })
           .then(function(user) {

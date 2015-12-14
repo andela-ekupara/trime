@@ -18,8 +18,9 @@
           TrimeStore.setData(action.data);
         }
         break;
+
       default:
-        // no op
+        // no operation
     }
 
     return true; // No errors. Needed by promise in Dispatcher.

@@ -1,16 +1,8 @@
-module.exports = function(sequelize, DataTypes) {
+(function() {
+  'use strict';
+
+  module.exports = function(sequelize, DataTypes) {
     return sequelize.define('users', {
-        username: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          unique: true
-        },
-        firstname: {
-          type: DataTypes.STRING
-        },
-        lastname: {
-          type: DataTypes.STRING
-        },
         email: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -18,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
           validate: {
             isEmail: true
           }
+        },
+        name: {
+          type: DataTypes.STRING,
+          allowNull: true
         },
         github_auth_id: {
           type: DataTypes.STRING,
@@ -49,4 +45,5 @@ module.exports = function(sequelize, DataTypes) {
         // add created_at and modified_at columns
         timestamps: true
       });
-};
+  };
+})();

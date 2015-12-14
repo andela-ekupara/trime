@@ -1,56 +1,57 @@
 @primary-color: #009090;
 @accent-color: #999999;
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500|PT+Sans:400,500);
-body {
-  font: 1em "Raleway", Verdana, Arial;
-  //color: #444;
-}
-
-#call {
-  margin-top: 200px;
-  float: left;
-  position: relative;
-  z-index: 999;
-}
-
-#call > p {
-  text-align: center;
-  font-size: 30px;
-  color: #fff;
-  float: left;
-  margin: 5px;
-  padding: 5px;
-  width: 300px;
-  height: 300px;
-}
-
-#call > button {
-  float: left;
-  margin: 5px;
-  padding: 5px;
-}
-
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500|PT+Sans:400,500);
 #header {
   position: relative;
   z-index: 10;
   #nav {
     background: rgba(0, 0, 0, 0.12);
     p {
-      font-size: 25px;
+      font-size: 2px;
+      padding: 1px;
       color: #fff;
     }
-    ul {
+    .row {
       margin: 0;
+      &:after {
+        display: inline-block;
+      }
     }
-    li {
+    span.title {
+      .md-padding;
       list-style: none;
       text-decoration: none;
       display: inline-block;
       font-size: 25px;
       color: #fff;
-      text-shadow: 0 2px 2px #333;
+      text-shadow: 0 3px 3px #333;
+    }
+    .login-form {
+      .md-padding;
+      padding-bottom: 0;
+      background-color: rgba(0, 0, 0, 0.25)
+    }
+    .header-input {
+      height: 2rem;
+      font-size: 0.8rem;
+      color: #fff;
+    }
+    .header-btn {
+      padding: 0 1rem;
     }
   }
+}
+
+.md-inline-block {
+  display: inline-block;
+}
+
+.md-padding {
+  padding: 10px;
+}
+
+.md-margin {
+  padding: 10px;
 }
 
 #back {
@@ -84,19 +85,19 @@ body {
   }
 }
 
-.mdl-grid > button {
+.row > button {
   float: left;
 }
 
-#card > img {
+#ui-view > img {
   margin-bottom: 100px;
 }
 
-#card > .mdl-grid > {
+#ui-view > .row > {
   margin-bottom: 100px;
 }
 
-#card {
+#ui-view {
   background-size: cover;
   min-height: 600px;
   max width: 600px;
@@ -108,152 +109,36 @@ body {
 }
 
 #grid > p:nth-child(1) {
-  font-size: 24px;
+  font-size: 2px;
+  font: 2em "Roboto", Verdana, Arial;
   font-weight: bold;
   padding: 40px 0 0 0;
 }
 
 #grid > p:nth-child(2) {
-  font-size: 16px;
+  font-size: 20px;
 }
 
-#grid > .mdl-grid {
+#grid > .row {
   margin-bottom: 50px;
 }
 
-.mdl-cell.mdl-cell--4-col > img {
-  margin-bottom: 50px;
-  height: 240px;
-}
-
-.mdl-cell.mdl-cell--4-col > p:nth-child(2) {
-  color: #33CCCC;
-  text-align: center;
-  font-size: 22px;
-}
-
-.mdl-cell.mdl-cell--4-col > p:nth-child(3) {
-  text-align: center;
-  font-size: 16px;
-}
-
-.responsive-image {
-  width: 100%;
-  background-size: 100% 100%;
-}
-
-#action {
-  background-color: #fff;
-}
-
-#call {
-  margin-top: 200px;
-  float: left;
-  position: relative;
-  z-index: 999;
-}
-
-#call > p {
-  text-align: center;
-  font-size: 30px;
-  color: #fff;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  float: left;
-  margin: 5px;
-  padding: 5px;
-  width: 300px;
-  height: 300px;
-}
-
-#call > button {
-  float: left;
-  margin: 5px;
-  padding: 5px;
-}
-
-#back {
-  background: url("../images/clock1.jpeg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 600px;
-  width: 100%;
-  position: relative;
-}
-
-#back::after {
-  content: ' ';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 768px) and (min-width: 480px) {
-  #back {
-    height: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  #back {
-    height: 200px;
-  }
-}
-
-.mdl-grid > button {
-  float: left;
-}
-
-#card > img {
-  margin-bottom: 100px;
-}
-
-#card > .mdl-grid > {
-  margin-bottom: 100px;
-}
-
-#card {
-  background-size: cover;
-  min-height: 600px;
-  max width: 600px;
-  margin: 0 auto;
-}
-
-#grid {
-  text-align: center;
-}
-
-#grid > p:nth-child(1) {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#grid > p:nth-child(2) {
-  font-size: 16px;
-}
-
-#grid > .mdl-grid {
-  margin-bottom: 50px;
-}
-
-.mdl-cell.mdl-cell--4-col > img {
+.col.s12.m6.l4 > img {
   margin-bottom: 50px;
   height: 240px;
 }
 
-.mdl-cell.mdl-cell--4-col > p:nth-child(2) {
+.col.s12.m6.l4 > p:nth-child(2) {
   color: #33CCCC;
   text-align: center;
   font-size: 22px;
+  //font-weight: bold;
+  font: 25px "Roboto", Verdana, Arial;
 }
 
-.mdl-cell.mdl-cell--4-col > p:nth-child(3) {
+.col.s12.m6.l4 > p:nth-child(3) {
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .responsive-image {
@@ -321,12 +206,32 @@ img {
 .btn-start {
   color: #fff;
   background-color: #2196f3;
-  // margin: 5px 10px 5px 10px;
   padding: 5px 10px;
   font-size: 0.2em;
   border-radius: 5px;
 }
 
-.btncreate {
-  margin: 20px 10px 0px 5px;
+.login {
+  float: right;
+  padding: 0px 2px 2px 2px;
+  margin: 5px;
+}
+
+.logo {
+  margin: 0px 0px 0px 20px;
+}
+
+.mdl-cell {
+  padding: 0px;
+  height: auto;
+}
+
+.mdl-grid {
+  padding: 0px;
+}
+
+.signupcard {
+  // border: 1px solid red;
+  width: 50%;
+  margin: 10px auto;
 }
