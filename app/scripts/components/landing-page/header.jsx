@@ -7,7 +7,7 @@
 		UserActions = require('../../actions/userActions');
 
 		module.exports = React.createClass({
-			componentDidMount: function() {
+			componentWillMount: function() {
 				UserActions.session();
 				UserStore.addChangeListener(this.getSession);
 			},
@@ -30,7 +30,7 @@
 						        </a>
 						      </div>
 						      <div className="right login-form">
-						      { !this.props.user.id ? 
+						      { !this.props.user.id ?
 						      		<LoginForm 
 						      			user={this.props.user}  
 						      			className="center-align" /> : null }

@@ -18,7 +18,7 @@ var LoginForm = React.createClass({
 		};
 	},
 
-	componentDidMount: function() {
+	componentWillMount: function() {
 		UserStore.addChangeListener(this.handleLogin);
 	},
 
@@ -26,7 +26,7 @@ var LoginForm = React.createClass({
 		var data = UserStore.getData();
 		if(data.error) {
 			if(typeof data.error === 'string') {
-				window.Materialize.toast(data.error, 2000);	
+				window.Materialize.toast(data.error, 2000, 'error-toast');	
 			}
 		} else {
 			this.setState({result: 'successful'});

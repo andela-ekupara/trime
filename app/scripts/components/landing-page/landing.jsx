@@ -1,11 +1,14 @@
 (function(){
   'use strict';
   var React = require('react');
+  var StartBtn = require('./trimebtn.jsx');
   var Landing = React.createClass({
     render: function() {
       return (
         <div>
-          <div id="back"></div>
+          <div id="back">
+            <StartBtn />
+          </div>
           <div id="action"></div>
             <div id="grid">
               <p>Your company mission statement or your ultimate value.</p>

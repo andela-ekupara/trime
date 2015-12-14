@@ -23,7 +23,9 @@
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {
-          return res.send(err);
+          return res.send({
+            error: err
+          });
         }
         if (!user) {
           return res.status(500).send({

@@ -16,17 +16,36 @@
           email: '',
           password: ''
         },
-        result: ''
+        result: '',
+        confirmpswd: ''
       };
     },
 
     componentDidMount: function() {
+      this.comparepswd();
       UserStore.addChangeListener(this.handleSignup);
+    },
+
+    comparepswd: function(pswd, conpswd) {
+      if(pswd !== conpswd) {
+        window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
+        return false;
+      } else if (pswd.length >= 1 && pswd.length < 8) {
+        window.Materialize.toast(
+          'passwords should be > 8 characters ',
+          2000,
+          'error-toast'
+        );
+        return false;
+      } else {
+        return true;
+      }
     },
 
     handleSignup: function() {
       var data = UserStore.getData();
       if(data.error) {
+        window.Materialize.toast(data.error.message, 2000, 'error-toast');
         this.setState({result: data.error.message});
       } else {
         this.setState({result: 'Success!'});
@@ -37,13 +56,23 @@
     handleFieldChange: function(event) {
       var field = event.target.name;
       var value = event.target.value;
-      this.state.user[field] = value;
-      return this.setState({user: this.state.user});
+      if (field === 'confirmpswd') {
+        //console.log(field);
+        this.state.confirmpswd = value;
+      } else {
+        this.state.user[field] = value;
+      }
+      return this.setState({
+        user: this.state.user, 
+        confirmpswd: this.state.confirmpswd
+      });
     },
 
     onSubmit: function(event) {
       event.preventDefault();
-      UserActions.signup(this.state.user);
+      if(this.comparepswd( this.state.user.password, this.state.confirmpswd )) {
+        UserActions.signup(this.state.user);
+      } 
     },
 
     handleGithubLogin: function(event) {
@@ -63,18 +92,18 @@
           <span>{this.state.result}</span>
             <div className="input-field col s12">
             <i class="fa fa-unlock prefix"></i>
-              <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required/>
+              <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required />
               <label for="email">Email</label>
             </div>
             <div className="input-field col s12">
             	<i class="fa fa-unlock prefix"></i>
-              <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required/>
+              <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
               <label for="password">Password</label>
             </div>
             <div className="input-field col s12">
             	<i class="fa fa-unlock prefix"></i>
-              <input id="password" type="password" className="validate" required/>
-              <label for="password">Password</label>
+              <input name="confirmpswd" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
+              <label for="password">Confirm Password</label>
             </div>
             <div className="col s12"> 
               <button className="btn waves-effect waves-light" type="submit" name="action">start trimming</button>  
