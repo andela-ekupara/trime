@@ -38,7 +38,7 @@ gulp.task('lint', function() {
   // Add the source files to be checked by ESLint
   // Also, Be sure to return the stream from the task;
   // Otherwise, the task may end before the stream has finished.
-  return gulp.src(['./app/**/*.js', './index.js',
+  return gulp.src(['./app/**/*.js', './app/**/*.jsx', './index.js',
       './server/**/*.js', './tests/**/*.js'
     ])
     // eslint() attaches the lint output to the "eslint" property
