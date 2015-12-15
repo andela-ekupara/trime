@@ -12,6 +12,10 @@
       };
       // Call the helper function, passing in the URL, data and actionType
       BaseActions.post('/api/orgs', data, TrimeConstants.ORG_CREATE);
+    },
+
+    getOrgs: function() {
+      BaseActions.get('/api/orgs', TrimeConstants.ORGS_GET);
     }
   };
 })();

@@ -6,17 +6,26 @@
   var assign = require('object-assign');
   var BaseStore = require('./BaseStore');
 
-  var TrimeStore = assign({}, BaseStore);
+  var OrgStore = assign({}, BaseStore, {
+    orgs: null,
+    setOrgs: function(orgs) {
+      this.orgs = orgs;
+      this.emitChange();
+    },
+
+    getOrgs: function() {
+      return this.orgs;
+    }
+  });
 
   // Register callback to handle all updates
   AppDispatcher.register(function(action) {
     switch (action.actionType) {
       case TrimeConstants.ORG_CREATE:
-        if (action.data.error) {
-          TrimeStore.setError(action.data);
-        } else {
-          TrimeStore.setData(action.data);
-        }
+        OrgStore.setData(action.data);
+        break;
+      case TrimeConstants.ORGS_GET:
+        OrgStore.setOrgs(action.data);
         break;
 
       default:
@@ -26,6 +35,6 @@
     return true; // No errors. Needed by promise in Dispatcher.
   });
 
-  module.exports = TrimeStore;
+  module.exports = OrgStore;
 
 })();

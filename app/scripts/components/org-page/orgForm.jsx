@@ -1,8 +1,8 @@
 (function(){
   'use strict';
   var React = require('react');
-  var TrimeActions = require('../../actions/TrimeActions');
-  var TrimeStore = require('../../stores/TrimeStore');
+  var OrgActions = require('../../actions/OrgActions');
+  var OrgStore = require('../../stores/OrgStore');
 
   var OrgForm = React.createClass({
     getInitialState: function() {
@@ -13,11 +13,11 @@
       };
     },
     componentDidMount: function() {
-      TrimeStore.addChangeListener(this.handleUpdate);
+      OrgStore.addChangeListener(this.handleUpdate);
     },
 
     handleUpdate: function() {
-      var data = TrimeStore.getData();
+      var data = OrgStore.getData();
       if (data.error) {
         this.setState({result: 'Error Creating the Org!'});
       } else{
@@ -35,7 +35,7 @@
 
     onSubmit: function(e) {
       e.preventDefault();
-      TrimeActions.createOrg(this.state.name, this.state.description);
+      OrgActions.createOrg(this.state.name, this.state.description);
     },
 
     render: function() {

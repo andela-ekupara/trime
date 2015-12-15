@@ -14,8 +14,8 @@
 			<Route name="landing" path="/landing-page" handler={require('./components/landing-page/main.jsx')}>
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
 				<Route path="/join" handler={require('./components/login/SignupPage.jsx')} />
-        <Route path="/orgs" handler={require('./components/org-page/orgs-page.jsx')} />
-        <Route path="/dashboard" handler={require('./components/dashboard.jsx')} />
+        <Route path="/orgs" handler={require('./components/org-page/index.jsx')} />
+        <Route path="/dashboard" handler={require('./components/dashboard/index.jsx')} />
 			</Route>
 		</Route>
 	);
