@@ -1,11 +1,12 @@
 (function() {
   'use strict';
+
   module.exports = function(passport, config) {
-    var Users = require('../../models/users'),
+    var Users = require('../../models').Users,
       GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
     passport.use('google', new GoogleStrategy(config.auth.GOOGLE,
-      function(accessToken, tokenSecret, profile, done) {
+      function(req, accessToken, tokenSecret, profile, done) {
         Users.sync().then(function() {
           Users.findOne({
               where: {
@@ -15,18 +16,20 @@
             .then(function(user) {
               if (!user) {
                 Users.create({
-                    username: profile.emails[0].value.split('@')[0],
+                    name: profile.displayName,
                     email: profile.emails[0].value,
                     google_auth_id: profile.id,
-                    google_auth_token: accessToken,
+                    google_auth_token: accessToken
                   })
                   .then(function(user) {
+                    req.session.user = user;
                     return done(null, user);
                   })
                   .catch(function(err) {
                     return done(err);
                   });
               } else {
+                req.session.user = user;
                 // return user
                 done(null, user);
               }

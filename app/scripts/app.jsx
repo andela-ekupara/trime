@@ -1,14 +1,10 @@
 (function() {
-  var React = require('react');
-  var ReactDOM = require('react-dom');
-  var Header = require('./components/header.jsx'); // Our custom react component
- 
-  window.React = React;
+  'use strict';
+  var React = require('react'),
+    Router = require('react-router'),
+    routes = require('./routes.jsx');
 
-  ReactDOM.render( <Header/> ,
-    document.getElementById('header'));
-
-  ReactDOM.render( <Login/> ,
-    document.getElementById('login'));
-
+  Router.run(routes, function (Root) {
+    React.render(<Root />, document.getElementById('ui-view'));
+  });
 })();

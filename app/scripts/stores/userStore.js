@@ -1,0 +1,35 @@
+(function() {
+  'use strict';
+  var AppDispatcher = require('../dispatcher/AppDispatcher'),
+    TrimeConstants = require('../constants/trimeConstants'),
+    assign = require('object-assign'),
+    BaseStore = require('./BaseStore');
+
+  var UserStore = assign({}, BaseStore);
+
+  AppDispatcher.register(function(action) {
+    switch (action.actionType) {
+      case TrimeConstants.USER_LOGIN:
+        UserStore.setData(action.data);
+        break;
+      case TrimeConstants.USER_SIGNUP:
+        UserStore.setData(action.data);
+        break;
+      case TrimeConstants.USER_SESSION:
+        UserStore.setData(action.data);
+        break;
+      case TrimeConstants.GITHUB_LOGIN:
+        UserStore.setData(action.data);
+        break;
+      case TrimeConstants.GOOGLE_LOGIN:
+        UserStore.setData(action.data);
+        break;
+      default:
+        // no operation
+    }
+
+    return true;
+  });
+
+  module.exports = UserStore;
+})();

@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
   less = require('gulp-less'),
   gutil = require('gulp-util'),
-  jshint = require('gulp-jshint'),
+  eslint = require('gulp-eslint'),
   bower = require('gulp-bower'),
   jade = require('gulp-jade'),
   nodemon = require('gulp-nodemon'),
@@ -35,11 +35,18 @@ gulp.task('jade', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['./app/**/*.+(js|jsx)', './index.js', +
+  // Add the source files to be checked by ESLint
+  // Also, Be sure to return the stream from the task;
+  // Otherwise, the task may end before the stream has finished.
+  return gulp.src(['./app/**/*.js', './app/**/*.jsx', './index.js',
       './server/**/*.js', './tests/**/*.js'
     ])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    // eslint() attaches the lint output to the "eslint" property
+    // of the file object so it can be used by other modules.
+    .pipe(eslint())
+    // eslint.format() outputs the lint results to the console.
+    // Alternatively use eslint.formatEach() (see Docs).
+    .pipe(eslint.format());
 });
 
 gulp.task('nodemon', function() {
@@ -100,6 +107,4 @@ gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
 gulp.task('heroku:staging', ['production']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
-gulp.task('build', ['jade', 'less',
-  'images', 'browserify', 'bower'
-]);
+gulp.task('build', ['jade', 'less', 'browserify', 'bower']);

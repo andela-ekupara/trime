@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   var passport = require('passport');
 
   module.exports = {
@@ -7,12 +8,12 @@
       passport.authenticate('signup', function(err, user) {
         if (err) {
           return res.status(500).send({
-            error: err.errors || err.message
+            error: err.errors[0] || err.message
           });
         }
         if (!user) {
           return res.status(500).send({
-            error: 'User already exists'
+            error: 'Error creating user.'
           });
         }
         user.password = null;
@@ -23,18 +24,60 @@
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {
-          return res.status(500).send(err);
+          return res.status(401).send({
+            error: err
+          });
         }
         if (!user) {
           return res.status(500).send({
-            error: 'User doesn\'t exist'
+            error: 'Wrong email password combination'
           });
         }
-        // initialize user password to null sto avoid pswd being saved to session
+        // Initialize user password to null
         user.password = null;
         req.session.user = user;
-        return res.json(user);
+        res.json(user);
       })(req, res, next);
+    },
+
+    session: function(req, res) {
+      if (req.session.user) {
+        res.send(req.session.user);
+      } else {
+        res.status(401).send({
+          error: {} // You are not logged in.
+        });
+      }
+    },
+
+    authenticate: function(req, res, next) {
+      if (!req.session.user) {
+        res.status(401).send({
+          error: 'You are not authorised! :('
+        });
+      } else {
+        next();
+      }
+    },
+
+    superAdmin: function(req, res, next) {
+      if (req.user && req.user.role === 1) {
+        next();
+      } else {
+        res.status(403).send({
+          error: 'Forbidden'
+        });
+      }
+    },
+
+    orgAdmin: function(req, res, next) {
+      if (req.user && req.user.role === 1) {
+        next();
+      } else {
+        res.status(403).send({
+          error: 'Forbidden'
+        });
+      }
     }
   };
 })();
