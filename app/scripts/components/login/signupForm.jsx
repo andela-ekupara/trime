@@ -26,15 +26,11 @@
     },
 
     comparepswd: function(pswd, conpswd) {
-      if(pswd !== conpswd) {
+      if (pswd !== conpswd) {
         window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
         return false;
       } else if (pswd.length >= 1 && pswd.length < 8) {
-        window.Materialize.toast(
-          'passwords should be > 8 characters ',
-          2000,
-          'error-toast'
-        );
+        window.Materialize.toast('passwords should be > 8 characters ', 2000, 'error-toast');
         return false;
       } else {
         return true;
@@ -43,7 +39,7 @@
 
     handleSignup: function() {
       var data = UserStore.getData();
-      if(data.error) {
+      if (data.error) {
         window.Materialize.toast(data.error.message, 2000, 'error-toast');
         this.setState({result: data.error.message});
       } else {
@@ -56,20 +52,16 @@
       var field = event.target.name;
       var value = event.target.value;
       if (field === 'confirmpswd') {
-        //console.log(field);
-        this.setState({confirmpswd : value});
+        this.state.confirmpswd = value;
       } else {
         this.state.user[field] = value;
       }
-      return this.setState({
-        user: this.state.user,
-        confirmpswd: this.state.confirmpswd
-      });
+      return this.setState({user: this.state.user, confirmpswd: this.state.confirmpswd});
     },
 
     onSubmit: function(event) {
       event.preventDefault();
-      if(this.comparepswd( this.state.user.password, this.state.confirmpswd )) {
+      if (this.comparepswd(this.state.user.password, this.state.confirmpswd)) {
         UserActions.signup(this.state.user);
       }
     },
@@ -88,17 +80,17 @@
       return (
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
-          <span>{this.state.result}</span>
+            <span>{this.state.result}</span>
             <div className="input-field col s12">
-              <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required />
+              <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required/>
               <label for="email">Email</label>
             </div>
             <div className="input-field col s12">
-              <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
+              <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required/>
               <label for="password">Password</label>
             </div>
             <div className="input-field col s12">
-              <input name="confirmpswd" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
+              <input name="confirmpswd" id="password" type="password" className="validate" onChange={this.handleFieldChange} required/>
               <label for="password">Confirm Password</label>
             </div>
             <div className="col s12">
@@ -107,8 +99,13 @@
           </form>
           <p>or</p>
           <div className="row">
-            <a href="/auth/github" className="waves-effect waves-light btn"><i className="fa fa-github"></i> GitHub</a>&nbsp;
-            <a href="/auth/google" className="waves-effect waves-light btn"><i className="fa fa-google"></i> Google</a> </div>
+            <a href="/auth/github" className="waves-effect waves-light btn">
+              <i className="fa fa-github"></i>
+              GitHub</a>&nbsp;
+            <a href="/auth/google" className="waves-effect waves-light btn">
+              <i className="fa fa-google"></i>
+              Google</a>
+          </div>
         </div>
       );
     }
@@ -121,8 +118,8 @@
           <div className="col s12">
             <div className="card-panel signupcard">
               <h5>Welcome to Trime!</h5>
-              <hr />
-              <SignupForm />
+              <hr/>
+              <SignupForm/>
             </div>
           </div>
         </div>
@@ -130,5 +127,5 @@
     }
   });
 
-module.exports = SignupCard;
+  module.exports = SignupCard;
 })();
