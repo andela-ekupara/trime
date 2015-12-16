@@ -1,12 +1,12 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	var React = require('react'),
+  var React = require('react'),
     UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
     Navigation = require('react-router').Navigation;
 
-	var SignupForm = React.createClass({
+  var SignupForm = React.createClass({
     mixins: [Navigation],
 
     getInitialState: function() {
@@ -84,23 +84,20 @@
       UserActions.googleLogin();
     },
 
-		render: function() {
-			return (
-				<div className="row">
+    render: function() {
+      return (
+        <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
           <span>{this.state.result}</span>
             <div className="input-field col s12">
-            <i className="fa fa-unlock prefix"></i>
               <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required />
               <label for="email">Email</label>
             </div>
             <div className="input-field col s12">
-              <i className="fa fa-unlock prefix"></i>
               <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
               <label for="password">Password</label>
             </div>
             <div className="input-field col s12">
-              <i className="fa fa-unlock prefix"></i>
               <input name="confirmpswd" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
               <label for="password">Confirm Password</label>
             </div>
@@ -113,14 +110,14 @@
             <a href="/auth/github" className="waves-effect waves-light btn"><i className="fa fa-github"></i> GitHub</a>&nbsp;
             <a href="/auth/google" className="waves-effect waves-light btn"><i className="fa fa-google"></i> Google</a> </div>
         </div>
-			);
-		}
-	});
+      );
+    }
+  });
 
-	var SignupCard = React.createClass({
-		render: function() {
-			return (
-				<div className="row">
+  var SignupCard = React.createClass({
+    render: function() {
+      return (
+        <div className="row">
           <div className="col s12">
             <div className="card-panel signupcard">
               <h5>Welcome to Trime!</h5>
@@ -129,9 +126,9 @@
             </div>
           </div>
         </div>
-			);
-		}
-	});
+      );
+    }
+  });
 
 module.exports = SignupCard;
 })();
