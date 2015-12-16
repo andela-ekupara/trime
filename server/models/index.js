@@ -6,7 +6,7 @@
   // Utility function to convert the filenames into Model names
   function ucModels(name) {
     // Uppercase the first element and
-    // any other element that follows a hyphen
+    // any other element that follows a hyphen then remove the hyphen
     return name.replace(/^[a-z]|\-\w/g, function(match) {
       return match.substr(-1).toUpperCase();
     });
@@ -18,7 +18,8 @@
     'org-users',
     'projects',
     'project-users',
-    'users'
+    'users',
+    'time-tracker'
   ];
 
   // add all models to the exports
