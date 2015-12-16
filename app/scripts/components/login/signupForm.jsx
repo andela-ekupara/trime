@@ -4,8 +4,7 @@
 	var React = require('react'),
     UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation,
-    Link = require('react-router').Link;
+    Navigation = require('react-router').Navigation;
 
 	var SignupForm = React.createClass({
     mixins: [Navigation],
@@ -58,12 +57,12 @@
       var value = event.target.value;
       if (field === 'confirmpswd') {
         //console.log(field);
-        this.state.confirmpswd = value;
+        this.setState({confirmpswd : value});
       } else {
         this.state.user[field] = value;
       }
       return this.setState({
-        user: this.state.user, 
+        user: this.state.user,
         confirmpswd: this.state.confirmpswd
       });
     },
@@ -72,7 +71,7 @@
       event.preventDefault();
       if(this.comparepswd( this.state.user.password, this.state.confirmpswd )) {
         UserActions.signup(this.state.user);
-      } 
+      }
     },
 
     handleGithubLogin: function(event) {
@@ -91,22 +90,22 @@
           <form className="col s12" onSubmit={this.onSubmit}>
           <span>{this.state.result}</span>
             <div className="input-field col s12">
-            <i class="fa fa-unlock prefix"></i>
+            <i className="fa fa-unlock prefix"></i>
               <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required />
               <label for="email">Email</label>
             </div>
             <div className="input-field col s12">
-            	<i class="fa fa-unlock prefix"></i>
+              <i className="fa fa-unlock prefix"></i>
               <input name="password" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
               <label for="password">Password</label>
             </div>
             <div className="input-field col s12">
-            	<i class="fa fa-unlock prefix"></i>
+              <i className="fa fa-unlock prefix"></i>
               <input name="confirmpswd" id="password" type="password" className="validate" onChange={this.handleFieldChange} required />
               <label for="password">Confirm Password</label>
             </div>
-            <div className="col s12"> 
-              <button className="btn waves-effect waves-light" type="submit" name="action">start trimming</button>  
+            <div className="col s12">
+              <button className="btn waves-effect waves-light" type="submit" name="action">start trimming</button>
             </div>
           </form>
           <p>or</p>
@@ -117,19 +116,19 @@
 			);
 		}
 	});
-	
+
 	var SignupCard = React.createClass({
 		render: function() {
 			return (
 				<div className="row">
-		      <div className="col s12">
-		        <div className="card-panel signupcard">
+          <div className="col s12">
+            <div className="card-panel signupcard">
               <h5>Welcome to Trime!</h5>
               <hr />
-		          <SignupForm />
-		        </div>
-		      </div>	
-    		</div>
+              <SignupForm />
+            </div>
+          </div>
+        </div>
 			);
 		}
 	});

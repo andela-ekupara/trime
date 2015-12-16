@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   module.exports = function(passport, config) {
     var Users = require('../../models').Users,
       GitHubStrategy = require('passport-github2').Strategy;
@@ -11,7 +12,7 @@
           Users.findOne({
               where: {
                 github_auth_id: profile.id
-              },
+              }
             })
             .then(function(user) {
               if (!user) {
@@ -19,7 +20,7 @@
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     github_auth_id: profile.id,
-                    github_auth_token: accessToken,
+                    github_auth_token: accessToken
                   })
                   .then(function(user) {
                     req.session.user = user;

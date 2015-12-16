@@ -3,7 +3,7 @@
 
 	var React = require('react'),
 		RouteHandler = require('react-router').RouteHandler,
-		Header = require('./header.jsx');
+		Header = require('./Header.jsx');
 
 		module.exports = React.createClass({
 			getInitialState: function() {

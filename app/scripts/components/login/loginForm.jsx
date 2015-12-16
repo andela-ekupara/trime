@@ -7,7 +7,7 @@ var React = require('react'),
 
 var LoginForm = React.createClass({
 	mixins: [Navigation],
-	
+
 	getInitialState: function() {
 		return {
 			user: {
@@ -26,7 +26,7 @@ var LoginForm = React.createClass({
 		var data = UserStore.getData();
 		if(data.error) {
 			if(typeof data.error === 'string') {
-				window.Materialize.toast(data.error, 2000, 'error-toast');	
+				window.Materialize.toast(data.error, 2000, 'error-toast');
 			}
 		} else {
 			this.setState({result: 'successful'});
@@ -55,11 +55,11 @@ var LoginForm = React.createClass({
           </div>
           <div className="col">
             <input className="header-input validate" name="password" id="password" placeholder="password" type="password" onChange={this.handleFieldChange}/>
-          </div> 
-          <div className="col right"> 
-          	<button className="btn waves-effect header-btn" type="submit" name="action"><i className="fa fa-sign-in"></i></button>  
-          </div> 
-          
+          </div>
+          <div className="col right">
+            <button className="btn waves-effect header-btn" type="submit" name="action"><i className="fa fa-sign-in"></i></button>
+          </div>
+
         </form>
       </div>
 		);

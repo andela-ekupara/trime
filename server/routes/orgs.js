@@ -1,7 +1,7 @@
 (function() {
-  module.exports = function(app) {
-    'use strict';
+  'use strict';
 
+  module.exports = function(app) {
     var Orgs = require('../controllers/orgs');
     var Users = require('../controllers/users');
 

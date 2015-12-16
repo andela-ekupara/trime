@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   var passport = require('passport');
 
   module.exports = {
@@ -23,7 +24,7 @@
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {
-          return res.send({
+          return res.status(401).send({
             error: err
           });
         }

@@ -1,3 +1,6 @@
+(function() {
+  'use strict';
+
 module.exports = {
   GITHUB: {
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -14,3 +17,4 @@ module.exports = {
     passReqToCallback: true
   }
 };
+})();

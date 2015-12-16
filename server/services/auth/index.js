@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  
   var Users = require('../../models').Users;
   module.exports = function(passport, config) {
     // serialize the user to maintain the auth state in session

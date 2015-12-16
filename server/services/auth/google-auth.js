@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   module.exports = function(passport, config) {
     var Users = require('../../models').Users,
       GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -18,7 +19,7 @@
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     google_auth_id: profile.id,
-                    google_auth_token: accessToken,
+                    google_auth_token: accessToken
                   })
                   .then(function(user) {
                     req.session.user = user;

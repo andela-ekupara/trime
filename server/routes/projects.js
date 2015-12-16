@@ -1,7 +1,7 @@
 (function() {
+  'use strict';
+  
   module.exports = function(app) {
-    'use strict';
-
     var Projects = require('../controllers/projects');
     var Users = require('../controllers/users');
 
