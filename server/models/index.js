@@ -19,7 +19,7 @@
     'projects',
     'project-users',
     'users',
-    'time-tracker'
+    'time-tracks'
   ];
 
   // add all models to the exports
@@ -46,6 +46,8 @@
     m.Users.belongsToMany(m.Projects, {
       through: m.ProjectUsers
     });
+    m.TimeTracks.belongsTo(m.ProjectUsers);
+    // m.ProjectUsers.hasMany(m.TimeTracks);
   })(module.exports);
 
   // export connection

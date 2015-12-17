@@ -1,5 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
+  'use strict';
+
   return sequelize.define('project_users', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+
       role: {
         type: DataTypes.ENUM('owner', 'admin', 'user'),
         allowNull: false

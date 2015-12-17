@@ -2,7 +2,7 @@
   'use strict';
 
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('project-trime', {
+    return sequelize.define('time_tracks', {
       start_time: {
         type: DataTypes.DATE,
         allowNull: false
@@ -19,7 +19,7 @@
       },
 
       time_tracked: {
-        type: DataTypes.DATE
+        type: DataTypes.BIGINT
       },
 
       description: {
@@ -27,17 +27,22 @@
         allowNull: true
       },
 
-      flags: {
+      tracking_flag: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        default: true
+        defaultValue: false
+      },
+      complete: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       }
     }, {
       underscored: true,
 
       freezeTableName: true,
 
-      timestamp: true
+      timestamps: true
     });
   };
 })();

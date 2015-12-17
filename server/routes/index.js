@@ -4,6 +4,7 @@
     require('./users')(app);
     require('./orgs')(app);
     require('./projects')(app);
+    require('./time-tracks')(app);
     require('./auth/github-auth')(app, passport);
     require('./auth/google-auth')(app, passport);
     /* GET home page. */
@@ -21,4 +22,3 @@
     });
   };
 })();
-
