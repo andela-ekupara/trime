@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('org_users', {
+    return sequelize.define('org-users', {
       role: {
         type: DataTypes.ENUM('owner', 'admin', 'user'),
         allowNull: false

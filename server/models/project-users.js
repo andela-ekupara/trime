@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   'use strict';
 
-  return sequelize.define('project_users', {
+  return sequelize.define('project-users', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

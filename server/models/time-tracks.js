@@ -2,46 +2,26 @@
   'use strict';
 
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('time_tracks', {
-      start_time: {
+    return sequelize.define('time-tracks', {
+      startedAt: {
         type: DataTypes.DATE,
         allowNull: false
       },
 
-      pause_time: {
-        type: DataTypes.DATE,
-        allowNull: true
-      },
-
-      stop_time: {
+      finishedAt: {
         type: DataTypes.DATE,
         allowNull: true
       },
 
       time_tracked: {
         type: DataTypes.BIGINT
-      },
-
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-
-      tracking_flag: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-      },
-      complete: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
       }
     }, {
+        // auto created column fields should use snake case
       underscored: true,
-
+      // disable attempts to pluralize tablename
       freezeTableName: true,
-
+      // add created_at and modified_at columns
       timestamps: true
     });
   };

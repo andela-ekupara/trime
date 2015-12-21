@@ -5,10 +5,9 @@
   var ProjectUsers = require('../models').ProjectUsers;
 
   module.exports = {
-    // 1. get the project id and user id
-    // 2. query project_users_id using userId and project_id
-    // 3. get the start time from the server
-    // 4. save the time and the id to the db;
+    // 1. get the project_user_id
+    // 2. populate the project_trimes table with the desc, project_user_id
+    // 3. populate trime-tracks with project_trimes_id and start_time with current time
     start: function(req, res) {
       var project_user_id = null;
       TimeTracks.sync().then(function() {
@@ -64,10 +63,9 @@
       });
     },
 
-    // 1. get the time_track_id
-    // 2. find the corresponding column
-    // 3. update the current server time on pausefield
-    // 4. calculate the time tracked thus far and add it t tracked time field
+    // 1. get the running project id (tracked project) and time_track id
+    // 2. update finishedAt column with current time
+    // 3. calculate the tracked time and update the tracked time this far.
     pause: function(req, res) {
       TimeTracks.findOne({
           where: {
@@ -105,9 +103,8 @@
         });
     },
 
-    // 1. get the time_tracker_id
-    // 2. find the corresponding column
-    // 3. update the start time with the current time on server
+    // 1. get the running project id (tracked project)
+    // 2. (create new row) populate trime-tracks with project_trimes_id and start_time with current time
     resume: function(req, res) {
       TimeTracks.update({
           start_time: new Date().toLocaleString,
@@ -132,9 +129,10 @@
         });
     },
 
-    // 1. get the time_tracker_id
-    // 2. get the corresponding column
-    // 3. calculate the time to be updated on the tracked time
+    // 1. get the running project id (tracked project) and time-track id
+    // 2. update the finishedAt time with the current server time
+    // 3. update the tracked time this far
+    // 4. update the complete to true in project-trimes table
     stop: function(req, res) {
       TimeTracks.findOne({
         where: {
