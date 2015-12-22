@@ -84,6 +84,77 @@
         });
     },
 
+    addUsers: function(req, res) {
+      Orgs.sync().then(function() {
+          Orgs.findOne({
+              where: {
+                id: req.params.id
+              }
+            })
+            .then(function(org) {
+              if (!org) {
+                return res.status(404).json({
+                  error: 'Organization Not Found'
+                });
+              }
+              Users.findOne({
+                  where: {
+                    email: req.body.email
+                  }
+                })
+                .then(function(user) {
+                  if (!user) {
+                    return res.status(404).json({
+                      error: 'User Not Found'
+                    });
+                  }
+                  org.addUser(user, {
+                      role: req.body.role
+                    }).then(function() {
+                      return res.json({
+                        message: 'User successfully added to Org'
+                      });
+                    })
+                    .catch(function(err) {
+                      return res.status(500).json({
+                        error: err
+                      });
+                    });
+                });
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
+    getUsers: function(req, res) {
+      Orgs.sync().then(function() {
+          return Orgs.findOne({
+              where: {
+                id: req.params.id
+              }
+            })
+            .then(function(org) {
+              if (!org) {
+                return res.status(404).json({
+                  error: 'Organization Not Found'
+                });
+              }
+              return org.getUsers().then(function(users) {
+                return res.json(users);
+              });
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
     update: function(req, res) {
       Orgs.sync().then(function() {
           return Orgs.update(req.body, {
@@ -115,10 +186,10 @@
         })
         .catch(function(err) {
           return res.status(500).json({
-            error: err.message
+            error: err
           });
         });
-    },
+    }
   };
 
 })();
