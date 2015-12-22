@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('project-trimes', {
+    return sequelize.define('project_trimes', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

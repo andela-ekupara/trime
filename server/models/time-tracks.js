@@ -4,20 +4,16 @@
   module.exports = function(sequelize, DataTypes) {
     return sequelize.define('time-tracks', {
       startedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.BIGINT,
         allowNull: false
       },
 
       finishedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.BIGINT,
         allowNull: true
-      },
-
-      time_tracked: {
-        type: DataTypes.BIGINT
       }
     }, {
-        // auto created column fields should use snake case
+      // auto created column fields should use snake case
       underscored: true,
       // disable attempts to pluralize tablename
       freezeTableName: true,
