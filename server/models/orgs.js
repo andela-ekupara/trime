@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('orgs', {
+  return sequelize.define('orgs', {
       name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -11,11 +11,11 @@ module.exports = function(sequelize, DataTypes) {
     },
 
     {
-      // auto created column fields should use snake case
+      // Auto created column fields should use snake case
       underscored: true,
-      // disable attempts to pluralize tablename
+      // Disable attempts to pluralize tablename
       freezeTableName: true,
-      // add created_at and modified_at columns
+      // Add created_at and modified_at columns
       timestamps: true
     });
 };

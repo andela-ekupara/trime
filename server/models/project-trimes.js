@@ -8,22 +8,22 @@
 				autoIncrement: true
 			},
 
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      
+			description: {
+				type: DataTypes.STRING,
+				allowNull: true
+			},
+
 			complete: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-      }
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false
+			}
 		}, {
-			// auto created column fields should use snake case
+			// Auto created column fields should use snake case
 			underscored: true,
-			// disable attempts to pluralize tablename
+			// Disable attempts to pluralize tablename
 			freezeTableName: true,
-			// add created_at and modified_at columns
+			// Add created_at and modified_at columns
 			timestamps: true
 		});
 	};
