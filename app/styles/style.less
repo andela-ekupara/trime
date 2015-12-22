@@ -42,6 +42,10 @@
   }
 }
 
+.error-toast {
+  background-color: rgba(210, 57, 57, 1);
+}
+
 .md-inline-block {
   display: inline-block;
 }
@@ -62,6 +66,16 @@
   z-index: 1;
   margin: -60px 0 0 0;
   position: relative;
+  .btntrime {
+    margin: 20% auto;
+    border-radius: 10px;
+    height: 50px;
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1em;
+    }
+  }
 }
 
 #back::after {
@@ -99,6 +113,7 @@
 
 #ui-view {
   background-size: cover;
+  // background-color: #000;
   min-height: 600px;
   max width: 600px;
   margin: 0 auto;
@@ -221,17 +236,15 @@ img {
   margin: 0px 0px 0px 20px;
 }
 
-.mdl-cell {
-  padding: 0px;
-  height: auto;
+@media (min-width: 481px) {
+  .signupcard {
+    width: 50%;
+    margin: 10px auto;
+  }
 }
 
-.mdl-grid {
-  padding: 0px;
-}
-
-.signupcard {
-  // border: 1px solid red;
-  width: 50%;
-  margin: 10px auto;
+@media (max-width: 480px) {
+  .signupcard {
+    margin: 10px auto;
+  }
 }

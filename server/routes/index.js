@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+
   module.exports = function(app, passport) {
     require('./users')(app);
     require('./orgs')(app);
@@ -21,4 +22,3 @@
     });
   };
 })();
-

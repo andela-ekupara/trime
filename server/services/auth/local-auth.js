@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  
   module.exports = function(passport) {
     var Users = require('../../models').Users,
       bcrypt = require('bcrypt-nodejs'),
