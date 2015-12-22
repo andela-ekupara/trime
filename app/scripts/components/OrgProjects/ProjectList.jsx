@@ -1,25 +1,25 @@
 (function() {
   'use strict';
   var React = require('react');
-  var OrgsList = React.createClass({
+  var ProjectList = React.createClass({
       render: function() {
-        var renderOrg = function(org) {
+        var renderProject = function(project) {
           return (
             <div className="col s12 m4">
               <div className="card blue-grey darken-1">
                 <div className="card-content white-text">
-                  <span className="card-title">{org.name}</span>
-                  <p>{org.description}</p>
+                  <span className="card-title">{project.name}</span>
+                  <p>{project.description}</p>
                 </div>
                 <div className="card-action">
-                  <a href={'/#/orgs/' + org.id}>Org Projects</a>
+                  <a href={'/#/projects/' + project.id}>Go To Project</a>
                 </div>
               </div>
             </div>
           );
         };
-        return (<div>{this.props.orgs.slice(0,3).map(renderOrg)}</div>)
+        return (<div>{this.props.projects.slice(0,3).map(renderProject)}</div>)
       }
 });
-  module.exports = OrgsList;
+  module.exports = ProjectList;
 })();
