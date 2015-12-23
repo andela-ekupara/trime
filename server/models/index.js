@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  // require the database connection
+  // Require the database connection
   var sequelize = require('../config/db-connect');
 
   // Utility function to convert the filenames into Model names
@@ -12,7 +12,7 @@
     });
   }
 
-  // holds the model filenames
+  // Holds the model filenames
   var models = [
     'orgs',
     'org-users',
@@ -23,10 +23,10 @@
     'project-trimes'
   ];
 
-  // add all models to the exports
+  // Add all models to the exports
   // Can now be imported through `require('models').ModelName`
   models.forEach(function(model) {
-    // sequelize.import loads already created models
+    // Sequelize.import loads already created models
     module.exports[ucModels(model)] = sequelize.import(__dirname + '/' +
       model);
   });
@@ -52,6 +52,6 @@
     m.ProjectTrimes.hasMany(m.TimeTracks);
   })(module.exports);
 
-  // export connection
+  // Export connection
   module.exports.sequelize = sequelize;
 })();

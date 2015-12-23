@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
     },
 
     {
-      // auto created column fields should use snake case
+      // Auto created column fields should use snake case
       underscore: true,
-      // disable attempts to pluralize tablename
+      // Disable attempts to pluralize tablename
       freezeTableName: true,
-      // add created_at and modified_at columns
+      // Add created_at and modified_at columns
       timestamps: true
     });
 };
