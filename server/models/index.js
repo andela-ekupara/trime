@@ -47,7 +47,7 @@
     m.Users.belongsToMany(m.Projects, {
       through: m.ProjectUsers
     });
-    // m.TimeTracks.belongsTo(m.ProjectTrimes);
+    // m.TimeTracks.belongsTo(m.ProjectUsers);
     m.ProjectUsers.hasMany(m.ProjectTrimes);
     m.ProjectTrimes.hasMany(m.TimeTracks);
   })(module.exports);

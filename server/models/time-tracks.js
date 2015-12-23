@@ -4,17 +4,13 @@
   module.exports = function(sequelize, DataTypes) {
     return sequelize.define('time-tracks', {
       startedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.BIGINT,
         allowNull: false
       },
 
       finishedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.BIGINT,
         allowNull: true
-      },
-
-      time_tracked: {
-        type: DataTypes.BIGINT
       }
     },
 
