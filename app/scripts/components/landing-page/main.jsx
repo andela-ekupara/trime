@@ -25,7 +25,7 @@
 					<div>
 						<Header setUser={this.setUser} user={this.state.user} />
 						<div className="handler">
-							<RouteHandler />
+							{this.props.children}
 						</div>
 					</div>
 				);
