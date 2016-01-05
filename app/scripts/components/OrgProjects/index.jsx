@@ -4,7 +4,7 @@
   var ProjectStore = require('../../stores/ProjectStore');
   var ProjectActions = require('../../actions/ProjectActions');
   var ProjectList = require('./ProjectList.jsx');
-  var OrgPage = React.createClass({
+  var OrgProjects = React.createClass({
     getInitialState: function() {
       return {
         projects: []
@@ -37,5 +37,5 @@
       );
     }
   });
-  module.exports = OrgPage;
+  module.exports = OrgProjects;
 })();
