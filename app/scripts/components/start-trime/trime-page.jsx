@@ -19,7 +19,7 @@
 			render: function() {
 				var options = [
 				{value: 'one', label: 'One'},
-				{value: 'two', label:'Two'}
+				{value: 'two', label:'Two'},
 				];
 
 				return (

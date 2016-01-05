@@ -23,5 +23,4 @@
 			</Route>
 		</Router>
 		), document.getElementById('ui-view'));
-
 })();
