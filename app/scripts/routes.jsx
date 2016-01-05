@@ -15,6 +15,7 @@
 				<DefaultRoute handler={require('./components/landing-page/landing.jsx')} />
 				<Route path="/join" handler={require('./components/login/SignupPage.jsx')} />
         <Route path="/orgs" handler={require('./components/org-page/orgs-page.jsx')} />
+        <Route path="/starttrime" handler={require('./components/start-trime/trime-page.jsx')} />
         <NotFoundRoute handler={require('./components/notfound/notfound.jsx')} />
         <Redirect from="about" to="landing" />
         <Redirect from="sign" to="/join" />
