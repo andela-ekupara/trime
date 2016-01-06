@@ -8,6 +8,7 @@
     PROJECTS_GET: null,
     PROJECT_GET: null,
     USER_LOGIN: null,
+    USER_SEARCH: null,
     USER_SIGNUP: null,
     USER_SESSION: null,
     GITHUB_LOGIN: null,

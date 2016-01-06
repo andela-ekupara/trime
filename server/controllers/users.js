@@ -6,8 +6,21 @@
 
   module.exports = {
     all: function(req, res, next) {
+      var q = req.query.q,
+        query;
+
+      if (q) {
+        query = {
+          where: {
+            name: {
+              $iLike: '%' + q + '%'
+            }
+          }
+        };
+      }
+
       Users.sync().then(function() {
-        return Users.findAll()
+        return Users.findAll(query)
           .then(function(users) {
             return res.json(users);
           });
@@ -24,11 +37,13 @@
             error: err.errors[0] || err.message
           });
         }
+
         if (!user) {
           return res.status(500).send({
             error: 'Error creating user.'
           });
         }
+
         user.password = null;
         return res.json(user);
       })(req, res, next);

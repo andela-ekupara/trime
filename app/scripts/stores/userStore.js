@@ -12,6 +12,9 @@
       case TrimeConstants.USER_LOGIN:
         UserStore.setData(action.data);
         break;
+      case TrimeConstants.USER_SEARCH:
+        UserStore.setData(action.data);
+        break;
       case TrimeConstants.USER_SIGNUP:
         UserStore.setData(action.data);
         break;

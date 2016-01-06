@@ -3,7 +3,9 @@
   var React = require('react');
   var Select = require('react-select');
   var OrgActions = require('../../actions/OrgActions');
+  var UserActions = require('../../actions/userActions');
   var OrgStore = require('../../stores/OrgStore');
+  var UserStore = require('../../stores/userStore');
 
   const FLAVOURS = [
     {
@@ -40,6 +42,7 @@
 
     componentDidMount: function() {
       OrgStore.addChangeListener(this.handleUpdate);
+      UserStore.addChangeListener(this.getOptions);
     },
 
     handleUpdate: function() {
@@ -65,8 +68,15 @@
     },
 
     handleSelectChange: function(value) {
-      console.log('You\'ve selected:', value);
       this.setState({ value });
+    },
+
+    onInputChange: function(input) {
+      console.log('You typed: ', input);
+    },
+
+    getOptions: function(input)  {
+      return UserActions.search(input);
     },
 
     render: function() {
@@ -88,7 +98,8 @@
               </div>
             </div>
             <div className="section">
-                <Select className="input-field col s6"
+                <Select.Async className="input-field col s6"
+                    loadOptions={this.getOptions}
                     multi
                     onChange={this.handleSelectChange}
                     options={this.state.options}
