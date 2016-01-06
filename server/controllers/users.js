@@ -2,8 +2,21 @@
   'use strict';
 
   var passport = require('passport');
+  var Users = require('../models').Users;
 
   module.exports = {
+    all: function(req, res, next) {
+      Users.sync().then(function() {
+        return Users.findAll()
+          .then(function(users) {
+            return res.json(users);
+          });
+      })
+      .catch(function(err) {
+        return next(err);
+      });
+    },
+
     signup: function(req, res, next) {
       passport.authenticate('signup', function(err, user) {
         if (err) {
@@ -20,6 +33,7 @@
         return res.json(user);
       })(req, res, next);
     },
+
     // login middleware handler
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
