@@ -133,7 +133,8 @@
         })
         .catch(function(err) {
           res.status(500).send({
-            error: 'sequelize error'
+            error: 'sequelize error',
+            errormsg: err
           });
         });
     }
