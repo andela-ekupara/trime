@@ -19,15 +19,15 @@
         }
       },
 
-			render: function() {
-				return (
-					<div>
-						<Header setUser={this.setUser} user={this.state.user} />
-						<div className="handler">
-							{this.props.children}
-						</div>
-					</div>
-				);
-			}
-		});
+      render: function() {
+        return (
+          <div>
+            <Header setUser={this.setUser} user={this.state.user} />
+            <div className="handler">
+              {this.props.children}
+            </div>
+          </div>
+        );
+      }
+    });
 })();
