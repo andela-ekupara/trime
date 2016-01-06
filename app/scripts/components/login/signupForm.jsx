@@ -29,8 +29,8 @@
       if (pswd !== conpswd) {
         window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
         return false;
-      } else if (pswd.length >= 1 && pswd.length < 8) {
-        window.Materialize.toast('passwords should be > 8 characters ', 2000, 'error-toast');
+      } else if (pswd.length >= 1 && pswd.length < 6) {
+        window.Materialize.toast('passwords should be > 6 characters ', 2000, 'error-toast');
         return false;
       } else {
         return true;

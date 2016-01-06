@@ -2,16 +2,19 @@
   'use strict';
 
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('projects', {
-      name: {
-        type: DataTypes.STRING,
+    return sequelize.define('time-tracks', {
+      startedAt: {
+        type: DataTypes.BIGINT,
         allowNull: false
       },
-      description: {
-        type: DataTypes.STRING,
+
+      finishedAt: {
+        type: DataTypes.BIGINT,
         allowNull: true
       }
-    }, {
+    },
+
+    {
       // Auto created column fields should use snake case
       underscored: true,
       // Disable attempts to pluralize tablename
@@ -20,4 +23,5 @@
       timestamps: true
     });
   };
+  
 })();

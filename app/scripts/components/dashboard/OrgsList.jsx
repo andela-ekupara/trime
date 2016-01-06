@@ -12,7 +12,7 @@
                   <p>{org.description}</p>
                 </div>
                 <div className="card-action">
-                  <a href={'/#/orgs/' + org.id}>Org Projects</a>
+                  <a href={'/orgs/' + org.id}>Org Projects</a>
                 </div>
               </div>
             </div>

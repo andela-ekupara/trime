@@ -1,21 +1,25 @@
-(function() {
+module.exports = function(sequelize, DataTypes) {
   'use strict';
 
-  module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('project_users', {
-        role: {
-          type: DataTypes.ENUM('owner', 'admin', 'user'),
-          allowNull: false
-        }
+  return sequelize.define('project-users', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
       },
 
-      {
-        // auto created column fields should use snake case
-        underscore: true,
-        // disable attempts to pluralize tablename
-        freezeTableName: true,
-        // add created_at and modified_at columns
-        timestamps: true
-      });
-  };
-})();
+      role: {
+        type: DataTypes.ENUM('owner', 'admin', 'user'),
+        allowNull: false
+      }
+    },
+
+    {
+      // Auto created column fields should use snake case
+      underscore: true,
+      // Disable attempts to pluralize tablename
+      freezeTableName: true,
+      // Add created_at and modified_at columns
+      timestamps: true
+    });
+};

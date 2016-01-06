@@ -12,7 +12,7 @@
                 <p>{project.description}</p>
               </div>
               <div className="card-action">
-                <a href={'/#/projects/' + project.id}>Go To Project</a>
+                <a href={'/projects/' + project.id}>Go To Project</a>
               </div>
             </div>
           </div>

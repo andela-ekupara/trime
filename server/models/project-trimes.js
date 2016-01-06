@@ -1,15 +1,21 @@
 (function() {
   'use strict';
-
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('projects', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
+    return sequelize.define('project_trimes', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
       },
       description: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+
+      complete: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       }
     }, {
       // Auto created column fields should use snake case
@@ -20,4 +26,5 @@
       timestamps: true
     });
   };
+
 })();

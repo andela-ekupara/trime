@@ -7,42 +7,21 @@
   var OrgStore = require('../../stores/OrgStore');
   var UserStore = require('../../stores/userStore');
 
-  const FLAVOURS = [
-    {
-      label: 'Chocolate',
-      value: 'chocolate'
-    }, {
-      label: 'Vanilla',
-      value: 'vanilla'
-    }, {
-      label: 'Strawberry',
-      value: 'strawberry'
-    }, {
-      label: 'Caramel',
-      value: 'caramel'
-    }, {
-      label: 'Cookies and Cream',
-      value: 'cookiescream'
-    }, {
-      label: 'Peppermint',
-      value: 'peppermint'
-    }
-  ];
   var OrgForm = React.createClass({
     getInitialState: function() {
       return {
         name: '',
         description: '',
         result: '',
+        options: null,
         searchable: true,
-        options: FLAVOURS,
         value: []
       };
     },
 
     componentDidMount: function() {
       OrgStore.addChangeListener(this.handleUpdate);
-      UserStore.addChangeListener(this.getOptions);
+      UserStore.addChangeListener(this.handleUsersChange);
     },
 
     handleUpdate: function() {
@@ -75,8 +54,21 @@
       console.log('You typed: ', input);
     },
 
-    getOptions: function(input)  {
-      return UserActions.search(input);
+    handleUsersChange: function() {
+      var data = UserStore.getData();
+      this.setState({options: data});
+    },
+
+    getOptions: function(input, callback)  {
+      UserActions.search(input);
+        setTimeout(function() {
+            callback(null, {
+                options: this.state.options,
+                // CAREFUL! Only set this to true when there are no more options,
+                // or more specific queries will not be sent to the server.
+                complete: true
+            });
+        }, 500);
     },
 
     render: function() {
@@ -86,7 +78,7 @@
             <div className="row">
               <div className="input-field col s6">
                 <input id="name" type="text" name="name" onChange={this.handleNameChange} className="validate" required/>
-                <label className="active" for="name">
+                <label className="active" htmlFor="name">
                   Organisation Name
                 </label>
               </div>
@@ -98,11 +90,11 @@
               </div>
             </div>
             <div className="section">
-                <Select.Async className="input-field col s6"
+                <Select className="input-field col s6"
                     loadOptions={this.getOptions}
                     multi
+                    name="org-users"
                     onChange={this.handleSelectChange}
-                    options={this.state.options}
                     placeholder="Select user(s)"
                     searchable={this.state.searchable}
                     simpleValue
@@ -119,5 +111,7 @@
         );
       }
   });
-module.exports = OrgForm;
+
+  module.exports = OrgForm;
+
 })();
