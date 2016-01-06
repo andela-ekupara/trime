@@ -1,13 +1,13 @@
 (function(){
   'use strict';
   var React = require('react');
-  var StartBtn = require('./trimebtn.jsx');
+  var TrimeBtn = require('./TrimeBtn.jsx');
   var Landing = React.createClass({
     render: function() {
       return (
         <div>
           <div id="back">
-            <StartBtn />
+            <TrimeBtn />
           </div>
           <div id="action"></div>
             <div id="grid">
@@ -40,6 +40,6 @@
         </div>
         );
     }
-  })
+  });
 module.exports = Landing;
 })();

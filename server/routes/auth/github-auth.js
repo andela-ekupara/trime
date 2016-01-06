@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
   // Otherwise, authentication has failed.
   app.get('/auth/github/callback', passport.authenticate('github', {
     failureRedirect: '/users/login',
-    successRedirect: '/',
+    successRedirect: '/'
     // session: true
   }));
 

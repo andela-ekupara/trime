@@ -1,5 +1,8 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('projects', {
+(function() {
+  'use strict';
+
+  module.exports = function(sequelize, DataTypes) {
+    return sequelize.define('projects', {
       name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -7,10 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       description: {
         type: DataTypes.STRING,
         allowNull: true
-      },
-    },
-
-    {
+      }
+    }, {
       // Auto created column fields should use snake case
       underscored: true,
       // Disable attempts to pluralize tablename
@@ -18,4 +19,5 @@ module.exports = function(sequelize, DataTypes) {
       // Add created_at and modified_at columns
       timestamps: true
     });
-};
+  };
+})();

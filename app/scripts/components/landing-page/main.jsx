@@ -1,24 +1,23 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	var React = require('react'),
-		RouteHandler = require('react-router').RouteHandler,
-		Header = require('./header.jsx');
+  var React = require('react'),
+    Header = require('./Header.jsx');
 
-		module.exports = React.createClass({
-			getInitialState: function() {
-				return {
-					user: {}
-				};
-			},
+    module.exports = React.createClass({
+      getInitialState: function() {
+        return {
+          user: {}
+        };
+      },
 
-			setUser: function(user) {
-				if(user) {
-					this.setState({
-						user: user
-					});
-				}
-			},
+      setUser: function(user) {
+        if(user) {
+          this.setState({
+            user: user
+          });
+        }
+      },
 
 			render: function() {
 				return (

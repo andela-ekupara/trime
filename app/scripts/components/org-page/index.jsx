@@ -1,13 +1,16 @@
 (function() {
   'use strict';
-
   var React = require('react');
+  var OrgForm = require('./OrgForm.jsx');
 
   module.exports = React.createClass({
     render: function() {
       return (
-        <button className="btn waves-effect btntrime" name="start"><a href="/join">Start Trimming</a> </button>
+        <div>
+          <OrgForm />
+        </div>
       );
     }
   });
+
 })();

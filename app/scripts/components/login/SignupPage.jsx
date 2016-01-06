@@ -1,36 +1,36 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	var React = require('react'),
-	  UserActions = require('../../actions/userActions'),
-		UserStore = require('../../stores/userStore'),
+  var React = require('react'),
+    UserActions = require('../../actions/userActions'),
+    UserStore = require('../../stores/userStore'),
     Navigation = require('react-router').Navigation,
-		SignupForm = require('./SignupForm.jsx');
-	
-	module.exports = React.createClass({
-		mixins: [Navigation],
+    SignupForm = require('./SignupForm.jsx');
 
-		componentWillMount: function() {
-				UserActions.session();
-				UserStore.addChangeListener(this.getSession);
-		},
+  module.exports = React.createClass({
+    mixins: [Navigation],
 
-		getSession: function () {
-				var data = UserStore.getData();
-				if(data && !data.error) { 
-				// session exists
-					this.transitionTo('/orgs');
-				}
-		},
-		render: function() {
-			return (
-				<div>
-					<div className="container">
-						<SignupForm />
-					</div>
-				</div>
-			);
-		}
-	});
-	
+    componentWillMount: function() {
+        UserActions.session();
+        UserStore.addChangeListener(this.getSession);
+    },
+
+    getSession: function () {
+        var data = UserStore.getData();
+        if(data && !data.error) {
+        // session exists
+          this.transitionTo('/orgs');
+        }
+    },
+    render: function() {
+      return (
+        <div>
+          <div className="container">
+            <SignupForm />
+          </div>
+        </div>
+      );
+    }
+  });
+
 })();

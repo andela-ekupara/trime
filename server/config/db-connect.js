@@ -9,7 +9,7 @@
       config.db.username,
       config.db.password, {
         host: config.host,
-        dialect: config.db.dialect || 'postgres'
+        dialect: config.db.dialect
       });
 
   sequelize.sync({
