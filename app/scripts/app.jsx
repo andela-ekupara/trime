@@ -22,7 +22,7 @@
         <IndexRoute component={Landing} />
         <Route path="/join" component={SignUp} />
         <Route path="/orgs" component={Index} />
-        <Route path="/starttrime" component={Routes.trimePage} />
+        <Route path="/starttrime" component={TrimePage} />
         <Route path="*" component={NotFound} />
         <Redirect from="about" to="landing" />
         <Redirect from="sign" to="/join" />
