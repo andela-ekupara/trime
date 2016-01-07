@@ -25,11 +25,11 @@
       UserStore.addChangeListener(this.handleSignup);
     },
 
-    comparepswd: function(pswd, conpswd) {
-      if (pswd !== conpswd) {
+    comparepswd: function(password, confirmPassword) {
+      if (password !== confirmPassword) {
         window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
         return false;
-      } else if (pswd.length >= 1 && pswd.length < 6) {
+      } else if (password.length >= 1 && password.length < 6) {
         window.Materialize.toast('passwords should be > 6 characters ', 2000, 'error-toast');
         return false;
       } else {
