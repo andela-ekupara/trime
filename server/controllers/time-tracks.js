@@ -18,31 +18,22 @@
             })
             .then(function(project_users) {
               if (!project_users) {
-                res.status(404).send({
+                return res.status(404).send({
                   error: 'Projects not found'
                 });
               } else {
-                var pro = [];
-                project_users.forEach(function(element) {
+                var getProjs = project_users.map(function(element) {
                   projects.findOne({
                       where: {
                         id: element.project_id
                       }
                     })
                     .then(function(project) {
-                      pro.push(project.dataValues);
-                    })
-                    .catch(function(err) {
-                      res.status(500).send({
-                        error: err.message
-                      });
+                      return project.dataValues;
                     });
                 });
-                return pro;
+                res.status(200).send(getProjs);
               }
-            })
-            .then(function(pro) {
-              return res.status(200).send(pro);
             });
         })
         .catch(function(err) {
