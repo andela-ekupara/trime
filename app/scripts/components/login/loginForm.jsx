@@ -30,7 +30,9 @@
           window.Materialize.toast(data.error, 2000, 'error-toast');
         }
       } else {
-        this.setState({result: 'successful'});
+        // this.setState({result: 'successful'});
+        this.props.setUser(data);
+        this.state.result = 'successful';
         // this.transitionTo('/orgs');
       }
     },
@@ -38,7 +40,7 @@
     handleFieldChange: function(event) {
       var field = event.target.name;
       var value = event.target.value;
-      this.state.user[field]= value;
+      this.state.user[field] = value;
       this.setState({user: this.state.user});
     },
 

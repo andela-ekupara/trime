@@ -51,7 +51,7 @@
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-router": "^1.0.3",
-    "react-select": "^0.9.1",
+    "react-select": "1.0.0-beta8",
     "reactify": "^1.1.1",
     "sequelize": "~3.13.0",
     "serve-favicon": "~2.3.0",

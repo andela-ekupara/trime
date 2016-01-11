@@ -13,7 +13,8 @@
         name: '',
         description: '',
         result: '',
-        options: null,
+        options: [],
+        isLoadingExternally: true,
         searchable: true,
         value: []
       };
@@ -47,11 +48,7 @@
     },
 
     handleSelectChange: function(value) {
-      this.setState({ value });
-    },
-
-    onInputChange: function(input) {
-      console.log('You typed: ', input);
+      this.setState({ value: value });
     },
 
     handleUsersChange: function() {
@@ -59,19 +56,21 @@
       this.setState({options: data});
     },
 
-    getOptions: function(input, callback)  {
+    getOptions: function(input, callback) {
+      var self = this;
       UserActions.search(input);
         setTimeout(function() {
             callback(null, {
-                options: this.state.options,
+                options: self.state.options,
                 // CAREFUL! Only set this to true when there are no more options,
                 // or more specific queries will not be sent to the server.
-                complete: true
+                complete: false
             });
-        }, 500);
+        }, 1000);
     },
 
     render: function() {
+      console.log('options', this.state.options);
       return (
         <div className="row">
           <form className="col s12" onSubmit={this.handleSubmit}>
@@ -90,14 +89,15 @@
               </div>
             </div>
             <div className="section">
-                <Select className="input-field col s6"
+                <Select.Async className="input-field col s6"
                     loadOptions={this.getOptions}
-                    multi
+                    multi={true}
                     name="org-users"
                     onChange={this.handleSelectChange}
                     placeholder="Select user(s)"
                     searchable={this.state.searchable}
-                    simpleValue
+                    labelKey="name"
+                    valueKey="id"
                     value={this.state.value}
                 />
             </div>
