@@ -24,7 +24,7 @@
     },
     render: function() {
       return (
-        <div>
+        <div location="my location">
           <div className="container">
             <SignupForm />
           </div>

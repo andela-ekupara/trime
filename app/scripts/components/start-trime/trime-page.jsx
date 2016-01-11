@@ -1,7 +1,12 @@
 (function() {
   'use strict';
   var React = require('react'),
-    Select = require('react-select');
+    Select = require('react-select'),
+    TrackingActions = require('../../actions/trackingActions.js'),
+    UserActions = require('../../actions/userActions'),
+    UserStore = require('../../stores/userStore'),
+    TrackingStore = require('../../stores/trackingStore');
+
     var Button = React.createClass({
       render: function() {
         return (
@@ -17,30 +22,50 @@
         return {
           disabled: false,
           searchable: true,
-          clearable: true
+          clearable: true,
+          options: []
         };
       },
 
+      componentWillMount: function() {
+        UserStore.addChangeListener(this.getSession);
+        TrackingStore.addChangeListener(this.getProjects);
+      },
+
+      getSession: function() {
+        var user = UserStore.getData();
+        if (user.id) {
+          TrackingActions.getProjects(user.id);
+        }
+      },
+
+      getProjects: function() {
+        var projects = TrackingStore.getData();
+        this.setState({options: projects});
+      },
+
       logChange: function(val) {
-        console.log('selected' + val);
+        console.log('selected ' + val);
       },
 
       render: function() {
-        var options = [
-        {value: 'one', label: 'One'},
-        {value: 'two', label:'Two'},
-        {value: 'three', label: 'Three'},
-        {value: 'four', label:'Two'},
-        {value: 'five', label: 'One'},
-        {value: 'six', label:'Two'},
-        {value: 'seven', label: 'One'},
-        {value: 'eight', label:'Two'}
-        ];
-
         return (
           <div className="gerty">
-            <Select className="trimeProject" autofocus options ={options} simpleValue disabled={this.state.disabled} searchable={this.state.searchable} clearable={this.state.clearable} onChange={this.logChange} />
+            <Select className="trimeProject"
+            multi={true}
+            autofocus 
+            options={this.state.options} 
+            simpleValue 
+            disabled={this.state.disabled} 
+            searchable={this.state.searchable} 
+            clearable={this.state.clearable} 
+            onChange={this.logChange} 
+            labelKey="name"
+            valueKey="project_id" />
+
             <Button label="Start" icon="fa fa-play"/>
+            <Button label="resume" icon="fa fa-play"/>
+            <Button label="pause" icon="fa fa-play"/>
             <Button label="Stop" icon="fa fa-stop"/>
           </div>
         );
