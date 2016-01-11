@@ -20,7 +20,7 @@
         return res.json(user);
       })(req, res, next);
     },
-    // login middleware handler
+    // Login middleware handler
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {

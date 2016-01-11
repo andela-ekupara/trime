@@ -2,7 +2,6 @@
   'use strict';
 
   var React = require('react'),
-    RouteHandler = require('react-router').RouteHandler,
     Header = require('./Header.jsx');
 
     module.exports = React.createClass({
@@ -25,7 +24,7 @@
           <div>
             <Header setUser={this.setUser} user={this.state.user} />
             <div className="handler">
-              <RouteHandler />
+              {this.props.children}
             </div>
           </div>
         );
