@@ -8,8 +8,8 @@
   module.exports = {
     getProjects: function(req, res) {
       sequelize.query('SELECT "project-users".project_id,' +
-          'projects.id, projects.id, projects.name,' +
-          'projects.description FROM "project-users"' +
+          'projects.name, projects.description ' +
+          'FROM "project-users"' +
           'INNER JOIN projects ON "project-users".project_id = projects.id ' +
           'AND "project-users".user_id = ' + req.params.userId)
         .spread(function(result) {
