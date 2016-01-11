@@ -5,7 +5,17 @@
     assign = require('object-assign'),
     BaseStore = require('./BaseStore');
 
-  var UserStore = assign({}, BaseStore);
+  var UserStore = assign({}, BaseStore, {
+    fetchedUsers: null,
+    setUsers: function(users) {
+      this.fetchedUsers = users;
+      this.emitChange();
+    },
+
+    getUsers: function() {
+      return this.fetchedUsers;
+    }
+  });
 
   AppDispatcher.register(function(action) {
     switch (action.actionType) {
@@ -13,7 +23,7 @@
         UserStore.setData(action.data);
         break;
       case TrimeConstants.USER_SEARCH:
-        UserStore.setData(action.data);
+        UserStore.setUsers(action.data);
         break;
       case TrimeConstants.USER_SIGNUP:
         UserStore.setData(action.data);

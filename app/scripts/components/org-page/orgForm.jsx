@@ -14,7 +14,6 @@
         description: '',
         result: '',
         options: [],
-        isLoadingExternally: true,
         searchable: true,
         value: []
       };
@@ -52,8 +51,11 @@
     },
 
     handleUsersChange: function() {
-      var data = UserStore.getData();
-      this.setState({options: data});
+      var data = UserStore.getUsers();
+      // If the data returned is not an error, set the state
+      if(data && !data.error) {
+        this.setState({options: data});
+      }
     },
 
     getOptions: function(input, callback) {
@@ -70,7 +72,6 @@
     },
 
     render: function() {
-      console.log('options', this.state.options);
       return (
         <div className="row">
           <form className="col s12" onSubmit={this.handleSubmit}>
