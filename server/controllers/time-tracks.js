@@ -3,42 +3,28 @@
 
   var timeTracks = require('../models').TimeTracks;
   var projectTrimes = require('../models').ProjectTrimes;
-  var projectUsers = require('../models').ProjectUsers;
-  var projects = require('../models').Projects;
+  var sequelize = require('../config/db-connect');
 
   module.exports = {
     getProjects: function(req, res) {
-      // get project from project_users
-      projectUsers.sync().then(function() {
-          return projectUsers.findAll({
-              where: {
-                // user_id: req.session.user_id,
-                user_id: req.params.userId
-              }
-            })
-            .then(function(project_users) {
-              if (!project_users) {
-                return res.status(404).send({
-                  error: 'Projects not found'
-                });
-              } else {
-                var getProjs = project_users.map(function(element) {
-                  projects.findOne({
-                      where: {
-                        id: element.project_id
-                      }
-                    })
-                    .then(function(project) {
-                      return project.dataValues;
-                    });
-                });
-                res.status(200).send(getProjs);
-              }
+      sequelize.query('SELECT "project-users".project_id,' +
+          'projects.id, projects.id, projects.name,' +
+          'projects.description FROM "project-users"' +
+          'INNER JOIN projects ON "project-users".project_id = projects.id ' +
+          'AND "project-users".user_id = ' + req.params.userId)
+        .spread(function(result) {
+          if (result.length === 0) {
+            res.status(404).send({
+              message: 'No projects found'
             });
+          } else {
+            res.status(200).send(result);
+          }
+
         })
         .catch(function(err) {
           res.status(500).send({
-            error: err.message
+            error: err.errormsg
           });
         });
     },

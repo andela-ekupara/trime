@@ -18,7 +18,7 @@
           disabled: false,
           searchable: true,
           clearable: true
-        }
+        };
       },
 
       logChange: function(val) {
@@ -34,7 +34,7 @@
         {value: 'five', label: 'One'},
         {value: 'six', label:'Two'},
         {value: 'seven', label: 'One'},
-        {value: 'eight', label:'Two'},
+        {value: 'eight', label:'Two'}
         ];
 
         return (
