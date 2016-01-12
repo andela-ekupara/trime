@@ -7,15 +7,24 @@
   var BaseStore = require('./BaseStore');
 
   var TrackingStore = assign({}, BaseStore, {
-    data: null, 
-    setProjects: function(data) {
-      this.data = data;
+    projects: null,
+    track: null,
+    setProjects: function(projects) {
+      this.projects = projects;
+      this.emitChange();
+    },
+    getProjects: function() {
+      return this.projects;
     },
     setError: function(err) {
       this.data = err;
-    }, 
-    setTracker: function(trackmsg) {
-      this.data = trackmsg;
+    },
+    setTrack: function(trackmsg) {
+      this.track = trackmsg;
+      this.emitChange();
+    },
+    getTrack: function() {
+      return this.track;
     }
   });
 
@@ -31,12 +40,10 @@
         break;
 
       case TrimeConstants.START:
-      console.log('ERROR');
-      console.log(action.data);
         if (action.data.error) {
           TrackingStore.setError(action.data);
         } else {
-          TrackingStore.setTracker(action.data);
+          TrackingStore.setTrack(action.data);
         }
         break;
 
@@ -44,7 +51,7 @@
         if (action.data.error) {
           TrackingStore.setError(action.data);
         } else {
-          TrackingStore.setData(action.data);
+          TrackingStore.setTrack(action.data);
         }
         break;
 
@@ -52,15 +59,15 @@
         if (action.data.error) {
           TrackingStore.setError(action.data);
         } else {
-          TrackingStore.setData(action.data);
+          TrackingStore.setTrack(action.data);
         }
         break;
-        
+
       case TrimeConstants.STOP:
         if (action.data.error) {
           TrackingStore.setError(action.data);
         } else {
-          TrackingStore.setData(action.data);
+          TrackingStore.setTrack(action.data);
         }
         break;
       default:

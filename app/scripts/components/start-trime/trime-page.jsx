@@ -9,18 +9,12 @@
  
   var Button = React.createClass({
     render: function() {
-      return ( <div>
-        <button onClick = {
-          this.props.onClick
-        }
-        id = {
-          this.props.id
-        }
-        className = "waves-effect waves-light btn" > {
-          this.props.label
-        } <i className = {
-          this.props.icon
-        } > </i> </button> </div>
+      return ( 
+        <div>
+          <button onClick={this.props.onClick} id={this.props.id} className="waves-effect waves-light btn"> 
+            {this.props.label} <i className={this.props.icon}></i> 
+          </button>
+        </div>
       );
     }
   });
@@ -42,6 +36,10 @@
       TrackingStore.addChangeListener(this.getProjects);
     },
 
+    componentDidMount: function() {
+      TrackingStore.addChangeListener(this.showResult);
+    },
+
     getSession: function() {
       var user = UserStore.getData();
       if (user.id) {
@@ -50,11 +48,10 @@
     },
 
     getProjects: function() {
-      var projects = TrackingStore.getData();
+      var projects = TrackingStore.getProjects();
       this.setState({
         options: projects
       });
-      console.log('PROJECTS', projects);
     },
 
     logChange: function(val) {
@@ -64,13 +61,11 @@
       });
     },
 
-    componentDidMount: function() {
-      TrackingStore.addChangeListener(this.showResult);
-    },
-
     showResult: function() {
-      var result = TrackingStore.getData();
-      console.log('Result',result);
+      var result = TrackingStore.getTrack();
+      if(result && result.message) {
+        window.Materialize.toast(result.message, 2000, 'success-toast');
+      }
     },
 
     handleStartClick: function(e) {
@@ -85,26 +80,39 @@
       TrackingActions.start(data);
     },
 
-    render: function() {
-      return ( <div className = "select" >
-        <Select className = "trimeProject" autofocus options = {this.state.options} 
-          simpleValue disabled={this.state.disabled}
-        searchable = {
-          this.state.searchable
-        }
-        clearable = {
-          this.state.clearable
-        }
-        onChange = {
-          this.logChange
-        }
-        labelKey = "name"
-        valueKey = "project_id" />
+    handlePauseClick: function(e) {
+      e.preventDefault();
+      TrackingActions.pause();    
+    },
 
-        <Button onClick = {this.handleStartClick} id = "start" label = "Start" icon = "fa fa-play" />
-        <Button id = "pause" label = "resume" icon = "fa fa-play" />
-        <Button id = "resume" label = "pause" icon = "fa fa-play" />
-        <Button id = "stop" label = "Stop" icon = "fa fa-stop" />
+    handleResumeClick: function(e) {
+      e.preventDefault();
+      TrackingActions.resume();
+    },
+
+    handleStopClick: function(e) {
+      e.preventDefault();
+      TrackingActions.stop();
+    },
+
+    render: function() {
+      return ( <div className="select" >
+        <Select className="trimeProject" 
+          autofocus 
+          options={this.state.options} 
+          simpleValue 
+          disabled={this.state.disabled}
+          searchable={this.state.searchable}
+          clearable={this.state.clearable}
+          onChange={this.logChange}
+          labelKey="name"
+          valueKey="project_id" 
+        />
+
+        <Button onClick={this.handleStartClick} id="start" label="Start" icon="fa fa-play" />
+        <Button onClick={this.handleResumeClick} id="pause" label="resume" icon="fa fa-play" />
+        <Button onClick={this.handlePauseClick} id="resume" label="pause" icon="fa fa-play" />
+        <Button onClick={this.handleStopClick} id="stop" label="Stop" icon="fa fa-stop" />
         </div>
       );
     }

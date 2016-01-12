@@ -37,7 +37,6 @@
           })
           .then(function(projectTrime) {
             if (!projectTrime) {
-              console.log('Error message 1');
               res.status(500).send({
                 error: 'Could not start tracking'
               });
@@ -50,13 +49,12 @@
                     project_trime_id: projectTrime.dataValues.id
                   }).then(function(timeTrack) {
                     if (!timeTrack) {
-                      console.log('Error message 2');
                       return res.status(500).send({
                         error: 'Could not start Triming'
                       });
                     } else {
                       req.session.track = {
-                        projectTrimeId : projectTrime.dataValues.id, 
+                        projectTrimeId: projectTrime.dataValues.id,
                         timeTrackId: timeTrack.id
                       };
                       return res.status(200).send({
@@ -65,7 +63,6 @@
                     }
                   })
                   .catch(function(err) {
-                    console.log('Error message 3', err);
                     return res.status(500).send({
                       error: err.errormsg
                     });
@@ -86,6 +83,7 @@
         })
         .then(function(ok) {
           if (ok) {
+            delete req.session.track.timeTrackId;
             return res.status(200).send({
               message: 'Paused time successfully'
             });
@@ -128,45 +126,72 @@
     },
 
     stop: function(req, res) {
-      timeTracks.update({
-          finishedAt: Date.now()
-        }, {
-          where: {
-            id: req.session.track.timeTrackId
-          }
-        })
-        .then(function(ok) {
-          if (ok) {
-            projectTrimes.update({
-                complete: true
-              }, {
-                where: {
-                  id: req.session.track.projectTrimeId
-                }
-              })
-              .then(function(ok) {
-                if (ok) {
-                  delete req.session.track;
-                  return res.status(200).send({
-                    message: 'Track was Successful'
-                  });
-                } else {
-                  return res.status(500).send({
-                    error: 'Could not stop time'
-                  });
-                }
+      if (req.session.track.timeTrackId) {
+        timeTracks.update({
+            finishedAt: Date.now()
+          }, {
+            where: {
+              id: req.session.track.timeTrackId
+            }
+          })
+          .then(function(ok) {
+            if (ok) {
+              projectTrimes.update({
+                  complete: true
+                }, {
+                  where: {
+                    id: req.session.track.projectTrimeId
+                  }
+                })
+                .then(function(ok) {
+                  if (ok) {
+                    delete req.session.track;
+                    return res.status(200).send({
+                      message: 'Track was Successfully completed'
+                    });
+                  } else {
+                    return res.status(500).send({
+                      error: 'Could not stop time'
+                    });
+                  }
+                });
+            } else {
+              res.status(500).send({
+                error: 'Could not stop tracking'
               });
-          } else {
+            }
+          })
+          .catch(function(err) {
             res.status(500).send({
-              error: 'Could not stop tracking'
+              error: err.errormsg
             });
-          }
-        })
-        .catch(function(err) {
-          res.status(500).send({
-            error: err.errormsg
           });
-        });
+      } else {
+        projectTrimes.update({
+            complete: true
+          }, {
+            where: {
+              id: req.session.track.projectTrimeId
+            }
+          })
+          .then(function(ok) {
+            if (ok) {
+              delete req.session.track;
+              return res.status(200).send({
+                message: 'Track was Successfully completed'
+              });
+            } else {
+              return res.status(500).send({
+                error: 'Could not stop time'
+              });
+            }
+          })
+          .catch(function(err) {
+            res.status(500).send({
+              error: err.errormsg
+            });
+          });
+      }
     }
   };
 
