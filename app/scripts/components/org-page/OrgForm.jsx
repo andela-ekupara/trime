@@ -23,7 +23,7 @@
           window.Materialize.toast(data.error, 2000, 'error-toast');
         }
       } else {
-        window.Materialize.toast('Successfully created the Organization', 2000);
+        window.Materialize.toast('Successfully created the Organization', 2000, 'success-toast rounded');
       }
     },
 
@@ -43,9 +43,9 @@
     render: function() {
       return (
         <div className="row">
-          <form className="col s12" onSubmit={this.handleSubmit}>
+          <form className="col s9" onSubmit={this.handleSubmit}>
             <div className="row">
-              <div className="input-field col s6">
+              <div className="input-field col s12">
                 <input className="validate"
                     id="name"
                     name="name"

@@ -6,7 +6,7 @@
   var UsersPage = React.createClass({
     render: function() {
       return (
-        <div>
+        <div className="container">
           <OrgUsers orgId={this.props.params.orgId}/>
         </div>
       );
