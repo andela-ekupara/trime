@@ -28,7 +28,10 @@
               <div className="col s12">TRIME DASHBOARD</div>
               <div className="col s12 m4"><h6>ORGANISATIONS</h6></div>
               <div className="col s12 m4"><a href=""><h6>Show all</h6></a></div>
-              <div className="col s12 m4"><a className="waves-effect waves-light btn"><i className="material-icons right">send</i>create org</a></div>
+              <div className="col s12 m4">
+                <a className="waves-effect waves-light btn" href="/orgs">
+                  <i className="material-icons right">send</i>Create Org
+                </a></div>
             </div>
             <div className = "row">
               <OrgsList orgs={this.state.orgs}/>

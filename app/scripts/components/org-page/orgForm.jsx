@@ -1,35 +1,29 @@
 (function() {
   'use strict';
   var React = require('react');
-  var Select = require('react-select');
   var OrgActions = require('../../actions/OrgActions');
-  var UserActions = require('../../actions/userActions');
   var OrgStore = require('../../stores/OrgStore');
-  var UserStore = require('../../stores/userStore');
 
   var OrgForm = React.createClass({
     getInitialState: function() {
       return {
         name: '',
-        description: '',
-        result: '',
-        options: [],
-        searchable: true,
-        value: []
+        description: ''
       };
     },
 
     componentDidMount: function() {
       OrgStore.addChangeListener(this.handleUpdate);
-      UserStore.addChangeListener(this.handleUsersChange);
     },
 
     handleUpdate: function() {
       var data = OrgStore.getData();
-      if (data.error) {
-        this.setState({result: 'Error Creating the Org!'});
+      if(data.error) {
+        if(typeof data.error === 'string') {
+          window.Materialize.toast(data.error, 2000, 'error-toast');
+        }
       } else {
-        this.setState({result: 'Successfully created the Organisation'});
+        window.Materialize.toast('Successfully created the Organization', 2000);
       }
     },
 
@@ -46,38 +40,19 @@
       OrgActions.createOrg(this.state.name, this.state.description);
     },
 
-    handleSelectChange: function(value) {
-      this.setState({ value: value });
-    },
-
-    handleUsersChange: function() {
-      var data = UserStore.getUsers();
-      // If the data returned is not an error, set the state
-      if(data && !data.error) {
-        this.setState({options: data});
-      }
-    },
-
-    getOptions: function(input, callback) {
-      var self = this;
-      UserActions.search(input);
-        setTimeout(function() {
-            callback(null, {
-                options: self.state.options,
-                // CAREFUL! Only set this to true when there are no more options,
-                // or more specific queries will not be sent to the server.
-                complete: false
-            });
-        }, 1000);
-    },
-
     render: function() {
       return (
         <div className="row">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s6">
-                <input id="name" type="text" name="name" onChange={this.handleNameChange} className="validate" required/>
+                <input className="validate"
+                    id="name"
+                    name="name"
+                    onChange={this.handleNameChange}
+                    required
+                    type="text"
+                />
                 <label className="active" htmlFor="name">
                   Organisation Name
                 </label>
@@ -85,28 +60,20 @@
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <textarea id="textarea1" name="description" onChange={this.handleDescriptionChange} className="materialize-textarea" required></textarea>
+                <textarea className="materialize-textarea"
+                    id="textarea1"
+                    name="description"
+                    onChange={this.handleDescriptionChange}
+                    required
+                >
+                </textarea>
                 <label htmlFor="Description">Description</label>
               </div>
-            </div>
-            <div className="section">
-                <Select.Async className="input-field col s6"
-                    loadOptions={this.getOptions}
-                    multi={true}
-                    name="org-users"
-                    onChange={this.handleSelectChange}
-                    placeholder="Select user(s)"
-                    searchable={this.state.searchable}
-                    labelKey="name"
-                    valueKey="id"
-                    value={this.state.value}
-                />
             </div>
             <button className="btn waves-effect waves-light" type="submit" name="action">
               Submit
               <i className="material-icons right">send </i>
-            </button >
-            <p>{this.state.result}</p>
+            </button>
           </form>
         </div>
         );

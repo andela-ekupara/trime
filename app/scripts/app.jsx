@@ -18,6 +18,7 @@
         <Route path="/dashboard" component={require('./components/dashboard/index.jsx')} />
         <Route path="/orgs" component={require('./components/org-page/index.jsx')} />
         <Route path="/orgs/:orgId" component={require('./components/OrgProjects/index.jsx')} />
+        <Route path="/orgs/:orgId/users" component={require('./components/OrgUsers/index.jsx')} />
         <Route path="/starttrime" component={require('./components/start-trime/trime-page.jsx')} />
         <Route path="*" component={require('./components/notfound/index.jsx')} />
         <Redirect from="about" to="landing" />

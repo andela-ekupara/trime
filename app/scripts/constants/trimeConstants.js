@@ -4,6 +4,7 @@
   module.exports = require('keymirror')({
     ORG_CREATE: null,
     ORGS_GET: null,
+    ORG_USERS: null,
     PROJECT_CREATE: null,
     PROJECTS_GET: null,
     PROJECT_GET: null,

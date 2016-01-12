@@ -18,7 +18,7 @@
 
     populateProjects: function() {
       var data = ProjectStore.getProjects();
-        this.setState({projects: data});
+      this.setState({projects: data});
     },
 
     render: function() {
