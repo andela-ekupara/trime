@@ -6,7 +6,7 @@
   var OrgPage = React.createClass({
     render: function() {
       return (
-        <div>
+        <div className="container">
           <OrgForm />
         </div>
       );

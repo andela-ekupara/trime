@@ -61,7 +61,7 @@
           window.Materialize.toast(data.error, 2000, 'error-toast');
         }
       } else {
-        window.Materialize.toast(data.message, 2000);
+        window.Materialize.toast(data.message, 2000, 'success-toast');
       }
     },
 
@@ -100,11 +100,11 @@
                   name="role_id"
                   onChange={this.handleRoleSelect}
                   options={this.state.roles}
-                  placeholder="Select Role(s)"
+                  placeholder="Select Role"
                   value={this.state.role}
               />
             </div>
-            <div className="input-field col s2">
+            <div className="input-field col s3">
               <button className="btn waves-effect waves-light" type="submit" name="action">
                 Submit
                 <i className="material-icons right">send </i>
