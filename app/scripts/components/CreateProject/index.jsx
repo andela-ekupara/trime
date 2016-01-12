@@ -6,8 +6,8 @@
   var ProjectPage = React.createClass({
     render: function() {
       return (
-        <div>
-          <ProjectForm />
+        <div className="container">
+          <ProjectForm orgId = {this.props.params.orgId}/>
         </div>
       );
     }

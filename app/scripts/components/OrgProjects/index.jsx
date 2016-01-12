@@ -28,7 +28,8 @@
               <div className="col s12">{}</div>
               <div className="col s12 m4"><h6>PROJECTS</h6></div>
               <div className="col s12 m4"><a href=""><h6>Show all</h6></a></div>
-              <div className="col s12 m4"><a className="waves-effect waves-light btn"><i className="material-icons right">send</i>create project</a></div>
+              <div className="col s12 m4">
+              <a className="waves-effect waves-light btn" href={"/orgs/" + this.props.params.orgId + "/projects"}><i className="material-icons right">send</i>create project</a></div>
             </div>
             <div className = "row">
               <ProjectList projects={this.state.projects}/>

@@ -5,13 +5,9 @@
     BaseActions = require('./BaseActions');
 
   module.exports = {
-    createProject: function(name, description) {
-      var data = {
-        name: name,
-        description: description
-      };
+    createProject: function(data) {
       // Call the helper function, passing in the URL, data and actionType
-      BaseActions.post('/api/orgs/:org_id/projects', data, TrimeConstants.PROJECT_CREATE);
+      BaseActions.post('/api/orgs/' + data.orgId + '/projects', data, TrimeConstants.PROJECT_CREATE);
     },
 
     getProjects: function(orgId) {
