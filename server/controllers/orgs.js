@@ -99,7 +99,7 @@
               }
               Users.findOne({
                   where: {
-                    email: req.body.email
+                    id: req.body.userId
                   }
                 })
                 .then(function(user) {

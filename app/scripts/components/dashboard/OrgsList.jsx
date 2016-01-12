@@ -12,7 +12,8 @@
                   <p>{org.description}</p>
                 </div>
                 <div className="card-action">
-                  <a href={'/orgs/' + org.id}>Org Projects</a>
+                  <a href={'/orgs/' + org.id}> Projects</a>
+                  <a href={'/orgs/' + org.id + '/users' }> Manage Users</a>
                 </div>
               </div>
             </div>
