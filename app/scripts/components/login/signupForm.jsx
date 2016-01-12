@@ -4,10 +4,10 @@
   var React = require('react'),
     UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation;
+    History = require('react-router').History;
 
   var SignupForm = React.createClass({
-    mixins: [Navigation],
+    mixins: [History],
 
     getInitialState: function() {
       return {
@@ -44,7 +44,7 @@
         this.setState({result: data.error.message});
       } else {
         this.setState({result: 'Success!'});
-        // this.transitionTo('/dashboard');
+        this.history.pushState(null, '/dashboard');
       }
     },
 

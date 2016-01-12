@@ -4,11 +4,11 @@
   var React = require('react'),
     UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation,
+    History = require('react-router').History,
     SignupForm = require('./SignupForm.jsx');
 
   module.exports = React.createClass({
-    mixins: [Navigation],
+    mixins: [History],
 
     componentWillMount: function() {
         UserActions.session();
@@ -19,7 +19,7 @@
         var data = UserStore.getData();
         if(data && !data.error) {
         // session exists
-          this.transitionTo('/orgs');
+          this.history.pushState(null, '/dashboard');
         }
     },
     render: function() {

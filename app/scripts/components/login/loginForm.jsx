@@ -4,10 +4,10 @@
   var React = require('react'),
     UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation;
+    History = require('react-router').History;
 
   var LoginForm = React.createClass({
-    mixins: [Navigation],
+    mixins: [History],
 
     getInitialState: function() {
       return {
@@ -31,7 +31,7 @@
         }
       } else {
         this.setState({result: 'successful'});
-        // this.transitionTo('/orgs');
+        this.history.pushState(null, '/dashboard');
       }
     },
 
