@@ -19,7 +19,7 @@
       };
     },
 
-    componentWillMount: function() {
+    componentDidMount: function() {
       UserStore.addChangeListener(this.handleLogin);
     },
 
@@ -31,7 +31,7 @@
         }
       } else {
         this.setState({result: 'successful'});
-        this.history.pushState(null, '/dashboard');
+        // this.history.pushState(null, '/dashboard');
       }
     },
 

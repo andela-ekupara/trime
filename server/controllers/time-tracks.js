@@ -37,6 +37,7 @@
           })
           .then(function(projectTrime) {
             if (!projectTrime) {
+              console.log('Error message 1');
               res.status(500).send({
                 error: 'Could not start tracking'
               });
@@ -49,18 +50,22 @@
                     project_trime_id: projectTrime.dataValues.id
                   }).then(function(timeTrack) {
                     if (!timeTrack) {
+                      console.log('Error message 2');
                       return res.status(500).send({
                         error: 'Could not start Triming'
                       });
                     } else {
-                      res.session.projectTrimeId = projectTrime.dataValues.id;
-                      res.session.timeTrackId = timeTrack.id;
+                      req.session.track = {
+                        projectTrimeId : projectTrime.dataValues.id, 
+                        timeTrackId: timeTrack.id
+                      };
                       return res.status(200).send({
                         message: 'Timer started'
                       });
                     }
                   })
                   .catch(function(err) {
+                    console.log('Error message 3', err);
                     return res.status(500).send({
                       error: err.errormsg
                     });
@@ -76,7 +81,7 @@
           finishedAt: Date.now()
         }, {
           where: {
-            id: res.session.timeTrackId
+            id: req.session.track.timeTrackId
           }
         })
         .then(function(ok) {
@@ -101,7 +106,7 @@
       timeTracks.create({
           startedAt: Date.now(),
           // project_trime_id: req.body.ProjectTrimeId
-          project_trime_id: res.session.projectTrimeId
+          project_trime_id: req.session.track.projectTrimeId
         })
         .then(function(timeTrack) {
           if (!timeTrack) {
@@ -109,7 +114,7 @@
               error: 'Could not resume Triming'
             });
           } else {
-            res.session.timeTrackId = timeTrack.id;
+            req.session.track.timeTrackId = timeTrack.id;
             return res.status(200).send({
               message: 'Resumed successfully'
             });
@@ -127,7 +132,7 @@
           finishedAt: Date.now()
         }, {
           where: {
-            id: res.session.timeTrackId
+            id: req.session.track.timeTrackId
           }
         })
         .then(function(ok) {
@@ -136,13 +141,12 @@
                 complete: true
               }, {
                 where: {
-                  id: res.session.projectTrimeId
+                  id: req.session.track.projectTrimeId
                 }
               })
               .then(function(ok) {
                 if (ok) {
-                  res.session.projectTrimeId = null;
-                  res.session.timeTrackId = null;
+                  delete req.session.track;
                   return res.status(200).send({
                     message: 'Track was Successful'
                   });

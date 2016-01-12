@@ -44,7 +44,7 @@
         this.setState({result: data.error.message});
       } else {
         this.setState({result: 'Success!'});
-        this.history.pushState(null, '/dashboard');
+        // this.history.pushState(null, '/dashboard');
       }
     },
 

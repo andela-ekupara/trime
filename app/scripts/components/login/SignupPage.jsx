@@ -18,8 +18,8 @@
     getSession: function () {
         var data = UserStore.getData();
         if(data && !data.error) {
-        // session exists
-          this.history.pushState(null, '/dashboard');
+        // // session exists
+        //   this.history.pushState(null, '/dashboard');
         }
     },
     render: function() {
