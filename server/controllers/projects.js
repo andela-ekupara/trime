@@ -41,6 +41,77 @@
       }
     },
 
+    addUsers: function(req, res) {
+      Projects.sync().then(function() {
+          Projects.findOne({
+              where: {
+                id: req.params.project_id
+              }
+            })
+            .then(function(project) {
+              if (!project) {
+                return res.status(404).json({
+                  error: 'Project Not Found'
+                });
+              }
+              Users.findOne({
+                  where: {
+                    id: req.body.userId
+                  }
+                })
+                .then(function(user) {
+                  if (!user) {
+                    return res.status(404).json({
+                      error: 'User Not Found'
+                    });
+                  }
+                  project.addUser(user, {
+                      role: req.body.role
+                    }).then(function() {
+                      return res.json({
+                        message: 'User successfully added to Project'
+                      });
+                    })
+                    .catch(function(err) {
+                      return res.status(500).json({
+                        error: err
+                      });
+                    });
+                });
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
+    getUsers: function(req, res) {
+      Projects.sync().then(function() {
+          return Projects.findOne({
+              where: {
+                id: req.params.project_id
+              }
+            })
+            .then(function(project) {
+              if (!project) {
+                return res.status(404).json({
+                  error: 'Project Not Found'
+                });
+              }
+              return project.getUsers().then(function(users) {
+                return res.json(users);
+              });
+            });
+        })
+        .catch(function(err) {
+          return res.status(500).json({
+            error: err.message
+          });
+        });
+    },
+
 
     all: function(req, res) {
       Projects.sync().then(function() {

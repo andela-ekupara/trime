@@ -8,6 +8,27 @@
 
   var ProjectStore = assign({}, BaseStore, {
     projects: null,
+    projectResult: null,
+    projectUser: null,
+
+    setProjectUser: function(user) {
+      this.projectUser = user;
+      this.emitChange();
+    },
+
+    getProjectUser: function() {
+      return this.projectUser;
+    },
+
+    setProjectResult: function(project) {
+      this.projectResult = project;
+      this.emitChange();
+    },
+
+    getProjectResult: function() {
+      return this.projectResult;
+    },
+
     setProjects: function(projects) {
       this.projects = projects;
       this.emitChange();
@@ -23,6 +44,12 @@
     switch (action.actionType) {
       case TrimeConstants.PROJECTS_GET:
         ProjectStore.setProjects(action.data);
+        break;
+      case TrimeConstants.PROJECT_CREATE:
+        ProjectStore.setProjectResult(action.data);
+        break;
+      case TrimeConstants.PROJECT_USERS_CREATE:
+        ProjectStore.setProjectUser(action.data);
         break;
 
       default:
