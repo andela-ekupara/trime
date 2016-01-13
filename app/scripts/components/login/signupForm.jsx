@@ -13,7 +13,8 @@
       return {
         user: {
           email: '',
-          password: ''
+          password: '',
+          name: ''
         },
         result: '',
         confirmpswd: ''
@@ -81,6 +82,10 @@
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <span>{this.state.result}</span>
+             <div className="input-field col s12">
+              <input name="name" id="name" type="text" className="validate" placeholder="Jane Doe" onChange={this.handleFieldChange} required/>
+              <label for="name">Full Name</label>
+            </div>
             <div className="input-field col s12">
               <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required/>
               <label for="email">Email</label>
