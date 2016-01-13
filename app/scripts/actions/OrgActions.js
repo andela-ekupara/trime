@@ -19,11 +19,11 @@
     },
 
     getUsers: function(orgId) {
-      BaseActions.get('/api/orgs/' + orgId + '/users', TrimeConstants.ORG_USERS);
+      BaseActions.get('/api/orgs/' + orgId + '/users', TrimeConstants.ORG_USERS_GET);
     },
 
     addUser: function(data) {
-      BaseActions.post('/api/orgs/' + data.orgId + '/users', data, TrimeConstants.ORG_USERS);
+      BaseActions.post('/api/orgs/' + data.orgId + '/users', data, TrimeConstants.ORG_USERS_CREATE);
     }
   };
 })();

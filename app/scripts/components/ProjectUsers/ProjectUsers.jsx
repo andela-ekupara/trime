@@ -3,14 +3,13 @@
   var React = require('react');
   var Select = require('react-select');
   var ProjectActions = require('../../actions/ProjectActions');
-  var UserActions = require('../../actions/userActions');
+  var OrgActions = require('../../actions/OrgActions');
   var OrgStore = require('../../stores/OrgStore');
-  var UserStore = require('../../stores/userStore');
+  var ProjectStore = require('../../stores/ProjectStore');
 
-  var UsersForm = React.createClass({
+  var ProjectUsersForm = React.createClass({
     getInitialState: function() {
       return {
-        result: '',
         options: [],
         roles: [
             { value: 'owner', label: 'Owner' },
@@ -23,8 +22,8 @@
     },
 
     componentDidMount: function() {
-      UserStore.addChangeListener(this.handleUsersChange);
-      OrgStore.addChangeListener(this.handleProjectUsers);
+      OrgStore.addChangeListener(this.handleUsersChange);
+      ProjectStore.addChangeListener(this.handleProjectUsers);
     },
 
     handleSubmit: function(e) {
@@ -47,7 +46,7 @@
     },
 
     handleUsersChange: function() {
-      var data = UserStore.getUsers();
+      var data = OrgStore.getOrgUsers();
       // If the data returned is not an error, set the state
       if(data && !data.error) {
         this.setState({options: data});
@@ -55,7 +54,7 @@
     },
 
     handleProjectUsers: function() {
-      var data = OrgStore.getOrgUsers();
+      var data = ProjectStore.getProjectUser();
       if(data.error) {
         if(typeof data.error === 'string') {
           window.Materialize.toast(data.error, 2000, 'error-toast');
@@ -67,15 +66,15 @@
 
     getOptions: function(input, callback) {
       var self = this;
-      UserActions.search(input);
-        setTimeout(function() {
-            callback(null, {
-                options: self.state.options,
-                // CAREFUL! Only set this to true when there are no more options,
-                // or more specific queries will not be sent to the server.
-                complete: false
-            });
-        }, 1000);
+      OrgActions.getUsers(this.props.orgId);
+      setTimeout(function() {
+        callback(null, {
+          options: self.state.options,
+          // CAREFUL! Only set this to true when there are no more options,
+          // or more specific queries will not be sent to the server.
+          complete: true
+        });
+      }, 1000);
     },
 
     render: function() {
@@ -117,6 +116,6 @@
       }
   });
 
-  module.exports = UsersForm;
+  module.exports = ProjectUsersForm;
 
 })();

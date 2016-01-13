@@ -1,11 +1,8 @@
 (function() {
   'use strict';
   var React = require('react');
-  var Select = require('react-select');
   var ProjectActions = require('../../actions/ProjectActions');
-  var UserActions = require('../../actions/userActions');
   var ProjectStore = require('../../stores/ProjectStore');
-  var UserStore = require('../../stores/userStore');
 
   var ProjectForm = React.createClass({
     getInitialState: function() {

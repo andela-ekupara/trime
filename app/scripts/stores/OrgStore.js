@@ -7,8 +7,20 @@
   var BaseStore = require('./BaseStore');
 
   var OrgStore = assign({}, BaseStore, {
+    createdOrg: null,
     orgs: null,
     orgUsers: null,
+    addedOrgUser: null,
+
+    setCreatedOrg: function(org) {
+      this.createdOrg = org;
+      this.emitChange();
+    },
+
+    getCreatedOrg: function() {
+      return this.createdOrg;
+    },
+
     setOrgs: function(orgs) {
       this.orgs = orgs;
       this.emitChange();
@@ -25,6 +37,15 @@
 
     getOrgUsers: function() {
       return this.orgUsers;
+    },
+
+    setAddedOrgUser: function(orgUser) {
+      this.addedOrgUser = orgUser;
+      this.emitChange();
+    },
+
+    getAddedOrgUser: function() {
+      return this.addedOrgUser;
     }
   });
 
@@ -32,15 +53,17 @@
   AppDispatcher.register(function(action) {
     switch (action.actionType) {
       case TrimeConstants.ORG_CREATE:
-        OrgStore.setData(action.data);
+        OrgStore.setCreatedOrg(action.data);
         break;
       case TrimeConstants.ORGS_GET:
         OrgStore.setOrgs(action.data);
         break;
-      case TrimeConstants.ORG_USERS:
+      case TrimeConstants.ORG_USERS_CREATE:
+        OrgStore.setAddedOrgUser(action.data);
+        break;
+      case TrimeConstants.ORG_USERS_GET:
         OrgStore.setOrgUsers(action.data);
         break;
-
       default:
         // no operation
     }

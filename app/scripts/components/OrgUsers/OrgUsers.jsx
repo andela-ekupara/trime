@@ -55,7 +55,7 @@
     },
 
     handleOrgUsers: function() {
-      var data = OrgStore.getOrgUsers();
+      var data = OrgStore.getAddedOrgUser();
       if(data.error) {
         if(typeof data.error === 'string') {
           window.Materialize.toast(data.error, 2000, 'error-toast');

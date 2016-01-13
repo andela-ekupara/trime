@@ -17,7 +17,7 @@
     },
 
     handleUpdate: function() {
-      var data = OrgStore.getData();
+      var data = OrgStore.getCreatedOrg();
       if(data.error) {
         if(typeof data.error === 'string') {
           window.Materialize.toast(data.error, 2000, 'error-toast');
