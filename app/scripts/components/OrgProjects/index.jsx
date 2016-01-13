@@ -32,7 +32,7 @@
               <a className="waves-effect waves-light btn" href={"/orgs/" + this.props.params.orgId + "/projects"}><i className="material-icons right">send</i>create project</a></div>
             </div>
             <div className = "row">
-              <ProjectList projects={this.state.projects}/>
+              <ProjectList projects={this.state.projects} orgId={this.props.params.orgId}/>
             </div>
           </div>
       );

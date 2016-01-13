@@ -20,6 +20,7 @@
         <Route path="/orgs/:orgId" component={require('./components/OrgProjects/index.jsx')} />
         <Route path="/orgs/:orgId/users" component={require('./components/OrgUsers/index.jsx')} />
         <Route path="/orgs/:orgId/projects" component={require('./components/CreateProject/index.jsx')} />
+        <Route path="/orgs/:orgId/projects/:projectId/users" component={require('./components/ProjectUsers/index.jsx')} />
         <Route path="/starttrime" component={require('./components/start-trime/trime-page.jsx')} />
         <Route path="*" component={require('./components/notfound/index.jsx')} />
         <Redirect from="about" to="landing" />

@@ -12,6 +12,10 @@
 
     getProjects: function(orgId) {
       BaseActions.get('/api/orgs/' + orgId + '/projects', TrimeConstants.PROJECTS_GET);
+    },
+
+    addUser: function(data) {
+      BaseActions.post('/api/orgs/' + data.orgId + '/projects/' + data.projectId + '/users', data, TrimeConstants.PROJECT_USERS_CREATE);
     }
   };
 })();

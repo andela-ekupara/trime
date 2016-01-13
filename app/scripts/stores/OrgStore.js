@@ -13,9 +13,11 @@
       this.orgs = orgs;
       this.emitChange();
     },
+
     getOrgs: function() {
       return this.orgs;
     },
+
     setOrgUsers: function(orgUsers) {
       this.orgUsers = orgUsers;
       this.emitChange();
