@@ -126,47 +126,7 @@
     },
 
     stop: function(req, res) {
-      if (req.session.track.timeTrackId) {
-        timeTracks.update({
-            finishedAt: Date.now()
-          }, {
-            where: {
-              id: req.session.track.timeTrackId
-            }
-          })
-          .then(function(ok) {
-            if (ok) {
-              projectTrimes.update({
-                  complete: true
-                }, {
-                  where: {
-                    id: req.session.track.projectTrimeId
-                  }
-                })
-                .then(function(ok) {
-                  if (ok) {
-                    delete req.session.track;
-                    return res.status(200).send({
-                      message: 'Track was Successfully completed'
-                    });
-                  } else {
-                    return res.status(500).send({
-                      error: 'Could not stop time'
-                    });
-                  }
-                });
-            } else {
-              res.status(500).send({
-                error: 'Could not stop tracking'
-              });
-            }
-          })
-          .catch(function(err) {
-            res.status(500).send({
-              error: err.errormsg
-            });
-          });
-      } else {
+      function Update() {
         projectTrimes.update({
             complete: true
           }, {
@@ -185,7 +145,32 @@
                 error: 'Could not stop time'
               });
             }
+          });
+      }
+      if (req.session.track.timeTrackId) {
+        timeTracks.update({
+            finishedAt: Date.now()
+          }, {
+            where: {
+              id: req.session.track.timeTrackId
+            }
           })
+          .then(function(ok) {
+            if (ok) {
+              Update();
+            } else {
+              res.status(500).send({
+                error: 'Could not stop tracking'
+              });
+            }
+          })
+          .catch(function(err) {
+            res.status(500).send({
+              error: err.errormsg
+            });
+          });
+      } else {
+        Update()
           .catch(function(err) {
             res.status(500).send({
               error: err.errormsg

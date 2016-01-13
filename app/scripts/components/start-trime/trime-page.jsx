@@ -63,7 +63,7 @@
 
     showResult: function() {
       var result = TrackingStore.getTrack();
-      if(result && result.message) {
+      if(result.message) {
         window.Materialize.toast(result.message, 2000, 'success-toast');
       }
     },
