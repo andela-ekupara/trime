@@ -18,7 +18,7 @@
 
     populateOrgs: function() {
       var data = OrgStore.getOrgs();
-        this.setState({orgs: data});
+      this.setState({orgs: data});
     },
 
     render: function() {
@@ -27,8 +27,7 @@
             <div className="row">
               <div className="col s12">TRIME DASHBOARD</div>
               <div className="col s12 m4"><h6>ORGANISATIONS</h6></div>
-              <div className="col s12 m4"><a href=""><h6>Show all</h6></a></div>
-              <div className="col s12 m4">
+              <div className="col s12 m4 offset-m4">
                 <a className="waves-effect waves-light btn" href="/orgs">
                   <i className="material-icons right">send</i>Create Org
                 </a></div>

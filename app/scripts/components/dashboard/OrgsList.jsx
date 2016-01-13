@@ -19,7 +19,7 @@
             </div>
           );
         };
-        return (<div>{this.props.orgs.slice(0,3).map(renderOrg)}</div>)
+        return (<div>{this.props.orgs.map(renderOrg)}</div>)
       }
 });
   module.exports = OrgsList;
