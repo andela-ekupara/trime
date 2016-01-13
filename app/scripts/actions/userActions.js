@@ -4,6 +4,10 @@
     BaseActions = require('./BaseActions');
 
   module.exports = {
+    search: function(q) {
+      BaseActions.get('/api/users?q=' + q, TrimeConstants.USER_SEARCH);
+    },
+
     login: function(user) {
       BaseActions.post('/api/users/login', user, TrimeConstants.USER_LOGIN);
     },

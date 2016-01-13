@@ -31,7 +31,7 @@
                   <div className="right login-form">
                   {!this.props.user.id ?
                       <LoginForm className="center-align"
-                          user={this.props.user}
+                          user={this.props.user} setUser={this.props.setUser}
                   /> : null }
                   </div>
                 </div>

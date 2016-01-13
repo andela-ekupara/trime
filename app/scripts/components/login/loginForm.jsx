@@ -38,7 +38,7 @@
     handleFieldChange: function(event) {
       var field = event.target.name;
       var value = event.target.value;
-      this.state.user[field]= value;
+      this.state.user[field] = value;
       this.setState({user: this.state.user});
     },
 
