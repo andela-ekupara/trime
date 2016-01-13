@@ -23,7 +23,7 @@
         return (
           <div>
             <Header setUser={this.setUser} user={this.state.user} />
-            <div className="handler">
+            <div className="text-center">
               {this.props.children}
             </div>
           </div>

@@ -7,11 +7,11 @@
 
   module.exports = {
     getProjects: function(req, res) {
-      sequelize.query('SELECT "project-users".project_id,' +
+      sequelize.query('SELECT project_users.project_id,' +
           'projects.name, projects.description ' +
-          'FROM "project-users"' +
-          'INNER JOIN projects ON "project-users".project_id = projects.id ' +
-          'AND "project-users".user_id = ' + req.params.userId)
+          'FROM project_users' +
+          'INNER JOIN projects ON project_users.project_id = projects.id ' +
+          'AND project_users.user_id = ' + req.params.userId)
         .spread(function(result) {
           if (result.length === 0) {
             res.status(404).send({
@@ -58,7 +58,8 @@
                         timeTrackId: timeTrack.id
                       };
                       return res.status(200).send({
-                        message: 'Timer started'
+                        message: 'Timer started',
+                        status: 'started'
                       });
                     }
                   })
@@ -126,7 +127,7 @@
     },
 
     stop: function(req, res) {
-      function Update() {
+      function update() {
         projectTrimes.update({
             complete: true
           }, {
@@ -157,7 +158,7 @@
           })
           .then(function(ok) {
             if (ok) {
-              Update();
+              update();
             } else {
               res.status(500).send({
                 error: 'Could not stop tracking'
@@ -170,7 +171,7 @@
             });
           });
       } else {
-        Update()
+        update()
           .catch(function(err) {
             res.status(500).send({
               error: err.errormsg

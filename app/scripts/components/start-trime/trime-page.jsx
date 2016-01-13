@@ -12,7 +12,7 @@
       return ( 
         <div>
           <button onClick={this.props.onClick} id={this.props.id} className="waves-effect waves-light btn"> 
-            {this.props.label} <i className={this.props.icon}></i> 
+            <i className={this.props.icon}></i>
           </button>
         </div>
       );
@@ -27,7 +27,9 @@
         clearable: true,
         options: [],
         projectUserId: '',
-        description: ''
+        description: '',
+        btnId: 'start',
+        icon: 'fa fa-play'
       };
     },
 
@@ -67,9 +69,24 @@
         window.Materialize.toast(result.message, 2000, 'success-toast');
       }
     },
+    handleClick: function(e) {
+      console.log('clicked');
+      console.log(e.target.id);
+      if (e.target.id === 'start') {
+       console.log(e.target.id);
+        this.handleStartClick(e);
+      } else if(e.target.id === 'pause') {
+        this.handlePauseClick(e);
+      } else if(e.target.id === 'resume') {
+        this.handleResumeClick(e);
+      } else if(e.target.id === 'stop') {
+        this.handleStopClick(e);
+      }
+    },
 
-    handleStartClick: function(e) {
-      e.preventDefault();
+    handleStartClick: function() {
+     e.preventDefault();
+     console.log('Triger');
       this.setState({
           description: 'Andela'
         });
@@ -78,41 +95,59 @@
         projectUserId: this.state.projectUserId
       };
       TrackingActions.start(data);
+      this.setState({
+        btnId: 'pause',
+        icon: 'fa fa-pause'
+      });
     },
 
     handlePauseClick: function(e) {
       e.preventDefault();
-      TrackingActions.pause();    
+      console.log('Stop here');
+      TrackingActions.pause();
+      this.setState({
+        btnId: 'resume',
+        icon: 'fa fa-play'
+      });   
     },
 
     handleResumeClick: function(e) {
       e.preventDefault();
       TrackingActions.resume();
+      this.setState({
+        btnId: 'pause',
+        icon: 'fa fa-pause'
+      });
     },
 
     handleStopClick: function(e) {
       e.preventDefault();
       TrackingActions.stop();
+      this.setState({
+        btnId: 'play',
+        icon: 'fa fa-play'
+      });
     },
 
     render: function() {
-      return ( <div className="select" >
-        <Select className="trimeProject" 
-          autofocus 
-          options={this.state.options} 
-          simpleValue 
-          disabled={this.state.disabled}
-          searchable={this.state.searchable}
-          clearable={this.state.clearable}
-          onChange={this.logChange}
-          labelKey="name"
-          valueKey="project_id" 
-        />
-
-        <Button onClick={this.handleStartClick} id="start" label="Start" icon="fa fa-play" />
-        <Button onClick={this.handleResumeClick} id="pause" label="resume" icon="fa fa-play" />
-        <Button onClick={this.handlePauseClick} id="resume" label="pause" icon="fa fa-play" />
-        <Button onClick={this.handleStopClick} id="stop" label="Stop" icon="fa fa-stop" />
+      return ( 
+        <div className="row col s12" >
+          <Select className="trimeProject col s2" 
+            autofocus 
+            options={this.state.options} 
+            simpleValue 
+            disabled={this.state.disabled}
+            searchable={this.state.searchable}
+            clearable={this.state.clearable}
+            onChange={this.logChange}
+            labelKey="name"
+            valueKey="project_id" 
+          />
+          <div className="col s4">
+              <input name="name" id="name" type="text" className="validate" onChange={this.handleFieldChange} required/>
+          </div>
+          <div className="col s1"><Button onClick={this.handleClick} id={this.state.btnId} label="Start" icon={this.state.icon} /></div>
+          <div className="col s1"><Button onClick={this.handleStopClick} id="stop" label="Stop" icon="fa fa-stop" /></div>
         </div>
       );
     }
