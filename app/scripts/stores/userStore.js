@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    TrimeConstants = require('../constants/trimeConstants'),
+  var AppDispatcher = require('../Dispatcher/AppDispatcher'),
+    TrimeConstants = require('../Constants/TrimeConstants'),
     assign = require('object-assign'),
     BaseStore = require('./BaseStore');
 

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var AppDispatcher = require('../dispatcher/AppDispatcher');
+  var AppDispatcher = require('../Dispatcher/AppDispatcher');
   var request = require('superagent');
 
   module.exports = {

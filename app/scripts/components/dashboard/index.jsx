@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var React = require('react');
-  var OrgStore = require('../../stores/OrgStore');
-  var OrgActions = require('../../actions/OrgActions');
+  var OrgStore = require('../../Stores/OrgStore');
+  var OrgActions = require('../../Actions/OrgActions');
   var OrgsList = require('./OrgsList.jsx');
   var DashBoard = React.createClass({
     getInitialState: function() {

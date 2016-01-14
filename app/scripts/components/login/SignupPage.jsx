@@ -2,8 +2,8 @@
   'use strict';
 
   var React = require('react'),
-    UserActions = require('../../actions/userActions'),
-    UserStore = require('../../stores/userStore'),
+    UserActions = require('../../Actions/UserActions'),
+    UserStore = require('../../Stores/UserStore'),
     History = require('react-router').History,
     SignupForm = require('./SignupForm.jsx');
 

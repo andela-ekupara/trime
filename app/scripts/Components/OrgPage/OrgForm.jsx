@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var React = require('react');
-  var OrgActions = require('../../actions/OrgActions');
-  var OrgStore = require('../../stores/OrgStore');
+  var OrgActions = require('../../Actions/OrgActions');
+  var OrgStore = require('../../Stores/OrgStore');
 
   var OrgForm = React.createClass({
     getInitialState: function() {

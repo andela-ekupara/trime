@@ -2,10 +2,10 @@
   'use strict';
   var React = require('react'),
     Select = require('react-select'),
-    TrackingActions = require('../../actions/trackingActions'),
-    UserActions = require('../../actions/userActions'),
-    UserStore = require('../../stores/userStore'),
-    TrackingStore = require('../../stores/trackingStore');
+    TrackingActions = require('../../Actions/trackingActions'),
+    UserActions = require('../../Actions/UserActions'),
+    UserStore = require('../../Stores/UserStore'),
+    TrackingStore = require('../../Stores/TrackingStore');
  
   var Button = React.createClass({
     render: function() {
