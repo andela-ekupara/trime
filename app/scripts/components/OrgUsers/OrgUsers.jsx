@@ -2,10 +2,10 @@
   'use strict';
   var React = require('react');
   var Select = require('react-select');
-  var OrgActions = require('../../Actions/OrgActions');
-  var UserActions = require('../../Actions/userActions');
-  var OrgStore = require('../../Stores/OrgStore');
-  var UserStore = require('../../Stores/UserStore');
+  var OrgActions = require('../../actions/OrgActions');
+  var UserActions = require('../../actions/userActions');
+  var OrgStore = require('../../stores/OrgStore');
+  var UserStore = require('../../stores/UserStore');
 
   var UsersForm = React.createClass({
     getInitialState: function() {

@@ -2,8 +2,8 @@
   'use strict';
   var React = require('react'),
     LoginForm = require('../Login/LoginForm.jsx'),
-    UserStore = require('../../Stores/UserStore'),
-    UserActions = require('../../Actions/UserActions');
+    UserStore = require('../../stores/UserStore'),
+    UserActions = require('../../actions/UserActions');
 
     module.exports = React.createClass({
       componentWillMount: function() {

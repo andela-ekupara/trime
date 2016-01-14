@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var React = require('react');
-  var ProjectStore = require('../../Stores/ProjectStore');
-  var ProjectActions = require('../../Actions/ProjectActions');
+  var ProjectStore = require('../../stores/ProjectStore');
+  var ProjectActions = require('../../actions/ProjectActions');
   var ProjectList = require('./ProjectList.jsx');
   var OrgProjects = React.createClass({
     getInitialState: function() {
