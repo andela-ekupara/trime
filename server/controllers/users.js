@@ -2,8 +2,34 @@
   'use strict';
 
   var passport = require('passport');
+  var Users = require('../models').Users;
 
   module.exports = {
+    all: function(req, res, next) {
+      var q = req.query.q,
+        query;
+
+      if (q) {
+        query = {
+          where: {
+            name: {
+              $iLike: '%' + q + '%'
+            }
+          }
+        };
+      }
+
+      Users.sync().then(function() {
+        return Users.findAll(query)
+          .then(function(users) {
+            return res.json(users);
+          });
+      })
+      .catch(function(err) {
+        return next(err);
+      });
+    },
+
     signup: function(req, res, next) {
       passport.authenticate('signup', function(err, user) {
         if (err) {
@@ -11,16 +37,19 @@
             error: err.errors[0] || err.message
           });
         }
+
         if (!user) {
           return res.status(500).send({
             error: 'Error creating user.'
           });
         }
+
         user.password = null;
         return res.json(user);
       })(req, res, next);
     },
-    // login middleware handler
+
+    // Login middleware handler
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {

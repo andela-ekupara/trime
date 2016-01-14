@@ -6,7 +6,7 @@
   module.exports = React.createClass({
     render: function() {
       return (
-        <button className="btn waves-effect btntrime" name="start"><a href="/#/join">Start Trimming</a> </button>
+        <button className="btn waves-effect btntrime" name="start"><a href="/join">Start Trimming</a> </button>
       );
     }
   });

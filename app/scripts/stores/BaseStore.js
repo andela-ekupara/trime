@@ -14,7 +14,7 @@
     getData: function() {
       return this.data;
     },
-    
+
     emitChange: function() {
       this.emit('change');
     },
