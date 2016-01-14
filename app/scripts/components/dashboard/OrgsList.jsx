@@ -13,13 +13,13 @@
                 </div>
                 <div className="card-action">
                   <a href={'/orgs/' + org.id}> Projects</a>
-                  <a href={'/orgs/' + org.id + '/users' }> Manage Users</a>
+                  <a href={'/orgs/' + org.id + '/users'}> Manage Users</a>
                 </div>
               </div>
             </div>
           );
         };
-        return (<div>{this.props.orgs.map(renderOrg)}</div>)
+        return (<div>{this.props.orgs.map(renderOrg)}</div>);
       }
 });
   module.exports = OrgsList;

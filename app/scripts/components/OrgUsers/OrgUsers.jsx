@@ -12,7 +12,6 @@
       return {
         result: '',
         options: [],
-        orgId: this.props.orgId,
         roles: [
             { value: 'owner', label: 'Owner' },
             { value: 'admin', label: 'Admin' },
@@ -31,7 +30,7 @@
     handleSubmit: function(e) {
       e.preventDefault();
       var data = {
-        orgId: this.state.orgId,
+        orgId: this.props.orgId,
         userId: this.state.user.id,
         role: this.state.role.value
       };
@@ -105,7 +104,7 @@
               />
             </div>
             <div className="input-field col s3">
-              <button className="btn waves-effect waves-light" type="submit" name="action">
+              <button className="btn waves-effect waves-light" name="action" type="submit">
                 Submit
                 <i className="material-icons right">send </i>
               </button>
