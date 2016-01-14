@@ -38,7 +38,7 @@
         UserStore.setData(action.data);
         break;
       default:
-        // no operation
+        // no operation for default
     }
 
     return true;
