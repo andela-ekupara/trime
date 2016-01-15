@@ -3,16 +3,28 @@
   var React = require('react'),
     Select = require('react-select'),
     TrackingActions = require('../../actions/trackingActions'),
-    UserActions = require('../../actions/userActions'),
     UserStore = require('../../stores/userStore'),
     TrackingStore = require('../../stores/trackingStore');
- 
+
   var Button = React.createClass({
+    propTypes: {
+      className: React.PropTypes.string,
+      disabled: React.PropTypes.bool,
+      icon: React.PropTypes.string,
+      id: React.PropTypes.string,
+      onClick: React.PropTypes.func.isRequired
+    },
+
     render: function() {
       return ( 
         <div>
-          <button onClick={this.props.onClick} id={this.props.id} className="waves-effect waves-light btn"> 
-            <i className={this.props.icon}></i>
+          <button 
+              className={this.props.className}
+              disabled={this.props.disabled} 
+              id={this.props.id} 
+              onClick={this.props.onClick} 
+          > 
+            <i className={this.props.icon}> </i>
           </button>
         </div>
       );
@@ -29,7 +41,9 @@
         projectUserId: '',
         description: '',
         btnId: 'start',
-        icon: 'fa fa-play'
+        icon: 'fa fa-play',
+        status: '',
+        enabled: true
       };
     },
 
@@ -40,6 +54,7 @@
 
     componentDidMount: function() {
       TrackingStore.addChangeListener(this.showResult);
+      TrackingStore.addChangeListener(this.getStatus);
     },
 
     getSession: function() {
@@ -56,8 +71,7 @@
       });
     },
 
-    logChange: function(val) {
-      console.log('selected ' + val);
+    handleSelectChange: function(val) {
       this.setState({
         projectUserId: val
       });
@@ -65,89 +79,97 @@
 
     showResult: function() {
       var result = TrackingStore.getTrack();
-      if(result.message) {
+      if(result && result.message) {
         window.Materialize.toast(result.message, 2000, 'success-toast');
-      }
-    },
-    handleClick: function(e) {
-      console.log('clicked');
-      console.log(e.target.id);
-      if (e.target.id === 'start') {
-       console.log(e.target.id);
-        this.handleStartClick(e);
-      } else if(e.target.id === 'pause') {
-        this.handlePauseClick(e);
-      } else if(e.target.id === 'resume') {
-        this.handleResumeClick(e);
-      } else if(e.target.id === 'stop') {
-        this.handleStopClick(e);
+      } else {
+        window.Materialize.toast(result, 2000, 'error-toast');
       }
     },
 
-    handleStartClick: function() {
-     e.preventDefault();
-     console.log('Triger');
-      this.setState({
-          description: 'Andela'
+    getStatus: function() {
+      var result = TrackingStore.getTrack();
+      if(result && result.status === 'started') {
+        this.setState({btnId: 'pause', icon: 'fa fa-pause', enabled: false});
+      } else if(result && result.status === 'paused') {
+        this.setState({btnId: 'resume', icon: 'fa fa-play'});
+      } else if(result && result.status === 'resumed') {
+        this.setState({btnId: 'pause', icon: 'fa fa-pause'});
+      } else if (result && result.status === 'stopped'){
+        this.setState({
+          btnId: 'start', 
+          icon: 'fa fa-play',
+          projectUserId: '',
+          enabled: true
         });
-      var data = {
-        description: this.state.description,
-        projectUserId: this.state.projectUserId
-      };
-      TrackingActions.start(data);
-      this.setState({
-        btnId: 'pause',
-        icon: 'fa fa-pause'
-      });
+      }
     },
 
-    handlePauseClick: function(e) {
+    handleClick: function(e) {
       e.preventDefault();
-      console.log('Stop here');
-      TrackingActions.pause();
-      this.setState({
-        btnId: 'resume',
-        icon: 'fa fa-play'
-      });   
+      if (e.target.id === 'start') {
+        var data = {
+          description: this.state.description,
+          projectUserId: this.state.projectUserId
+        };
+        TrackingActions.start(data);
+      } else if(e.target.id === 'pause') {
+        TrackingActions.pause(); 
+      } else if(e.target.id === 'resume') {
+        TrackingActions.resume();
+      } else if(e.target.id === 'stop') {
+        TrackingActions.stop();
+      }
     },
 
-    handleResumeClick: function(e) {
-      e.preventDefault();
-      TrackingActions.resume();
+    handleFieldChange: function(e) {
       this.setState({
-        btnId: 'pause',
-        icon: 'fa fa-pause'
-      });
-    },
-
-    handleStopClick: function(e) {
-      e.preventDefault();
-      TrackingActions.stop();
-      this.setState({
-        btnId: 'play',
-        icon: 'fa fa-play'
+        description: e.target.value
       });
     },
 
     render: function() {
       return ( 
         <div className="row col s12" >
-          <Select className="trimeProject col s2" 
-            autofocus 
-            options={this.state.options} 
-            simpleValue 
-            disabled={this.state.disabled}
-            searchable={this.state.searchable}
-            clearable={this.state.clearable}
-            onChange={this.logChange}
-            labelKey="name"
-            valueKey="project_id" 
+          <Select autofocus 
+              className="trimeProject col s2" 
+              clearable={this.state.clearable}
+              labelKey="name"
+              onChange={this.handleSelectChange}
+              options={this.state.options} 
+              searchable={this.state.searchable}
+              simpleValue 
+              value={this.state.projectUserId}
+              valueKey="project_id" 
           />
           <div className="col s4">
-              <input name="name" id="name" type="text" className="validate" onChange={this.handleFieldChange} required/>
+              <input className="validate"
+                  id="name" 
+                  name="name"  
+                  onChange={this.handleFieldChange} 
+                  required
+                  type="text" 
+              />
           </div>
-          <div className="col s1"><Button onClick={this.handleClick} id={this.state.btnId} label="Start" icon={this.state.icon} /></div>
-          <div className="col s1"><Button onClick={this.handleStopClick} id="stop" label="Stop" icon="fa fa-stop" /></div>
+          <div className="col s1">
+            <Button 
+                className="waves-effect waves-light btn" 
+                disabled={!this.state.projectUserId} 
+                icon={this.state.icon} 
+                id={this.state.btnId} 
+                label="Start" 
+                onClick={this.handleClick} 
+            />
+          </div>
+          <div className="col s1">
+            <Button 
+                className="waves-effect waves-light btn" 
+                disabled={this.state.enabled} 
+                icon="fa fa-stop" 
+                id="stop" 
+                label="Stop" 
+                onClick={this.handleClick} 
+            />
+          </div>
         </div>
       );
     }

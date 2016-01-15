@@ -7,9 +7,9 @@
 
   module.exports = {
     getProjects: function(req, res) {
-      sequelize.query('SELECT project_users.project_id,' +
+      sequelize.query('SELECT project_users.project_id, ' +
           'projects.name, projects.description ' +
-          'FROM project_users' +
+          'FROM project_users ' +
           'INNER JOIN projects ON project_users.project_id = projects.id ' +
           'AND project_users.user_id = ' + req.params.userId)
         .spread(function(result) {
@@ -86,7 +86,8 @@
           if (ok) {
             delete req.session.track.timeTrackId;
             return res.status(200).send({
-              message: 'Paused time successfully'
+              message: 'Paused time successfully',
+              status: 'paused'
             });
           } else {
             return res.status(500).send({
@@ -115,7 +116,8 @@
           } else {
             req.session.track.timeTrackId = timeTrack.id;
             return res.status(200).send({
-              message: 'Resumed successfully'
+              message: 'Resumed successfully',
+              status: 'resumed'
             });
           }
         })
@@ -127,7 +129,7 @@
     },
 
     stop: function(req, res) {
-      function update() {
+      var update = function() {
         projectTrimes.update({
             complete: true
           }, {
@@ -139,15 +141,22 @@
             if (ok) {
               delete req.session.track;
               return res.status(200).send({
-                message: 'Track was Successfully completed'
+                message: 'Track was Successfully completed',
+                status: 'stopped'
               });
             } else {
               return res.status(500).send({
                 error: 'Could not stop time'
               });
             }
+          })
+          .catch(function(err) {
+            res.status(500).send({
+              error: err.errormsg
+            });
           });
-      }
+      };
+
       if (req.session.track.timeTrackId) {
         timeTracks.update({
             finishedAt: Date.now()
@@ -171,12 +180,7 @@
             });
           });
       } else {
-        update()
-          .catch(function(err) {
-            res.status(500).send({
-              error: err.errormsg
-            });
-          });
+        update();
       }
     }
   };
