@@ -28,7 +28,7 @@
     }
   });
 
-  // Reg a cb
+  // Register a callback
   AppDispatcher.register(function(action) {
     switch (action.actionType) {
       case TrimeConstants.GET_PROJECTS:

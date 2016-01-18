@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var TrimeConstants = require('../constants/trimeConstants'),
+  var TrimeConstants = require('../constants/TrimeConstants'),
     BaseActions = require('./BaseActions');
 
   module.exports = {

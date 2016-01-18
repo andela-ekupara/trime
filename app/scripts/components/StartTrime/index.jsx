@@ -3,8 +3,8 @@
   var React = require('react'),
     Select = require('react-select'),
     TrackingActions = require('../../actions/trackingActions'),
-    UserStore = require('../../stores/userStore'),
-    TrackingStore = require('../../stores/trackingStore');
+    UserStore = require('../../stores/UserStore'),
+    TrackingStore = require('../../stores/TrackingStore');
 
   var Button = React.createClass({
     propTypes: {
