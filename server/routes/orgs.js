@@ -13,5 +13,9 @@
       .get(Users.authenticate, Orgs.get)
       .put(Users.authenticate, Orgs.update)
       .delete(Users.authenticate, Orgs.delete);
+
+    app.route('/api/orgs/:id/users')
+      .post(Users.authenticate, Orgs.addUsers)
+      .get(Users.authenticate, Orgs.getUsers);
   };
 })();

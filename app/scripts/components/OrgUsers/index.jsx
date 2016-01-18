@@ -1,17 +1,17 @@
 (function() {
   'use strict';
   var React = require('react');
-  var OrgForm = require('./OrgForm.jsx');
+  var OrgUsers = require('./OrgUsers.jsx');
 
-  var OrgPage = React.createClass({
+  var UsersPage = React.createClass({
     render: function() {
       return (
         <div className="container">
-          <OrgForm />
+          <OrgUsers orgId={this.props.params.orgId}/>
         </div>
       );
     }
   });
 
-  module.exports = OrgPage;
+  module.exports = UsersPage;
 })();
