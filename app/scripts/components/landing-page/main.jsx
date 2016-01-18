@@ -29,7 +29,7 @@
                 setUser={this.setUser} 
                 user={this.state.user} 
             />
-            <div className="handler content-area">
+            <div className="text-center">
               {this.props.children}
             </div>
           </div>
