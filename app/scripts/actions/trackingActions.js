@@ -6,8 +6,8 @@
 
   module.exports = {
     getProjects: function(userId) {
-      BaseActions.get('/api/time-tracks/getProjects/' 
-        + userId, TrimeConstants.GET_PROJECTS);
+      BaseActions.get('/api/time-tracks/getProjects/' + userId,
+        TrimeConstants.GET_PROJECTS);
     },
     start: function(data) {
       BaseActions.post('/api/time-tracks/start', data, TrimeConstants.START);
