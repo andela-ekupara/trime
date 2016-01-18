@@ -11,13 +11,15 @@
         // set the field name
         usernameField: 'email',
         passwordField: 'password',
+        nameField: 'name',
         passReqToCallback: true
       },
       function(req, username, password, done) {
         // get signup details from input args of the func
         Users.create({
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password)
+            password: bcrypt.hashSync(req.body.password),
+            name: req.body.name
           })
           .then(function(user) {
             if (user) {

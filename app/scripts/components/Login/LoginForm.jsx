@@ -2,12 +2,12 @@
   'use strict';
 
   var React = require('react'),
-    UserActions = require('../../actions/userActions'),
-    UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation;
+    UserActions = require('../../actions/UserActions'),
+    UserStore = require('../../stores/UserStore'),
+    History = require('react-router').History;
 
   var LoginForm = React.createClass({
-    mixins: [Navigation],
+    mixins: [History],
 
     getInitialState: function() {
       return {
@@ -19,7 +19,7 @@
       };
     },
 
-    componentWillMount: function() {
+    componentDidMount: function() {
       UserStore.addChangeListener(this.handleLogin);
     },
 
@@ -30,10 +30,8 @@
           window.Materialize.toast(data.error, 2000, 'error-toast');
         }
       } else {
-        // this.setState({result: 'successful'});
-        this.props.setUser(data);
-        this.state.result = 'successful';
-        // this.transitionTo('/orgs');
+        this.setState({result: 'successful'});
+        // this.history.pushState(null, '/dashboard');
       }
     },
 

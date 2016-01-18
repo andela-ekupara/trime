@@ -2,18 +2,19 @@
   'use strict';
 
   var React = require('react'),
-    UserActions = require('../../actions/userActions'),
-    UserStore = require('../../stores/userStore'),
-    Navigation = require('react-router').Navigation;
+    UserActions = require('../../actions/UserActions'),
+    UserStore = require('../../stores/UserStore'),
+    History = require('react-router').History;
 
   var SignupForm = React.createClass({
-    mixins: [Navigation],
+    mixins: [History],
 
     getInitialState: function() {
       return {
         user: {
           email: '',
-          password: ''
+          password: '',
+          name: ''
         },
         result: '',
         confirmpswd: ''
@@ -44,7 +45,7 @@
         this.setState({result: data.error.message});
       } else {
         this.setState({result: 'Success!'});
-        // this.transitionTo('/dashboard');
+        // this.history.pushState(null, '/dashboard');
       }
     },
 
@@ -81,6 +82,10 @@
         <div className="row">
           <form className="col s12" onSubmit={this.onSubmit}>
             <span>{this.state.result}</span>
+             <div className="input-field col s12">
+              <input name="name" id="name" type="text" className="validate" placeholder="Jane Doe" onChange={this.handleFieldChange} required/>
+              <label for="name">Full Name</label>
+            </div>
             <div className="input-field col s12">
               <input name="email" id="email" type="email" className="validate" onChange={this.handleFieldChange} required/>
               <label for="email">Email</label>

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    TrimeConstants = require('../constants/trimeConstants'),
+    TrimeConstants = require('../constants/TrimeConstants'),
     assign = require('object-assign'),
     BaseStore = require('./BaseStore');
 
@@ -38,7 +38,7 @@
         UserStore.setData(action.data);
         break;
       default:
-        // no operation
+        // no operation for default
     }
 
     return true;
