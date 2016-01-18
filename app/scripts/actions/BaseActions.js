@@ -30,7 +30,7 @@
 
     put: function(url, data, actionType) {
       request
-        .get(url)
+        .put(url)
         .send(data)
         .end(function(err, result) {
           AppDispatcher.dispatch({

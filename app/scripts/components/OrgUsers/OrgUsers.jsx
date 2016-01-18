@@ -5,7 +5,7 @@
   var OrgActions = require('../../actions/OrgActions');
   var UserActions = require('../../actions/userActions');
   var OrgStore = require('../../stores/OrgStore');
-  var UserStore = require('../../stores/userStore');
+  var UserStore = require('../../stores/UserStore');
 
   var UsersForm = React.createClass({
     getInitialState: function() {

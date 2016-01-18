@@ -2,7 +2,7 @@
   'use strict';
 
   module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('time-tracks', {
+    return sequelize.define('time_tracks', {
       startedAt: {
         type: DataTypes.BIGINT,
         allowNull: false
