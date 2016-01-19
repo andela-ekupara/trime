@@ -3,7 +3,7 @@
   var React = require('react');
   var Select = require('react-select');
   var OrgActions = require('../../actions/OrgActions');
-  var UserActions = require('../../actions/userActions');
+  var UserActions = require('../../actions/UserActions');
   var OrgStore = require('../../stores/OrgStore');
   var UserStore = require('../../stores/UserStore');
 
