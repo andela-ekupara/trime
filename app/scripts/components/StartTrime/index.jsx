@@ -2,7 +2,7 @@
   'use strict';
   var React = require('react'),
     Select = require('react-select'),
-    TrackingActions = require('../../actions/trackingActions'),
+    TrackingActions = require('../../actions/TrackingActions'),
     UserStore = require('../../stores/UserStore'),
     TrackingStore = require('../../stores/TrackingStore');
 
