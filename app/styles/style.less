@@ -2,179 +2,179 @@
 @accent-color: #999999;
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500|PT+Sans:400,500);
 #header {
-  position: relative;
-  z-index: 10;
-  #nav {
-    background: rgba(0, 0, 0, 0.12);
-    p {
-      font-size: 2px;
-      padding: 1px;
-      color: #fff;
+    position: relative;
+    z-index: 10;
+    #nav {
+        background: rgba(0, 0, 0, 0.12);
+        p {
+            font-size: 2px;
+            padding: 1px;
+            color: #fff;
+        }
+        .row {
+            margin: 0;
+            &:after {
+                display: inline-block;
+            }
+        }
+        span.title {
+            .md-padding;
+            list-style: none;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 25px;
+            color: #fff;
+            text-shadow: 0 3px 3px #333;
+        }
+        .login-form {
+            .md-padding;
+            padding-bottom: 0;
+            background-color: rgba(0, 0, 0, 0.25)
+        }
+        .header-input {
+            height: 2rem;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+        .header-btn {
+            padding: 0 1rem;
+        }
     }
-    .row {
-      margin: 0;
-      &:after {
-        display: inline-block;
-      }
-    }
-    span.title {
-      .md-padding;
-      list-style: none;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 25px;
-      color: #fff;
-      text-shadow: 0 3px 3px #333;
-    }
-    .login-form {
-      .md-padding;
-      padding-bottom: 0;
-      background-color: rgba(0, 0, 0, 0.25)
-    }
-    .header-input {
-      height: 2rem;
-      font-size: 0.8rem;
-      color: #fff;
-    }
-    .header-btn {
-      padding: 0 1rem;
-    }
-  }
 }
 
 .error-toast {
-  background-color: rgba(210, 57, 57, 1);
+    background-color: rgba(210, 57, 57, 1);
 }
 
 .success-toast {
-  background-color: #00cc33;
+    background-color: #00cc33;
 }
 
 .md-inline-block {
-  display: inline-block;
+    display: inline-block;
 }
 
 .md-padding {
-  padding: 10px;
+    padding: 10px;
 }
 
 .md-margin {
-  padding: 10px;
+    padding: 10px;
 }
 
 #back {
-  background: url("../images/clock1.jpeg") no-repeat center fixed;
-  background-size: cover;
-  height: 600px;
-  width: 100%;
-  z-index: 1;
-  margin: -60px 0 0;
-  position: relative;
-  .btntrime {
-    margin: 20% auto;
-    border-radius: 10px;
-    height: 50px;
-    a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 1em;
+    background: url("../images/clock1.jpeg") no-repeat center fixed;
+    background-size: cover;
+    height: 600px;
+    width: 100%;
+    z-index: 1;
+    margin: -60px 0 0;
+    position: relative;
+    .btntrime {
+        margin: 20% auto;
+        border-radius: 10px;
+        height: 50px;
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+        }
     }
-  }
 }
 
 #back::after {
-  content: ' ';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 768px) and (min-width: 480px) {
-  #back {
-    height: 400px;
-  }
+    #back {
+        height: 400px;
+    }
 }
 
 @media (max-width: 480px) {
-  #back {
-    height: 200px;
-  }
+    #back {
+        height: 200px;
+    }
 }
 
 .row > button {
-  float: left;
+    float: left;
 }
 
 #ui-view > img {
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 #ui-view > .row > {
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 #ui-view {
-  background-size: cover;
-  // background-color: #000;
-  min-height: 600px;
-  max width: 600px;
-  margin: 0 auto;
+    background-size: cover;
+    // background-color: #000;
+    min-height: 600px;
+    max width: 600px;
+    margin: 0 auto;
 }
 
 #grid {
-  text-align: center;
+    text-align: center;
 }
 
 #grid > p:nth-child(1) {
-  font-size: 2px;
-  font: 2em "Roboto", Verdana, Arial;
-  font-weight: bold;
-  padding: 40px 0 0;
+    font-size: 2px;
+    font: 2em "Roboto", Verdana, Arial;
+    font-weight: bold;
+    padding: 40px 0 0;
 }
 
 #grid > p:nth-child(2) {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 #grid > .row {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .col.s12.m6.l4 > img {
-  margin-bottom: 50px;
-  height: 240px;
+    margin-bottom: 50px;
+    height: 240px;
 }
 
 .col.s12.m6.l4 > p:nth-child(2) {
-  color: #33CCCC;
-  text-align: center;
-  font-size: 22px;
-  //font-weight: bold;
-  font: 25px "Roboto", Verdana, Arial;
+    color: #33CCCC;
+    text-align: center;
+    font-size: 22px;
+    //font-weight: bold;
+    font: 25px "Roboto", Verdana, Arial;
 }
 
 .col.s12.m6.l4 > p:nth-child(3) {
-  text-align: center;
-  font-size: 18px;
+    text-align: center;
+    font-size: 18px;
 }
 
 .responsive-image {
-  width: 100%;
-  background-size: 100%;
+    width: 100%;
+    background-size: 100%;
 }
 
 #action {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 #overlay {
-  background: @primary-color url("../images/background.png");
+    background: @primary-color url("../images/background.png");
 }
 
 .text-color {
-  color: @primary-color;
+    color: @primary-color;
 }
 
 h1,
@@ -182,39 +182,39 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 0 0 10px 0;
-  font-family: "PT Sans", "Trebuchet MS";
+    margin: 0 0 10px 0;
+    font-family: "PT Sans", "Trebuchet MS";
 }
 
 img {
-  margin: 0;
-  max-width: 100%;
+    margin: 0;
+    max-width: 100%;
 }
 
 #box {
-  width: 100px;
-  padding: 5px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 20px 0 0;
-  vertical-align: center;
-  background: #fff;
+    width: 100px;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px 0 0;
+    vertical-align: center;
+    background: #fff;
 }
 
 .overlay-container {
-  margin: 100px auto 0;
-  max-width: 500px;
+    margin: 100px auto 0;
+    max-width: 500px;
 }
 
 #overlay2 {
-  background-color: white;
-  display: inline-block;
-  max-width: 380px;
-  margin: 0;
-  & > div {
-    text-align: left;
-    padding: 20px;
-  }
+    background-color: white;
+    display: inline-block;
+    max-width: 380px;
+    margin: 0;
+    & > div {
+        text-align: left;
+        padding: 20px;
+    }
 }
 
 .text-center {
@@ -222,34 +222,34 @@ img {
 }
 
 .btn-start {
-  color: #fff;
-  background-color: #2196f3;
-  padding: 5px 10px;
-  font-size: 0.2em;
-  border-radius: 5px;
+    color: #fff;
+    background-color: #2196f3;
+    padding: 5px 10px;
+    font-size: 0.2em;
+    border-radius: 5px;
 }
 
 .login {
-  float: right;
-  padding: 0 2px 2px;
-  margin: 5px;
+    float: right;
+    padding: 0 2px 2px;
+    margin: 5px;
 }
 
 .logo {
-  margin: 0 0 20px;
+    margin: 0 0 20px;
 }
 
 @media (min-width: 481px) {
-  .signupcard {
-    width: 50%;
-    margin: 10px auto;
-  }
+    .signupcard {
+        width: 40%;
+        margin: 10px auto;
+    }
 }
 
 @media (max-width: 480px) {
-  .signupcard {
-    margin: 10px auto;
-  }
+    .signupcard {
+        margin: 10px auto;
+    }
 }
 
 .trimeProject {

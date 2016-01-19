@@ -4,7 +4,8 @@
   var React = require('react'),
     UserActions = require('../../actions/UserActions'),
     UserStore = require('../../stores/UserStore'),
-    History = require('react-router').History;
+    History = require('react-router').History,
+    AuthBtn = require('./AuthBtn.jsx');
 
   var LoginForm = React.createClass({
     mixins: [History],
@@ -42,7 +43,7 @@
       this.setState({user: this.state.user});
     },
 
-    onSubmit: function(event) {
+    handleSubmit: function(event) {
       event.preventDefault();
       UserActions.login(this.state.user);
     },
@@ -50,18 +51,40 @@
     render: function() {
       return (
         <div className="row">
-          <form className="col s12 md-inline-block" onSubmit={this.onSubmit}>
-            <div className="col">
-              <input className="header-input validate" name="email" id="email" placeholder="email" type="text" onChange={this.handleFieldChange}/>
+          <form className="col s12" onSubmit={this.handleSubmit}>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">mail_outline</i>
+              <input className="validate" 
+                  id="email"
+                  name="email"
+                  onChange={this.handleFieldChange}
+                  required
+                  type="text"
+              />
+              <label htmlFor="email">Email</label>
             </div>
-            <div className="col">
-              <input className="header-input validate" name="password" id="password" placeholder="password" type="password" onChange={this.handleFieldChange}/>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">lock_open</i>
+              <input className="validate" 
+                  id="password"
+                  name="password"
+                  onChange={this.handleFieldChange}
+                  required
+                  type="password"
+              />
+              <label htmlFor="password">password</label>
             </div>
-            <div className="col right">
-              <button className="btn waves-effect header-btn" type="submit" name="action"><i className="fa fa-sign-in"></i></button>
+            <div className="col s2">
+              <button className="btn waves-effect header-btn" 
+                  name="action"
+                  type="submit" 
+              >
+                <i className="fa fa-sign-in"></i>
+              </button>
             </div>
 
           </form>
+           <AuthBtn />
         </div>
       );
     }

@@ -5,6 +5,7 @@
     UserActions = require('../../actions/UserActions'),
     UserStore = require('../../stores/UserStore'),
     History = require('react-router').History,
+    LoginForm = require('./LoginForm.jsx'),
     SignupForm = require('./SignupForm.jsx');
 
   module.exports = React.createClass({
@@ -24,11 +25,25 @@
     },
     render: function() {
       return (
-        <div>
-          <div className="container">
-            <SignupForm />
+          <div className="card-panel signupcard col s6">
+            <div className="col s8">
+              <ul className="tabs">
+                <li className="tab col s4">
+                  <a className="active" href="#login">login</a>
+                </li>
+                <li className="tab col s4">
+                  <a className="active" href="#signup">signup</a>
+                </li>
+              </ul>
+            </div>
+            <div id="signup">
+              <SignupForm />
+            </div>
+            <div id="login">
+              <LoginForm />
+            </div>
           </div>
-        </div>
+        
       );
     }
   });
