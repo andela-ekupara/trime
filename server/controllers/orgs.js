@@ -45,13 +45,14 @@
       }
     },
 
-    // Get all orgs
-    // TODO: Should only return orgs a user belongs to
+    // Get all orgs user belongs to
     all: function(req, res) {
-      Orgs.sync().then(function() {
-          return Orgs.findAll()
-            .then(function(orgs) {
-              return res.json(orgs);
+        Users.sync().then(function() {
+          Users.findById(req.session.user.id)
+            .then(function (user) {
+              user.getOrgs().then(function(orgs){
+                return res.json(orgs);
+              });
             });
         })
         .catch(function(err) {
