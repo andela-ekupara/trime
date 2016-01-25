@@ -47,7 +47,7 @@
         this.setState({result: data.error.message});
       } else {
         this.setState({result: 'Success!'});
-        // this.history.pushState(null, '/dashboard');
+        this.history.pushState(null, '/dashboard');
       }
     },
 
@@ -55,8 +55,8 @@
       var field = event.target.name;
       var value = event.target.value;
       if (field === 'confirmpswd') {
-        this.setState({confirmpswd: value});
-        // this.state.confirmpswd = value;
+        // this.setState({confirmpswd: value});
+        this.state.confirmpswd = value;
       } else {
         this.state.user[field] = value;
       }

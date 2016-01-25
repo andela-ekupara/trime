@@ -20,7 +20,7 @@
         var data = UserStore.getData();
         if(data && !data.error) {
         // // session exists
-        //   this.history.pushState(null, '/dashboard');
+          this.history.pushState(null, '/dashboard');
         }
     },
     render: function() {
@@ -36,11 +36,11 @@
                 </li>
               </ul>
             </div>
-            <div id="signup">
-              <SignupForm />
-            </div>
             <div id="login">
               <LoginForm />
+            </div>
+            <div id="signup">
+              <SignupForm />
             </div>
           </div>
         

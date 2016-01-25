@@ -32,7 +32,7 @@
         }
       } else {
         this.setState({result: 'successful'});
-        // this.history.pushState(null, '/dashboard');
+        //this.history.pushState(null, '/dashboard');
       }
     },
 
@@ -43,7 +43,7 @@
       this.setState({user: this.state.user});
     },
 
-    handleSubmit: function(event) {
+    handleLoginAction: function(event) {
       event.preventDefault();
       UserActions.login(this.state.user);
     },
@@ -51,7 +51,7 @@
     render: function() {
       return (
         <div className="row">
-          <form className="col s12" onSubmit={this.handleSubmit}>
+          <form action="post" className="col s12" name="loginForm" onSubmit={this.handleLoginAction}>
             <div className="input-field col s12">
               <i className="material-icons prefix">mail_outline</i>
               <input className="validate" 
@@ -61,7 +61,7 @@
                   required
                   type="text"
               />
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email Address</label>
             </div>
             <div className="input-field col s12">
               <i className="material-icons prefix">lock_open</i>
@@ -72,14 +72,14 @@
                   required
                   type="password"
               />
-              <label htmlFor="password">password</label>
+              <label htmlFor="password">Password</label>
             </div>
-            <div className="col s2">
-              <button className="btn waves-effect header-btn" 
+            <div className="col s12">
+              <button className="btn waves-effect" 
                   name="action"
-                  type="submit" 
-              >
-                <i className="fa fa-sign-in"></i>
+                  type="submit"
+              >Login
+                <i className="fa fa-sign-in right"></i>
               </button>
             </div>
 
