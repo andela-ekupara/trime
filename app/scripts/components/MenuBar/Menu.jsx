@@ -21,12 +21,14 @@ var Menu = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(data) {
-   // UserActions.session();
-    //UserStore.addChangeListener(this.getSession);
-    var data = this.props.data;
-    console.log(data);
-    if (data && !data.error) {
+  componentWillMount: function() {
+   UserActions.session();
+   UserStore.addChangeListener(this.getSession);
+  },
+
+  getSession: function() {
+    var data = UserStore.getData();
+     if (data && !data.error) {
         this.setState({
             one: 'Signed in as '+ data.name,
             two: 'Your Profile',
