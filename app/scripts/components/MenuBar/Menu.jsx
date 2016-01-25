@@ -46,8 +46,8 @@ var Menu = React.createClass({
     return (
     <div>
     
-      <a className='dropdown-button' href='#' data-activates='dropdown1'><i className="fa fa-sort-desc fa-2x"></i></a>
-        <ul id='dropdown1' className='dropdown-content'>
+      <a className="dropdown-button" href="#" data-activates="dropdown1">Menu<i className="fa fa-sort-desc fa-2x right"></i></a>
+        <ul id="dropdown1" className="dropdown-content">
          <li><a>{this.state.one}</a></li>
          <li className="divider"></li>
          <li><a href={this.state.link2}>{this.state.two}</a></li>

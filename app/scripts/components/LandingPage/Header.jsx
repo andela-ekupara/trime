@@ -35,6 +35,12 @@
                       <span className="title">TRIME</span>
                     </a>
                   </div>
+                  <div className="row right login-form">
+                    <div className="col s3">Services</div>
+                    <div className="col s3">About</div>
+                    <div className="col s3">Team</div>
+                    <Menu className="col s3" />
+                  </div>
                 </div>
               </div>
             </div>
