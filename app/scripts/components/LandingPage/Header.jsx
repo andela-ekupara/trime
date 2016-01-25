@@ -1,7 +1,6 @@
 (function(){
   'use strict';
   var React = require('react'),
-    LoginForm = require('../Login/LoginForm.jsx'),
     UserStore = require('../../stores/UserStore'),
     UserActions = require('../../actions/UserActions'),
     Menu = require('../MenuBar/Menu.jsx');
@@ -35,13 +34,6 @@
                     <a>
                       <span className="title">TRIME</span>
                     </a>
-                  </div>
-                  <div className="right login-form">
-                  {!this.props.user.id ?
-                    <LoginForm className="center-align"
-                    user={this.props.user} setUser={this.props.setUser}
-                    /> : null }
-                    <Menu data={this.state.data} />
                   </div>
                 </div>
               </div>

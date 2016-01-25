@@ -4,7 +4,8 @@
   var React = require('react'),
     UserActions = require('../../actions/UserActions'),
     UserStore = require('../../stores/UserStore'),
-    History = require('react-router').History;
+    History = require('react-router').History,
+    AuthBtn = require('./AuthBtn.jsx');
 
   var LoginForm = React.createClass({
     mixins: [History],
@@ -31,7 +32,7 @@
         }
       } else {
         this.setState({result: 'successful'});
-        // this.history.pushState(null, '/dashboard');
+        //this.history.pushState(null, '/dashboard');
       }
     },
 
@@ -42,7 +43,7 @@
       this.setState({user: this.state.user});
     },
 
-    onSubmit: function(event) {
+    handleLoginAction: function(event) {
       event.preventDefault();
       UserActions.login(this.state.user);
     },
@@ -50,18 +51,40 @@
     render: function() {
       return (
         <div className="row">
-          <form className="col s12 md-inline-block" onSubmit={this.onSubmit}>
-            <div className="col">
-              <input className="header-input validate" name="email" id="email" placeholder="email" type="text" onChange={this.handleFieldChange}/>
+          <form action="post" className="col s12" name="loginForm" onSubmit={this.handleLoginAction}>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">mail_outline</i>
+              <input className="validate" 
+                  id="email"
+                  name="email"
+                  onChange={this.handleFieldChange}
+                  required
+                  type="text"
+              />
+              <label htmlFor="email">Email Address</label>
             </div>
-            <div className="col">
-              <input className="header-input validate" name="password" id="password" placeholder="password" type="password" onChange={this.handleFieldChange}/>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">lock_open</i>
+              <input className="validate" 
+                  id="password"
+                  name="password"
+                  onChange={this.handleFieldChange}
+                  required
+                  type="password"
+              />
+              <label htmlFor="password">Password</label>
             </div>
-            <div className="col right">
-              <button className="btn waves-effect header-btn" type="submit" name="action"><i className="fa fa-sign-in"></i></button>
+            <div className="col s12">
+              <button className="btn waves-effect" 
+                  name="action"
+                  type="submit"
+              >Login
+                <i className="fa fa-sign-in right"></i>
+              </button>
             </div>
 
           </form>
+           <AuthBtn />
         </div>
       );
     }
