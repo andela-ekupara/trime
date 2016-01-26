@@ -1,3 +1,6 @@
+machine:
+  node:
+    version: 4.2.6
 dependencies:
  post:
   - npm install module-deps
