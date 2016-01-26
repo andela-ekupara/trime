@@ -7,6 +7,7 @@ var Menu = React.createClass({
     propTypes: {
         data: React.PropTypes.string
     },
+
    getInitialState: function() {
     return {
      one: 'Trime',
@@ -45,9 +46,11 @@ var Menu = React.createClass({
   render: function() {
     return (
     <div>
-    
-      <a className="dropdown-button" href="#" data-activates="dropdown1">Menu<i className="fa fa-sort-desc fa-2x right"></i></a>
-        <ul id="dropdown1" className="dropdown-content">
+
+      <a className="dropdown-button" href="#" data-activates="dropdown1">Menu
+        <i className="fa fa-sort-desc fa-2x right"></i>
+      </a>
+      <ul id="dropdown1" className="dropdown-content">
          <li><a>{this.state.one}</a></li>
          <li className="divider"></li>
          <li><a href={this.state.link2}>{this.state.two}</a></li>
@@ -55,12 +58,13 @@ var Menu = React.createClass({
          <li><a href={this.state.link4}>{this.state.four}</a></li>
          <li className="divider"></li>
          <li><a href={this.state.link5}>{this.state.five}</a></li>
-        </ul>
+      </ul>
     </div>
-     
+
     );
   }
 });
 
 module.exports = Menu;
+
 })();
