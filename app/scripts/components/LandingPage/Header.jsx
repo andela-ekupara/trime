@@ -26,23 +26,22 @@
 
     render: function() {
       return (
-        <div id="header">
-          <div id="nav">
-            <div>
-              <div className="md-inline-block">
-                <a>
-                  <span className="title">TRIME</span>
+        <nav className="transparent" id="header">
+          <div className="nav-wrapper" id="nav">
+            <a href="/" className="brand-logo">TRIME</a>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><a href="/">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="/join">Login</a></li>
+              <li>
+                <a className="dropdown-button" href="#" data-activates="dropdown">Menu
+                  <i className="material-icons right">arrow_drop_down</i>
                 </a>
-              </div>
-              <div className="row right">
-                <div className="col s3">Services</div>
-                <div className="col s3">About</div>
-                <div className="col s3">Team</div>
-                <Menu className="col s3"/>
-              </div>
-            </div>
+                <Menu data={this.state.data}/>
+              </li>
+            </ul>
           </div>
-        </div>
+        </nav>
       );
     }
   });
