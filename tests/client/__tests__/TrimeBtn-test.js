@@ -4,11 +4,11 @@ var React = require('react'),
     ReactDOM = require('react-dom'),
     TestUtils = require('react-addons-test-utils');
 
-const TrimeBtn = require('../../../app/scripts/components/LandingPage/TrimeBtn.jsx');
+var TrimeBtn = require('../../../app/scripts/components/LandingPage/TrimeBtn.jsx');
 
-describe('TrimeBtn', () => {
+describe('TrimeBtn', function() {
 
-  it('renders the TrimeBtn component', () => {
+  it('renders the TrimeBtn component', function() {
     // Render the trime button in the document
     var trimebtn = TestUtils.renderIntoDocument(
       <TrimeBtn />

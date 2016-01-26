@@ -1,13 +1,13 @@
-describe('Application Spec', () => {
+describe('Application Spec', function() {
   'use strict';
 
-  let request = require('supertest');
-  let app = require('../../../index');
+  var request = require('supertest');
+  var app = require('../../../index');
 
-  it('should correctly fetch the homepage', (done) => {
+  it('should correctly fetch the homepage', function(done) {
     request(app)
       .get('/')
-      .end((err, res) => {
+      .end(function(err, res) {
         expect(res.statusCode).toBe(200);
         done();
       });
