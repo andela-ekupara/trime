@@ -10,6 +10,7 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   path = require('path'),
   reactify = require('reactify'),
+  livereload = require('gulp-livereload'),
   babelify = require('babelify');
 
 var paths = {
@@ -96,7 +97,15 @@ gulp.task('browserify', function() {
 });
 
 
+gulp.task('less', function() {
+  gulp.src('less/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('css'))
+    .pipe(livereload());
+});
+
 gulp.task('watch', function() {
+  livereload.listen();
   gulp.watch(paths.jade, ['jade']);
   gulp.watch(paths.styles, ['less']);
   gulp.watch(paths.scripts, ['browserify']);

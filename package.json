@@ -58,5 +58,8 @@
     "serve-favicon": "~2.3.0",
     "superagent": "^1.4.0",
     "vinyl-source-stream": "~1.1.0"
+  },
+  "devDependencies": {
+    "gulp-livereload": "^3.8.1"
   }
 }

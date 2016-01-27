@@ -79,7 +79,7 @@
                   name="action"
                   type="submit"
               >Login
-                <i className="fa fa-sign-in right"></i>
+                <i className="fa fa-sign-in"></i>
               </button>
             </div>
 
