@@ -54,7 +54,7 @@
           <form action="post" className="col s12" name="loginForm" onSubmit={this.handleLoginAction}>
             <div className="input-field col s12">
               <i className="material-icons prefix">mail_outline</i>
-              <input className="validate" 
+              <input className="validate"
                   id="email"
                   name="email"
                   onChange={this.handleFieldChange}
@@ -65,7 +65,7 @@
             </div>
             <div className="input-field col s12">
               <i className="material-icons prefix">lock_open</i>
-              <input className="validate" 
+              <input className="validate"
                   id="password"
                   name="password"
                   onChange={this.handleFieldChange}
@@ -75,7 +75,7 @@
               <label htmlFor="password">Password</label>
             </div>
             <div className="col s12">
-              <button className="btn waves-effect" 
+              <button className="btn waves-effect"
                   name="action"
                   type="submit"
               >Login
