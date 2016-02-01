@@ -2,7 +2,7 @@
   'use strict';
 
   module.exports = [{
-    'model': 'users',
+    'model': 'Users',
     'data': {
       'id': 1,
       'email': 'test@test.com',
@@ -10,14 +10,14 @@
       'password': 'password'
     }
   }, {
-    'model': 'orgs',
+    'model': 'Orgs',
     'data': {
       'id': 1,
       'name': 'Test',
       'description': 'For testing purposes'
     }
   }, {
-    'model': 'org_users',
+    'model': 'OrgUsers',
     'data': {
       'role': 'owner',
       'org_id': 1,

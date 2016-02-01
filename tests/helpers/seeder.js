@@ -1,3 +1,4 @@
+/*eslint no-console: 0*/
 (function() {
   'use strict';
 
@@ -10,6 +11,7 @@
     seed: function(done) {
       async.waterfall([
           function(callback) {
+            console.log('droping.....');
             models.sequelize.drop({
               cascade: true
             }).then(function() {
@@ -17,43 +19,29 @@
               callback(null);
             });
           },
-
           function(callback) {
-            console.log('THis is happeninig');
+            console.log('syncing ......');
+            models.sequelize.sync({
+              force: true
+            }).then(function() {
+              console.log('Sync successful');
+              callback(null);
+            });
+          },
+          function(callback) {
+            console.log('seeding......');
             sequelize_fixtures.loadFile('tests/helpers/data.js', models).then(function(ok) {
-              console.log('This happened', ok);
+              console.log('seed  successfully', ok);
               callback(null);
             });
           }
         ],
         function(err) {
-          console.log('2');
-          done('ok');
-        });
-    },
-
-    trial: function(done) {
-      models.sequelize.sync({
-          force: false
-        })
-        .then(function() {
-          console.log('dropping....');
-          return models.sequelize.drop({
-            cascade: true
-          });
-        })
-        .then(function() {
-          console.log('loading.....');
-          sequelize_fixtures.loadFile('tests/helpers/data.js', models).then(function() {
-            console.log('data loaded');
-          });
-        })
-        .then(function() {
-          console.log('it is okey');
-          done('koech');
-        })
-        .catch(function(err) {
-          console.log(err);
+          if (err) {
+            process.exit(1);
+          } else {
+            done('ok');
+          }
         });
     }
   };

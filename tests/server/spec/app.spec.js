@@ -1,18 +1,23 @@
 (function() {
   'use strict';
 
-  //var clearDb = require('../../helpers/seeder');
+  var clearDb = require('../../helpers/seeder');
 
 
-  // describe('testing', function() {
+  describe('testing', function() {
+    beforeEach(function(done) {
+      clearDb.seed(function(ok) {
+        expect(ok).toBe('ok');
+        done();
+      });
+    });
 
-  //   it('expect ok', function(done) {
-  //     clearDb.seed(function() {
-  //       expect(1).toEqual(1);
-  //       done();
-  //     });
-  //   });
 
-  // });
+    it('expect ok', function(done) {
+      expect(1).toEqual(1);
+      done();
+    });
+
+  });
 
 })();
