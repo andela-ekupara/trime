@@ -3,9 +3,9 @@
   'use strict';
 
   var async = require('async'),
-    server = require('../../index'),
+    server = require('../../../index'),
     sequelize_fixtures = require('sequelize-fixtures'),
-    models = require('../../server/models');
+    models = require('../../../server/models');
 
   module.exports = {
     seed: function(done) {
