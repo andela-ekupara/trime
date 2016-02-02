@@ -24,7 +24,7 @@
               <div id="nav">
                 <div>
                   <div className="md-inline-block">
-                    <a>
+                    <a href="#">
                       <span className="title">TRIME</span>
                     </a>
                   </div>
