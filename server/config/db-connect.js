@@ -8,7 +8,7 @@
       config.db.name,
       config.db.username,
       config.db.password, {
-        host: config.host,
+        host: config.db.host,
         dialect: config.db.dialect
       });
 
