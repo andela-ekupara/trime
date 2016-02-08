@@ -7,7 +7,7 @@
     module.exports = React.createClass({
       propTypes: {
         children: React.PropTypes.element.isRequired
-      }, 
+      },
       getInitialState: function() {
         return {
           user: {}
@@ -25,9 +25,9 @@
       render: function() {
         return (
           <div>
-            <Header 
-                setUser={this.setUser} 
-                user={this.state.user} 
+            <Header
+                setUser={this.setUser}
+                user={this.state.user}
             />
             <div className="text-center">
               {this.props.children}
