@@ -1,4 +1,4 @@
-(function(){
+(function() {
   'use strict';
 
   var React = require('react'),
@@ -6,53 +6,84 @@
     UserActions = require('../../actions/UserActions');
 
   var Menu = React.createClass({
-      propTypes: {
-        setUser: React.PropTypes.func
-      },
+    propTypes: {
+      setUser: React.PropTypes.func
+    },
 
-     getInitialState: function() {
-        return {
-         user: null,
-         one: 'Trime',
-         two: 'About',
-         three: 'Help',
-         four: 'Contact us',
-         five: 'Start Triming',
-         link1: '#',
-         link2: '#',
-         link3: '#',
-         link4 : '#',
-         link5: '/join'
-        };
-      },
+    getInitialState: function() {
+      return {
+        menu: [{
+            name: 'Trime',
+            url: '#'
+          },{
+            name: 'About',
+            url: '#'
+          },{
+            name: 'Help',
+            url: '#'
+          },{
+            name: 'Settings',
+            url: '#'
+          },{
+            name: 'Contact us',
+            url: '#'
+          }, {
+            name: 'Start Triming',
+            url: '/join'
+          }
+        ],
+        user: null
+      };
+    },
 
-      componentDidMount: function() {
-        UserActions.session();
-        UserStore.addChangeListener(this.getSession);
-      },
+    componentDidMount: function() {
+      UserActions.session();
+      UserStore.addChangeListener(this.getSession);
+      window.$('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 240,
+        edge: 'right', // Choose the horizontal origin
+        closeOnClick: true
+      });
+    },
 
-      componentWillUnmount: function() {
-        UserStore.removeChangeListener(this.getSession);
-      },
+    componentWillUnmount: function() {
+      UserStore.removeChangeListener(this.getSession);
+    },
 
-      getSession: function() {
-        var data = UserStore.getData();
-        if (data && !data.error) {
-          this.props.setUser(data);
-          this.setState({
-              user: data,
-              one: 'Signed in as '+ data.name,
-              two: 'Your Profile',
-              three: 'Help',
-              four: 'Settings',
-              five: 'Logout',
-              link2: '/profile',
-              link5: '/logout'
-          });
+    getSession: function() {
+      var data = UserStore.getData();
+      if (data && !data.error) {
+        this.props.setUser(data);
+        this.setState({
+          user: data,
+          menu: [{
+              name: 'Signed in as ' + data.name,
+              url: '#'
+            },{
+              name: 'Your Profile',
+              url: '#'
+            },{
+              name: 'Help',
+              url: '#'
+            },{
+              name: 'Settings',
+              url: '#'
+            },{
+              name: 'Logout',
+              url: '/logout'
+            }]
+        });
       }
     },
 
     render: function() {
+      var menuNodes = this.state.menu.map(function(menuItem, index) {
+        return (
+          <li key={index}>
+            <a href={menuItem.url}>{menuItem.name}</a>
+          </li>
+        );
+      });
       return (
         <div>
           <a className="button-collapse hide-on-large-only" data-activates="mobile-menu" href="#">
@@ -61,23 +92,11 @@
           <a className="dropdown-button hide-on-med-and-down" data-activates="dropdown" href="#">Menu
             <i className="material-icons right">arrow_drop_down</i>
           </a>
-          <ul className="dropdown-content" id="dropdown">
-             <li><a href={this.state.link1}>{this.state.one}</a></li>
-             <li className="divider"></li>
-             <li><a href={this.state.link2}>{this.state.two}</a></li>
-             <li><a href={this.state.link3}>{this.state.three}</a></li>
-             <li><a href={this.state.link4}>{this.state.four}</a></li>
-             <li className="divider"></li>
-             <li><a href={this.state.link5}>{this.state.five}</a></li>
+          <ul className="dropdown-content" id="dropdown" style={{width: 300, left: 1200}}>
+            {menuNodes}
           </ul>
           <ul className="side-nav" id="mobile-menu">
-             <li><a href={this.state.link1}>{this.state.one}</a></li>
-             <li className="divider"></li>
-             <li><a href={this.state.link2}>{this.state.two}</a></li>
-             <li><a href={this.state.link3}>{this.state.three}</a></li>
-             <li><a href={this.state.link4}>{this.state.four}</a></li>
-             <li className="divider"></li>
-             <li><a href={this.state.link5}>{this.state.five}</a></li>
+            {menuNodes}
           </ul>
         </div>
       );

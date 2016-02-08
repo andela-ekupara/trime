@@ -18,26 +18,28 @@
           name: ''
         },
         result: '',
-        confirmpswd: ''
+        confirmPassword: ''
       };
     },
 
     componentDidMount: function() {
-      this.comparepswd();
+      this.isPasswordValid();
       UserStore.addChangeListener(this.handleSignup);
     },
 
-    comparepswd: function(password, confirmPassword) {
-      if (password !== confirmPassword) {
-        window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
-        return false;
-      } else if (password.length >= 1 && password.length < 6) {
-        window.Materialize.toast('passwords should be > 6 characters ',
-         2000, 'error-toast');
-        return false;
-      } else {
-        return true;
+    isPasswordValid: function(password, confirmPassword) {
+      if (password) {
+        if (password !== confirmPassword) {
+          window.Materialize.toast('passwords don\'t match', 2000, 'error-toast');
+        } else if (password.length >= 1 && password.length < 6) {
+          window.Materialize.toast('passwords should be > 6 characters ',
+           2000, 'error-toast');
+        } else {
+          return true;
+        }
       }
+      
+      return false;
     },
 
     handleSignup: function() {
@@ -54,21 +56,21 @@
     handleFieldChange: function(event) {
       var field = event.target.name;
       var value = event.target.value;
-      if (field === 'confirmpswd') {
-        // this.setState({confirmpswd: value});
-        this.state.confirmpswd = value;
+      if (field === 'confirmPassword') {
+        // this.setState({confirmPassword: value});
+        this.state.confirmPassword = value;
       } else {
         this.state.user[field] = value;
       }
       return this.setState({
-        user: this.state.user, 
-        confirmpswd: this.state.confirmpswd 
+        user: this.state.user,
+        confirmPassword: this.state.confirmPassword
       });
     },
 
     handleSubmit: function(event) {
       event.preventDefault();
-      if (this.comparepswd(this.state.user.password, this.state.confirmpswd)) {
+      if (this.isPasswordValid(this.state.user.password, this.state.confirmPassword)) {
         UserActions.signup(this.state.user);
       }
     },
@@ -90,7 +92,7 @@
             <span>{this.state.result}</span>
              <div className="input-field col s12">
               <input className="validate"
-                  id="name" 
+                  id="name"
                   name="name"
                   onChange={this.handleFieldChange}
                   required
@@ -100,39 +102,39 @@
             </div>
             <div className="input-field col s12">
               <input className="validate"
-                  id="email" 
-                  name="email" 
-                  onChange={this.handleFieldChange} 
+                  id="email"
+                  name="email"
+                  onChange={this.handleFieldChange}
                   required
-                  type="email"  
+                  type="email"
               />
               <label htmlFor="email">Email</label>
             </div>
             <div className="input-field col s12">
               <input className="validate"
-                  id="password" 
-                  name="password" 
-                  onChange={this.handleFieldChange} 
+                  id="password"
+                  name="password"
+                  onChange={this.handleFieldChange}
                   required
-                  type="password" 
+                  type="password"
               />
               <label htmlFor="password">Password</label>
             </div>
             <div className="input-field col s12">
-              <input className="validate" 
-                  id="password" 
-                  name="confirmpswd" 
-                  onChange={this.handleFieldChange} 
+              <input className="validate"
+                  id="password"
+                  name="confirmPassword"
+                  onChange={this.handleFieldChange}
                   required
-                  type="password" 
+                  type="password"
               />
               <label htmlFor="password">Confirm Password</label>
             </div>
             <div className="col s12">
-              <button className="btn waves-effect waves-light" 
+              <button className="btn waves-effect waves-light"
                   name="action"
-                  type="submit" 
-              >start trimming</button>
+                  type="submit"
+              >start triming</button>
             </div>
           </form>
           <AuthBtn />
