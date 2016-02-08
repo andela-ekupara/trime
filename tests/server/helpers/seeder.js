@@ -30,7 +30,7 @@
           },
           function(callback) {
             console.log('seeding......');
-            sequelize_fixtures.loadFile('tests/helpers/data.js', models).then(function(ok) {
+            sequelize_fixtures.loadFile('tests/server/helpers/data.js', models).then(function(ok) {
               console.log('seed  successfully', ok);
               callback(null);
             });
