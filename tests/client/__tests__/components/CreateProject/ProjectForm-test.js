@@ -1,9 +1,10 @@
 (function() {
   'use strict';
 
-  var projectPath = '../../../../../app/scripts/components/CreateProject/index.jsx';
+  var projectPath = '../../../../../app/scripts/components/CreateProject/ProjectForm.jsx';
 
   jest.dontMock(projectPath);
+  jest.dontMock('../../../../../app/scripts/Stores/ProjectStore');
 
   var React = require('react'),
     ReactDOM = require('react-dom'),
@@ -15,10 +16,11 @@
 
     it('Should include a form', function() {
       // Render Landing page in the document
-      var project = TestUtils.renderIntoDocument(<Project />);
+      var project = TestUtils.renderIntoDocument(<Project orgId = "2" />);
       var projectNode = ReactDOM.findDOMNode(project);
 
-      expect(projectNode.nodeType).toEqual(1);
+      expect(projectNode.tobeDefined());
+      //expect(projectNode.nodeType).toEqual(1);
 
       // Verify that it has the correct content
     //  expect(ReactDOM.findDOMNode(button).textContent).toBe('Start Triming');
