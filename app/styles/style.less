@@ -5,7 +5,6 @@
   position: relative;
   z-index: 10;
   #nav {
-    background: rgba(0, 0, 0, 0.12);
     p {
       font-size: 2px;
       padding: 1px;
@@ -17,8 +16,7 @@
         display: inline-block;
       }
     }
-    span.title {
-      .md-padding;
+    a.brand-logo {
       list-style: none;
       text-decoration: none;
       display: inline-block;
@@ -27,9 +25,10 @@
       text-shadow: 0 3px 3px #333;
     }
     .login-form {
+      width: 30%;
       .md-padding;
       padding-bottom: 0;
-      background-color: rgba(0, 0, 0, 0.25)
+      background-color: rgba(0, 0, 0, 0.25);
     }
     .header-input {
       height: 2rem;
@@ -39,7 +38,25 @@
     .header-btn {
       padding: 0 1rem;
     }
+    .dropdown-button {
+      margin: 0 10px 0 0;
+      display: block;
+    }
+    .fa {
+      color: #2ab7a9;
+    }
+    #dropdown {
+      left: 1280px;
+    }
   }
+}
+
+#nav.nav-wrapper {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+nav .brand-logo {
+  padding: 0 0 0 10px;
 }
 
 .error-toast {
@@ -47,11 +64,7 @@
 }
 
 .success-toast {
-  background-color: #00cc33;
-}
-
-.md-inline-block {
-  display: inline-block;
+  background-color: #0c3;
 }
 
 .md-padding {
@@ -68,12 +81,15 @@
   height: 600px;
   width: 100%;
   z-index: 1;
-  margin: -60px 0 0;
+  margin: -70px 0 0;
   position: relative;
   .btntrime {
-    margin: 20% auto;
+    position: relative;
+    top: 50%;
+    margin: auto 40%;
     border-radius: 10px;
     height: 50px;
+    line-height: 16px;
     a {
       text-decoration: none;
       color: #fff;
@@ -120,7 +136,7 @@
   // background-color: #000;
   min-height: 600px;
   max width: 600px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 #grid {
@@ -150,7 +166,7 @@
 }
 
 .col.s12.m6.l4 > p:nth-child(2) {
-  color: #33CCCC;
+  color: #3CC;
   text-align: center;
   font-size: 22px;
   //font-weight: bold;
@@ -220,7 +236,7 @@ img {
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .btn-start {
@@ -243,7 +259,7 @@ img {
 
 @media (min-width: 481px) {
   .signupcard {
-    width: 50%;
+    width: 40%;
     margin: 10px auto;
   }
 }
@@ -255,14 +271,17 @@ img {
 }
 
 .trimeProject {
-    width: 30%;
+  width: 30%;
 }
 
 .select {
-    display: inline-block;
-    width: 50%;
+  display: inline-block;
+  width: 50%;
 }
 
 .success-toast {
-    background-color: #00cc33;
+  background-color: #0c3;
+}
+#sidenav-overlay {
+  display: none;
 }

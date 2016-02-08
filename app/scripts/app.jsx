@@ -19,6 +19,7 @@
     TrimePage = require('./components/StartTrime/index.jsx'),
     NotFound = require('./components/NotFoundPage/index.jsx'),
     createBrowserHistory = require('history/lib/createBrowserHistory'),
+    Menu = require('./components/MenuBar/Menu.jsx'),
     Redirect = ReactRouter.Redirect;
 
   ReactDOM.render((
