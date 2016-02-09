@@ -67,7 +67,9 @@
     ],
     "collectCoverage": true,
     "collectCoverageOnlyFrom": {
-      "app/scripts/components/*.jsx": true
+      "app/scripts/components/LandingPage/TrimeBtn.jsx": true,
+      "app/scripts/components/LandingPage/Header.jsx": true,
+      "app/scripts/components/LandingPage/Landing.jsx": true
     }
   },
   "devDependencies": {
