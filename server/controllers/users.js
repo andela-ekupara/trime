@@ -77,7 +77,7 @@
       })(req, res, next);
     },
 
-    // session: function(req, res) {
+    // session: function(token) {
     //   if (req.session.user) {
     //     res.send(req.session.user);
     //   } else {
@@ -95,7 +95,28 @@
           if (!err) {
             req.decoded = decoded;
             console.log(decoded)
-            next();
+              // check if user is logged in from db
+            Users.findOne({
+                where: {
+                  id: req.decoded.id
+                }
+              })
+              .then(function(user) {
+                if (!user) {
+                  return res.status(401).send({
+                    message: 'Failed to Authenticate'
+                  });
+                } else {
+                  // check isLoggedIn
+                  if (user.isLoggedIn) {
+                    next();
+                  } else {
+                    return res.status(401).send({
+                      message: 'Failed to Authenticate'
+                    });
+                  }
+                }
+              });
           } else {
             return res.status(401).send({
               message: 'Failed to Authenticate'

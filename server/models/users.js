@@ -34,6 +34,10 @@
         password: {
           type: DataTypes.STRING,
           comment: 'Should be hashed'
+        },
+        isLoggedIn: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false
         }
       },
 
