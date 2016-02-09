@@ -1,8 +1,9 @@
 (function() {
   'use strict';
 
-  var passport = require('passport');
-  var Users = require('../models').Users;
+  var passport = require('passport'),
+    Users = require('../models').Users,
+    jwt = require('jsonwebtoken');
 
   module.exports = {
     all: function(req, res, next) {
@@ -20,14 +21,14 @@
       }
 
       Users.sync().then(function() {
-        return Users.findAll(query)
-          .then(function(users) {
-            return res.json(users);
-          });
-      })
-      .catch(function(err) {
-        return next(err);
-      });
+          return Users.findAll(query)
+            .then(function(users) {
+              return res.json(users);
+            });
+        })
+        .catch(function(err) {
+          return next(err);
+        });
     },
 
     signup: function(req, res, next) {
@@ -62,30 +63,49 @@
             error: 'Wrong email password combination'
           });
         }
-        // Initialize user password to null
+        // Set user password to null
+        var secretKey = req.app.get('superSecret');
         user.password = null;
+        var token = jwt.sign(user, secretKey, {
+          expireIn: '24h'
+        });
         req.session.user = user;
-        res.json(user);
+        res.json({
+          user: user,
+          token: token
+        });
       })(req, res, next);
     },
 
-    session: function(req, res) {
-      if (req.session.user) {
-        res.send(req.session.user);
-      } else {
-        res.status(401).send({
-          error: {} // You are not logged in.
-        });
-      }
-    },
+    // session: function(req, res) {
+    //   if (req.session.user) {
+    //     res.send(req.session.user);
+    //   } else {
+    //     res.status(401).send({
+    //       error: {} // You are not logged in.
+    //     });
+    //   }
+    // },
 
     authenticate: function(req, res, next) {
-      if (!req.session.user) {
-        res.status(401).send({
-          error: 'You are not authorised! :('
+      var token = req.headers['x-access-token'];
+      if (token) {
+        var secretKey = req.app.get('superSecret');
+        jwt.verify(token, secretKey, function(err, decoded) {
+          if (!err) {
+            req.decoded = decoded;
+            console.log(decoded)
+            next();
+          } else {
+            return res.status(401).send({
+              message: 'Failed to Authenticate'
+            });
+          }
         });
       } else {
-        next();
+        return res.status(401).send({
+          message: 'You are not authenticated'
+        });
       }
     },
 

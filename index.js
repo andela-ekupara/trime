@@ -22,6 +22,7 @@
   // view engine setup
   app.set('views', path.join(__dirname, 'server/views'));
   app.set('view engine', 'jade');
+  app.set('superSecret', config.secret);
 
   // uncomment after placing your favicon in /public
   //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -71,9 +72,9 @@
     });
   });
 
-  var PORT =  process.env.PORT || '3000';
+  var PORT = process.env.PORT || '3000';
   app.listen(PORT, function(err) {
-    if(err){
+    if (err) {
       console.log(err);
     }
     console.log('Listening on ', PORT);
