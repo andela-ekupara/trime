@@ -65,6 +65,9 @@
       "<rootDir>/node_modules/react-addons-test-utils",
       "<rootDir>/node_modules/fbjs"
     ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
     "collectCoverage": true,
     "collectCoverageOnlyFrom": {
       "app/scripts/components/LandingPage/TrimeBtn.jsx": true,
