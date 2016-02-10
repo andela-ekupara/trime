@@ -49,7 +49,7 @@
           timestamps: true
         });
     },
-
+    
     down: function(queryInterface) {
       return queryInterface.dropTable('users');
     }
