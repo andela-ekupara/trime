@@ -88,6 +88,30 @@
       })(req, res, next);
     },
 
+    session: function(req, res) {
+      Users.findOne({
+        where: {
+          id: req.decoded.id
+        }
+      })
+      .then(function(user) {
+        if (!user) {
+          return res.status(401).send({
+            message: 'Failed to Authenticate'
+          });
+        } else {
+          if (user.token === req.token) {
+            user.password = null;
+            res.send(user);
+          } else {
+            return res.status(401).send({
+              message: 'Failed to Authenticate'
+            });
+          }
+        }
+      });
+    },
+
     authenticate: function(req, res, next) {
       var token = req.headers['x-access-token'];
 
@@ -96,27 +120,9 @@
         jwt.verify(token, secretKey, function(err, decoded) {
           if (!err) {
             req.decoded = decoded;
+            req.token = token;
             // check if token exists in the db
-            Users.findOne({
-                where: {
-                  id: req.decoded.id
-                }
-              })
-              .then(function(user) {
-                if (!user) {
-                  return res.status(401).send({
-                    message: 'Failed to Authenticate'
-                  });
-                } else {
-                  if (user.token === token) {
-                    next();
-                  } else {
-                    return res.status(401).send({
-                      message: 'Failed to Authenticate'
-                    });
-                  }
-                }
-              });
+            next();
           } else {
             return res.status(401).send({
               message: 'Failed to Authenticate'
