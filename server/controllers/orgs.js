@@ -48,7 +48,7 @@
     // Get all orgs user belongs to
     all: function(req, res) {
       Users.sync().then(function() {
-          Users.findById(req.session.user.id)
+          Users.findById(req.decoded.id)
             .then(function(user) {
               user.getOrgs().then(function(orgs) {
                 return res.json(orgs);
