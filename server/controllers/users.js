@@ -53,59 +53,50 @@
     // Login middleware handler
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
-        console.log('SEQUELIZE');
-        res.send('Debugging');
-        return;
         if (err) {
           return res.status(500).send({
             error: err
           });
-        }
-        if (!user) {
+        } else if (!user) {
           return res.status(401).send({
             error: 'Wrong email password combination'
           });
+        } else {
+          // create a token
+          // save the token to db
+          // return the token to backend
+          var secretKey = req.app.get('superSecret');
+
+          var token = jwt.sign({
+            id: user.id,
+            email: user.email
+          }, secretKey, {
+            expiresIn: '24h'
+          });
+
+          user.token = token;
+          user.save();
+          user.password = null;
+          return res.status(200).send({
+            sucess: true,
+            user: user,
+            token: token
+          });
+
         }
-        // Set user password to null
-        var secretKey = req.app.get('superSecret');
-        user.password = null;
-        var token = jwt.sign({
-          id: user.id,
-          email: user.email
-        }, secretKey, {
-          expireIn: '24h'
-        });
 
-        // update isLoggedIn
-        user.token = token;
-        // save the token to db
-        // user.save(function(err, result) {
-        //   console.log('ANOTHERONE', err, result);
-        // });
-
-        res.json(user);
       })(req, res, next);
     },
 
-    // session: function(token) {
-    //   if (req.session.user) {
-    //     res.send(req.session.user);
-    //   } else {
-    //     res.status(401).send({
-    //       error: {} // You are not logged in.
-    //     });
-    //   }
-    // },
-
     authenticate: function(req, res, next) {
       var token = req.headers['x-access-token'];
+
       if (token) {
         var secretKey = req.app.get('superSecret');
         jwt.verify(token, secretKey, function(err, decoded) {
           if (!err) {
             req.decoded = decoded;
-            console.log(decoded)
-              // check if user is logged in from db
+            // check if token exists in the db
             Users.findOne({
                 where: {
                   id: req.decoded.id
@@ -117,8 +108,7 @@
                     message: 'Failed to Authenticate'
                   });
                 } else {
-                  // check isLoggedIn
-                  if (user.isLoggedIn) {
+                  if (user.token === token) {
                     next();
                   } else {
                     return res.status(401).send({

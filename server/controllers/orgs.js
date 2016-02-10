@@ -20,7 +20,7 @@
                 description: req.body.description
               })
               .then(function(org) {
-                Users.findById(req.session.user.id)
+                Users.findById(req.decoded.id)
                   .then(function(user) {
                     user.addOrg(org, {
                         role: 'owner'
@@ -47,10 +47,10 @@
 
     // Get all orgs user belongs to
     all: function(req, res) {
-        Users.sync().then(function() {
+      Users.sync().then(function() {
           Users.findById(req.session.user.id)
-            .then(function (user) {
-              user.getOrgs().then(function(orgs){
+            .then(function(user) {
+              user.getOrgs().then(function(orgs) {
                 return res.json(orgs);
               });
             });
