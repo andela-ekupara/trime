@@ -53,27 +53,37 @@
     // Login middleware handler
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
+        console.log('SEQUELIZE');
+        res.send('Debugging');
+        return;
         if (err) {
-          return res.status(401).send({
+          return res.status(500).send({
             error: err
           });
         }
         if (!user) {
-          return res.status(500).send({
+          return res.status(401).send({
             error: 'Wrong email password combination'
           });
         }
         // Set user password to null
         var secretKey = req.app.get('superSecret');
         user.password = null;
-        var token = jwt.sign(user, secretKey, {
+        var token = jwt.sign({
+          id: user.id,
+          email: user.email
+        }, secretKey, {
           expireIn: '24h'
         });
-        req.session.user = user;
-        res.json({
-          user: user,
-          token: token
-        });
+
+        // update isLoggedIn
+        user.token = token;
+        // save the token to db
+        // user.save(function(err, result) {
+        //   console.log('ANOTHERONE', err, result);
+        // });
+
+        res.json(user);
       })(req, res, next);
     },
 
@@ -140,7 +150,7 @@
       }
     },
 
-    logout: function(req, res){
+    logout: function(req, res) {
       delete req.session.user;
       res.redirect('/');
     },
