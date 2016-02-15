@@ -90,26 +90,26 @@
 
     session: function(req, res) {
       Users.findOne({
-        where: {
-          id: req.decoded.id
-        }
-      })
-      .then(function(user) {
-        if (!user) {
-          return res.status(401).send({
-            message: 'Failed to Authenticate'
-          });
-        } else {
-          if (user.token === req.token) {
-            user.password = null;
-            res.send(user);
-          } else {
+          where: {
+            id: req.decoded.id
+          }
+        })
+        .then(function(user) {
+          if (!user) {
             return res.status(401).send({
               message: 'Failed to Authenticate'
             });
+          } else {
+            if (user.token === req.token) {
+              user.password = null;
+              res.send(user);
+            } else {
+              return res.status(401).send({
+                message: 'Failed to Authenticate'
+              });
+            }
           }
-        }
-      });
+        });
     },
 
     authenticate: function(req, res, next) {

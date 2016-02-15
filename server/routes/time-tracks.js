@@ -2,7 +2,7 @@
   'use strict';
   module.exports = function(app) {
     var TimeTracks = require('../controllers/time-tracks');
-    var User = require('../controllers/users');
+    var Users = require('../controllers/users');
 
     app.post('/api/time-tracks/start', Users.authenticate, TimeTracks.start);
     app.get('/api/time-tracks/getProjects/:userId', Users.authenticate, TimeTracks.getProjects);
