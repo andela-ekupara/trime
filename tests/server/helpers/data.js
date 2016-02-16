@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  var bcrypt = require('bcrypt-nodejs');
 
   module.exports = [{
     'model': 'Users',
@@ -7,7 +8,7 @@
       'id': 1,
       'email': 'test@test.com',
       'name': 'Brian Kobe',
-      'password': 'password'
+      'password': bcrypt.hashSync('password')
     }
   }, {
     'model': 'Orgs',

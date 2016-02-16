@@ -5,6 +5,7 @@
   var async = require('async'),
     server = require('../../../index'),
     sequelize_fixtures = require('sequelize-fixtures'),
+    request = require('supertest'),
     models = require('../../../server/models');
 
   module.exports = {
@@ -40,7 +41,17 @@
           if (err) {
             process.exit(1);
           } else {
-            done('ok');
+            request(server)
+            .post('/api/users')
+            .send({
+              email: 'test@test.com',
+              password: 'password'
+            })
+            .set('Accept', 'application/json')
+            .end(function(err, res) {
+              console.log(res.body);
+              done('ok');
+            });
           }
         });
     }

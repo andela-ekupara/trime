@@ -39,9 +39,9 @@
       request(server)
         .post('/api/users')
         .send({
-          email: 'evan@andela.com',
+          email: 'test@test.com',
           password: 'abc123',
-          name: 'Evan Greenlowe'
+          name: 'Another One'
         })
         .set('Accept', 'application/json')
         .end(function(err, res) {
@@ -49,7 +49,6 @@
           expect(res.status).toEqual(500);
           expect(res.body).toBeDefined();
           expect(res.body.error).toBeDefined();
-          console.log(res.body);
           expect(res.body.error.message).toBe('email must be unique');
           expect(res.body.error.path).toBe('email');
           done();
@@ -70,7 +69,6 @@
           expect(res.body).toBeDefined();
           expect(res.body.error).toBeDefined();
           expect(res.body.error).toBe('Error creating user.');
-          console.log(res.body);
           done();
         });
     });
