@@ -69,7 +69,16 @@
       "<rootDir>/node_modules/react-dom",
       "<rootDir>/node_modules/react-addons-test-utils",
       "<rootDir>/node_modules/fbjs"
-    ]
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageOnlyFrom": {
+      "app/scripts/components/LandingPage/TrimeBtn.jsx": true,
+      "app/scripts/components/LandingPage/Header.jsx": true,
+      "app/scripts/components/LandingPage/Landing.jsx": true
+    }
   },
   "devDependencies": {
     "babel-jest": "^6.0.1",
