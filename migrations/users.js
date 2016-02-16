@@ -34,6 +34,10 @@
             type: Sequelize.STRING,
             allowNull: true
           },
+          token:{
+            type: Sequelize.STRING,
+            allowNull: true
+          },
           password: {
             type: Sequelize.STRING,
             allowNull: false
@@ -49,7 +53,7 @@
           timestamps: true
         });
     },
-    
+
     down: function(queryInterface) {
       return queryInterface.dropTable('users');
     }

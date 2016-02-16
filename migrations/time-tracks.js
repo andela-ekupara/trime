@@ -8,7 +8,7 @@
           autoIncrement: true
         },
         startedAt: {
-          type: Sequelize.BIGNINT,
+          type: Sequelize.BIGINT,
           allowNull: false
         },
         finishedAt: {
