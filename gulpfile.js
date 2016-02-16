@@ -53,7 +53,7 @@ gulp.task('nodemon', function() {
   nodemon({
       script: 'index.js',
       ext: 'js',
-      tasks: ['lint'],
+      // tasks: ['lint'],
       ignore: ['public/', 'node_modules/']
     })
     .on('restart', function() {

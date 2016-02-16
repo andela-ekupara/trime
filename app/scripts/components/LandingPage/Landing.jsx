@@ -11,11 +11,12 @@
           </div>
           <div id="action"></div>
             <div id="grid">
-              <p>Your company mission statement or your ultimate value.</p>
+              <p>Trime aims to add value to your company</p>
               <div className="row">
                 <div className="col s2">.</div>
                 <div className="col s8">
-                  <p>Add some more descriptive content here to describe your product or service. What your offer is and how you can improve your potential customers daily experience. This could also be an explanation of the details of your offer if you are running a specific promotion</p>
+                  <p>Do you have a difficult time accounting for the time you spend working on projects? Then it's time to trime. <br />
+                  Our application is a flexible and easy to use solution that helps you and your colleagues keep track of time spent on projects</p>
                 </div>
                 <div className="col s2">.</div>
               </div>
@@ -23,18 +24,18 @@
             <div className="row">
 
             <div className="col s12 m6 l4"><img src="./images/one.jpeg" className="responsive-image"/>
-              <p>WE ARE THE BEST</p>
-              <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
+              <p>MANAGE YOUR TIME</p>
+              <p>Track time on different projects easily and effectively.</p>
             </div>
 
             <div className="col s12 m6 l4"><img src="./images/five.jpeg" className="responsive-image"/>
-              <p>WE ARE THE BEST</p>
-              <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
+              <p>ADD VALUE</p>
+              <p>Automate repititive tasks and keep your focus on what matters.</p>
             </div>
 
             <div className="col s12 m6 l4"><img src="./images/three.jpeg" className="responsive-image"/>
-              <p>WE ARE THE BEST</p>
-              <p>What does your company offer that will improve or solve a problem? Explain the pain point being alleviated</p>
+              <p>SAVE MONEY</p>
+              <p>Get paid based on the actual amount of time spent on projects.</p>
             </div>
           </div>
         </div>

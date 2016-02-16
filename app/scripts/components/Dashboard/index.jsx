@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  
   var React = require('react');
   var OrgStore = require('../../stores/OrgStore');
   var OrgActions = require('../../actions/OrgActions');
