@@ -34,10 +34,6 @@
             type: Sequelize.STRING,
             allowNull: true
           },
-          token:{
-            type: Sequelize.STRING,
-            allowNull: true
-          },
           password: {
             type: Sequelize.STRING,
             allowNull: false
