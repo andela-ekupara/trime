@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "echo 'No tests available' && exit 0"
+    "test:bend": "jasmine",
+    "test:fend": "jest",
+    "test": "npm run test:bend && npm run test:fend"
   },
   "dependencies": {
     "babel-eslint": "^4.1.6",
@@ -54,5 +56,32 @@
     "serve-favicon": "~2.3.0",
     "superagent": "^1.4.0",
     "vinyl-source-stream": "~1.1.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageOnlyFrom": {
+      "app/scripts/components/LandingPage/TrimeBtn.jsx": true,
+      "app/scripts/components/LandingPage/Header.jsx": true,
+      "app/scripts/components/LandingPage/Landing.jsx": true
+    }
+  },
+  "devDependencies": {
+    "babel-jest": "^6.0.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "jasmine": "^2.4.1",
+    "jest-cli": "^0.8.2",
+    "react-addons-test-utils": "^0.14.5",
+    "supertest": "^1.1.0"
   }
 }

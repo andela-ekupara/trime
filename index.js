@@ -78,4 +78,6 @@
     }
     console.log('Listening on ', PORT);
   });
+
+  module.exports = app;
 })();
