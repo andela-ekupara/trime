@@ -42,15 +42,14 @@
             process.exit(1);
           } else {
             request(server)
-            .post('/api/users')
+            .post('/api/users/login')
             .send({
               email: 'test@test.com',
               password: 'password'
             })
             .set('Accept', 'application/json')
             .end(function(err, res) {
-              console.log(res.body);
-              done('ok');
+              done(res.body.token);
             });
           }
         });

@@ -5,12 +5,12 @@
   var server = require('../../../index');
   var seeder = require('../helpers/seeder');
 
-  describe('user test suite', function() {
+  describe('User suite', function() {
     var token; 
 
     beforeAll(function(done) {
-      seeder.seed(function(ok) {
-        console.log(ok);
+      seeder.seed(function(result) {
+        token = result;
         done();
       });
     });
@@ -27,6 +27,7 @@
         .end(function(err, res) {
           expect(err).toBeNull();
           expect(res.status).toEqual(200);
+          console.log('SUITE ONE', res.body);
           expect(res.body).toBeDefined();
           expect(res.body.id).toBeDefined();
           expect(res.body.email).toBe('evan@andela.com');

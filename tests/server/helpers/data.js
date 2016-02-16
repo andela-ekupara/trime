@@ -5,7 +5,6 @@
   module.exports = [{
     'model': 'Users',
     'data': {
-      'id': 1,
       'email': 'test@test.com',
       'name': 'Brian Kobe',
       'password': bcrypt.hashSync('password')
