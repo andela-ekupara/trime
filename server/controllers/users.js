@@ -78,7 +78,7 @@
           user.save();
           user.password = null;
           return res.status(200).send({
-            sucess: true,
+            success: true,
             user: user,
             token: token
           });
