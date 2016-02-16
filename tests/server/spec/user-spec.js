@@ -27,7 +27,6 @@
         .end(function(err, res) {
           expect(err).toBeNull();
           expect(res.status).toEqual(200);
-          console.log('SUITE ONE', res.body);
           expect(res.body).toBeDefined();
           expect(res.body.id).toBeDefined();
           expect(res.body.email).toBe('evan@andela.com');
@@ -96,7 +95,7 @@
       request(server)
         .post('/api/users/login')
         .send({
-          email: 'test@test.com',
+          email: 'edu@andela.com',
           password: 'password'
         })
         .set('Accept', 'application/json')

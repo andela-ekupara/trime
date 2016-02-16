@@ -3,25 +3,32 @@
   var bcrypt = require('bcrypt-nodejs');
 
   module.exports = [{
-    'model': 'Users',
-    'data': {
-      'email': 'test@test.com',
-      'name': 'Brian Kobe',
-      'password': bcrypt.hashSync('password')
-    }
+      'model': 'Users',
+      'data': {
+          'email': 'test@test.com',
+          'name': 'Brian Kobe',
+          'password': bcrypt.hashSync('password')
+      }
   }, {
-    'model': 'Orgs',
-    'data': {
-      'id': 1,
-      'name': 'Test',
-      'description': 'For testing purposes'
-    }
+      'model': 'Users',
+      'data': {
+          'email': 'edu@andela.com',
+          'name': 'Edwin K',
+          'password': bcrypt.hashSync('password')
+      }
   }, {
-    'model': 'OrgUsers',
-    'data': {
-      'role': 'owner',
-      'org_id': 1,
-      'user_id': 1
-    }
+      'model': 'Orgs',
+      'data': {
+          'id': 1,
+          'name': 'Test',
+          'description': 'For testing purposes'
+      }
+  }, {
+      'model': 'OrgUsers',
+      'data': {
+          'role': 'owner',
+          'org_id': 1,
+          'user_id': 1
+      }
   }];
 })();
