@@ -51,7 +51,7 @@
           <form className="col s9" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s12">
-                <input id="name" type="text" name="name" onChange={this.handleNameChange} className="validate" required/>
+                <input className="validate" id="name" name="name"  onChange={this.handleNameChange} type="text" required/>
                 <label className="active" htmlFor="name">
                   Project Name
                 </label>
@@ -59,11 +59,11 @@
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <textarea id="textarea1" name="description" onChange={this.handleDescriptionChange} className="materialize-textarea" required></textarea>
+                <textarea className="materialize-textarea"  id="textarea1" name="description" onChange={this.handleDescriptionChange} required></textarea>
                 <label htmlFor="Description">Description</label>
               </div>
             </div>
-            <button className="btn waves-effect waves-light" type="submit" name="action">
+            <button className="btn waves-effect waves-light" name="action" type="submit" >
               Submit
               <i className="material-icons right">send </i>
             </button >
