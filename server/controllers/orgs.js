@@ -145,6 +145,9 @@
                 });
               }
               return org.getUsers().then(function(users) {
+                for (var user in users){
+                  users[user].password = null;
+                }
                 return res.json(users);
               });
             });
