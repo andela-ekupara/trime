@@ -5,6 +5,8 @@
       return queryInterface.createTable('time_tracks', {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          primaryKey: true,
           autoIncrement: true
         },
         startedAt: {
@@ -14,6 +16,14 @@
         finishedAt: {
           type: Sequelize.BIGINT,
           allowNull: true
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+          allowNull: false
         }
       }, {
         // Auto created column fields should use snake case

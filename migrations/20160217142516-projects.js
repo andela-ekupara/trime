@@ -5,7 +5,9 @@
       return queryInterface.createTable('projects', {
         id: {
           type: Sequelize.INTEGER,
-          aoutoIncrement: true
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true
         },
         name: {
           type: Sequelize.STRING,
@@ -14,6 +16,14 @@
         description: {
           type: Sequelize.STRING,
           allowNull: true
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+          allowNull: false
         }
       }, {
         // Auto created column fields should use snake case

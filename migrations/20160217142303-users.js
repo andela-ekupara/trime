@@ -5,6 +5,8 @@
       return queryInterface.createTable('users', {
           id: {
             type: Sequelize.INTEGER,
+            allowNull: false,
+            primaryKey: true,
             autoIncrement: true
           },
           name: {
@@ -24,7 +26,7 @@
           },
           github_auth_token: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
           },
           google_auth_id: {
             type: Sequelize.STRING,
@@ -36,6 +38,14 @@
           },
           password: {
             type: Sequelize.STRING,
+            allowNull: false
+          },
+          created_at: {
+            type: Sequelize.DATE,
+            allowNull: false
+          },
+          updated_at: {
+            type: Sequelize.DATE,
             allowNull: false
           }
         },
