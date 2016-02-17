@@ -15,12 +15,11 @@
         .spread(function(result) {
           if (result.length === 0) {
             res.status(404).send({
-              message: 'No projects found'
+              error: 'No projects found'
             });
           } else {
             res.status(200).send(result);
           }
-
         })
         .catch(function(err) {
           res.status(500).send({

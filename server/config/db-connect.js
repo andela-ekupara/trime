@@ -22,5 +22,6 @@
   sequelize.sync({
     force: false
   });
+
   module.exports = sequelize;
 })();

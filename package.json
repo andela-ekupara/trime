@@ -5,11 +5,12 @@
   "scripts": {
     "prestart": "sequelize db:migrate",
     "start": "node index.js",
-    "test:bend": "jasmine",
-    "test:fend": "jest",
+    "test:bend": "jasmine --verbose",
+    "test:fend": "jest --verbose",
     "test": "npm run test:bend && npm run test:fend"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "babel-eslint": "^4.1.6",
     "babelify": "^7.2.0",
     "bcrypt-nodejs": "0.0.3",
@@ -37,6 +38,8 @@
     "gulp-util": "2.2.20",
     "history": "^1.17.0",
     "jade": "~1.11.0",
+    "jshint": "~2.8.0",
+    "jsonwebtoken": "^5.4.1",
     "karma": "^0.13.15",
     "keymirror": "^0.1.1",
     "morgan": "~1.6.1",
@@ -54,6 +57,8 @@
     "react-select": "1.0.0-beta8",
     "reactify": "^1.1.1",
     "sequelize": "~3.19.0",
+    "sequelize-cli": "^2.3.1",
+    "sequelize-fixtures": "^0.4.8",
     "serve-favicon": "~2.3.0",
     "superagent": "^1.4.0",
     "vinyl-source-stream": "~1.1.0"

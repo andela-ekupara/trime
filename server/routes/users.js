@@ -8,7 +8,7 @@
       .post(Users.signup);
 
     app.post('/api/users/login', Users.login);
-    app.get('/api/users/session', Users.session);
+    app.get('/api/users/session', Users.authenticate, Users.session);
     app.get('/logout', Users.logout);
   };
 })();
