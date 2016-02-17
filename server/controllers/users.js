@@ -98,11 +98,11 @@
           if (user && user.token === req.token) {
               user.password = null;
               return res.send(user);
-            }
+          }
 
           res.status(401).send({
-          message: 'Failed to Authenticate User'
-        });
+            error: 'Failed to Authenticate User'
+          });
       });
     },
 
@@ -119,13 +119,13 @@
             next();
           } else {
             return res.status(401).send({
-              message: 'Failed to Authenticate'
+              error: 'Failed to Authenticate'
             });
           }
         });
       } else {
         return res.status(401).send({
-          message: 'You are not authenticated'
+          error: 'You are not authenticated'
         });
       }
     },
