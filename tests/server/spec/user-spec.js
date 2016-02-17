@@ -132,5 +132,20 @@
           });
      });
 
+    it('creates a user successfully', function(done) {
+      request(server)
+        .post('/api/users')
+        .send({
+          email: 'me@you.com',
+          name: 'Me You',
+          password: 'abc123'
+        })
+        .set('Accept', 'application/json')
+        .end(function(err, res) {
+          expect(true).toBe(true);
+          done();
+        });
+    });
+
   });
 })();
