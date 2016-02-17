@@ -3,6 +3,11 @@
 
   module.exports = function(sequelize, DataTypes) {
     return sequelize.define('org_users', {
+        id: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
         role: {
           type: DataTypes.ENUM('owner', 'admin', 'user'),
           allowNull: false
