@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prestart": "sequelize db:migrate",
     "start": "node index.js",
     "test:bend": "jasmine --verbose",
     "test:fend": "jest --verbose",
