@@ -6,23 +6,15 @@
     server = require('../../../index'),
     sequelize_fixtures = require('sequelize-fixtures'),
     request = require('supertest'),
+    dbconfig = require('../../../server/config/db-connect'),
     models = require('../../../server/models');
 
   module.exports = {
     seed: function(done) {
       async.waterfall([
           function(callback) {
-            console.log('droping.....');
-            models.sequelize.drop({
-              cascade: true
-            }).then(function() {
-              console.log('Drop was successful');
-              callback(null);
-            });
-          },
-          function(callback) {
             console.log('syncing ......');
-            models.sequelize.sync({
+            dbconfig.sync({
               force: true
             }).then(function() {
               console.log('Sync successful');
