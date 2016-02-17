@@ -16,26 +16,6 @@
       });
     });
 
-    it('creates a user', function(done) {
-      request(server)
-        .post('/api/users')
-        .send({
-          email: 'evan@andela.com',
-          password: 'abc123',
-          name: 'Evan Greenlowe'
-        })
-        .set('Accept', 'application/json')
-        .end(function(err, res) {
-          expect(err).toBeNull();
-          expect(res.status).toEqual(200);
-          expect(res.body).toBeDefined();
-          expect(res.body.id).toBeDefined();
-          expect(res.body.email).toBe('evan@andela.com');
-          expect(res.body.name).toBe('Evan Greenlowe');
-          done();
-        });
-    });
-
     it('user created must have a unique email', function(done) {
       request(server)
         .post('/api/users')
