@@ -5,10 +5,36 @@
       return queryInterface.createTable('org_users', {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          primaryKey: true,
           autoIncrement: true
         },
         role: {
           type: Sequelize.ENUM('owner', 'admin', 'user'),
+          allowNull: false
+        },
+        org_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'orgs',
+            key: 'id'
+          }
+        },
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'users',
+            key: 'id'
+          }
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
           allowNull: false
         }
       }, {

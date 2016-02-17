@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true
       },
-
       role: {
         type: DataTypes.ENUM('owner', 'admin', 'user'),
         allowNull: false
