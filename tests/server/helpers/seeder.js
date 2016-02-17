@@ -6,7 +6,6 @@
     server = require('../../../index'),
     sequelize_fixtures = require('sequelize-fixtures'),
     request = require('supertest'),
-    dbconfig = require('../../../server/config/db-connect'),
     models = require('../../../server/models');
 
   module.exports = {
@@ -14,7 +13,7 @@
       async.waterfall([
           function(callback) {
             console.log('syncing ......');
-            dbconfig.sync({
+            models.sequelize.sync({
               force: true
             }).then(function() {
               console.log('Sync successful');
