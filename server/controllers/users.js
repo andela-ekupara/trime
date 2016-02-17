@@ -71,7 +71,7 @@
             id: user.id,
             email: user.email
           }, secretKey, {
-            expiresIn: '24h'
+            expiresIn: '86400h'
           });
 
           user.token = token;
