@@ -2,18 +2,28 @@
   'use strict';
   module.exports = {
     up: function(queryInterface, Sequelize) {
-      return queryInterface.createTable('projects', {
+      return queryInterface.createTable('time_tracks', {
         id: {
           type: Sequelize.INTEGER,
-          aoutoIncrement: true
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true
         },
-        name: {
-          type: Sequelize.STRING,
+        startedAt: {
+          type: Sequelize.BIGINT,
           allowNull: false
         },
-        description: {
-          type: Sequelize.STRING,
+        finishedAt: {
+          type: Sequelize.BIGINT,
           allowNull: true
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+          allowNull: false
         }
       }, {
         // Auto created column fields should use snake case
@@ -24,9 +34,8 @@
         timestamps: true
       });
     },
-
     down: function(queryInterface) {
-      return queryInterface.dropTable('projects');
+      return queryInterface.dropTable('time_tracks');
     }
   };
 })();

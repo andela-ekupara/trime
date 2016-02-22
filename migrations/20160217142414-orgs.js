@@ -2,13 +2,27 @@
   'use strict';
   module.exports = {
     up: function(queryInterface, Sequelize) {
-      return queryInterface.createTable('org_users', {
+      return queryInterface.createTable('orgs', {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          primaryKey: true,
           autoIncrement: true
         },
-        role: {
-          type: Sequelize.ENUM('owner', 'admin', 'user'),
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false
+        },
+        description: {
+          type: Sequelize.TEXT,
+          allowNull: true
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
           allowNull: false
         }
       }, {
@@ -21,7 +35,7 @@
       });
     },
     down: function(queryInterface) {
-      return queryInterface.dropTable('org_users');
+      return queryInterface.dropTable('orgs');
     }
   };
 })();

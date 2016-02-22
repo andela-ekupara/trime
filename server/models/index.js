@@ -14,13 +14,13 @@
 
   // Holds the model filenames
   var models = [
+    'users',
+    'projects',
     'orgs',
     'org-users',
-    'projects',
     'project-users',
-    'users',
-    'time-tracks',
-    'project-trimes'
+    'project-trimes',
+    'time-tracks'
   ];
 
   // Add all models to the exports

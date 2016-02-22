@@ -2,9 +2,11 @@
   'use strict';
   module.exports = {
     up: function(queryInterface, Sequelize) {
-      return queryInterface.createTable('orgs', {
+      return queryInterface.createTable('projects', {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          primaryKey: true,
           autoIncrement: true
         },
         name: {
@@ -12,8 +14,16 @@
           allowNull: false
         },
         description: {
-          type: Sequelize.TEXT,
+          type: Sequelize.STRING,
           allowNull: true
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+          allowNull: false
         }
       }, {
         // Auto created column fields should use snake case
@@ -24,8 +34,9 @@
         timestamps: true
       });
     },
+
     down: function(queryInterface) {
-      return queryInterface.dropTable('orgs');
+      return queryInterface.dropTable('projects');
     }
   };
 })();

@@ -71,13 +71,13 @@
             id: user.id,
             email: user.email
           }, secretKey, {
-            expiresIn: '24h'
+            expiresIn: '86400h'
           });
 
           user.token = token;
           user.save();
           user.password = null;
-          return res.status(200).send({
+          return res.send({
             success: true,
             user: user,
             token: token
@@ -95,21 +95,15 @@
           }
         })
         .then(function(user) {
-          if (!user) {
-            return res.status(401).send({
-              message: 'Failed to Authenticate'
-            });
-          } else {
-            if (user.token === req.token) {
+          if (user && user.token === req.token) {
               user.password = null;
-              res.send(user);
-            } else {
-              return res.status(401).send({
-                message: 'Failed to Authenticate'
-              });
-            }
+              return res.send(user);
           }
-        });
+
+          res.status(401).send({
+            error: 'Failed to Authenticate User'
+          });
+      });
     },
 
     authenticate: function(req, res, next) {
@@ -125,13 +119,13 @@
             next();
           } else {
             return res.status(401).send({
-              message: 'Failed to Authenticate'
+              error: 'Failed to Authenticate'
             });
           }
         });
       } else {
         return res.status(401).send({
-          message: 'You are not authenticated'
+          error: 'You are not authenticated'
         });
       }
     },
