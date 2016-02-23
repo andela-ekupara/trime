@@ -101,9 +101,6 @@
         </div>
       );
     }
-
   });
-
   module.exports = Menu;
-
 })();
