@@ -9,6 +9,6 @@
 
     app.post('/api/users/login', Users.login);
     app.get('/api/users/session', Users.authenticate, Users.session);
-    app.get('/logout', Users.logout);
+    app.put('/logout', Users.authenticate, Users.logout);
   };
 })();

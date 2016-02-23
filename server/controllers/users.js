@@ -141,8 +141,24 @@
     },
 
     logout: function(req, res) {
-      delete req.session.user;
-      res.redirect('/');
+      // get user id from decoded token
+      Users.update({
+        token: null,
+      }, {
+        where: {
+          id: req.decoded.id
+        }
+      }).then(function(ok) {
+        if (ok) {
+          res.status(200).send({
+            message: 'You have been logged out successfully'
+          });
+        } else {
+          res.status(500).send({
+            error: 'could not logout'
+          });
+        }
+      });
     },
 
     orgAdmin: function(req, res, next) {
