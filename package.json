@@ -6,7 +6,7 @@
     "prestart": "sequelize db:migrate",
     "start": "node index.js",
     "test:bend": "jasmine",
-    "test:fend": "mocha --opts ./mocha.opts",
+    "test:fend": "mocha --compilers .:tests/compiler.js  --require tests/testdom.js  tests/client/**/*test.js",
     "test": "npm run test:bend && npm run test:fend"
   },
   "config": {
