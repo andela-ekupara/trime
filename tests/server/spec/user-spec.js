@@ -128,6 +128,7 @@
             expect(res.status).toEqual(200);
             expect(res.body).toBeDefined();
             expect(Array.isArray(res.body)).toBe(true);
+            expect(res.body.length).toBeGreaterThan(2);
             done();
           });
      });
