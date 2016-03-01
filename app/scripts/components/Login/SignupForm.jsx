@@ -24,7 +24,7 @@
 
     componentDidMount: function() {
       this.isPasswordValid();
-      UserStore.addChangeListener(this.handleSignup);
+      UserStore.addChangeListener(this.handleSignup, 'signup');
     },
 
     isPasswordValid: function(password, confirmPassword) {
@@ -43,12 +43,14 @@
     },
 
     handleSignup: function() {
-      var data = UserStore.getData();
+      var data = UserStore.getSignupResult();
       if (data) {
         if (data.error) {
           window.Materialize.toast(data.error.message, 2000, 'error-toast');
           this.setState({result: data.error.message});
         } else {
+          window.localStorage.setItem('token', data.user.token);
+          UserActions.session();
           this.setState({result: 'Success!'});
           this.history.pushState(null, '/dashboard');
         }

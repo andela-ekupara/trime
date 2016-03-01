@@ -43,10 +43,25 @@
           return res.status(500).send({
             error: 'Error creating user.'
           });
+        } else {
+          // return the token to backend
+          var secretKey = req.app.get('superSecret');
+
+          var token = jwt.sign({
+            id: user.id,
+            email: user.email
+          }, secretKey, {
+            expiresIn: '86400h'
+          });
+          user.token = token;
+          user.save();
+          user.password = null;
+          return res.send({
+            success: true,
+            user: user
+          }); 
         }
 
-        user.password = null;
-        return res.json(user);
       })(req, res, next);
     },
 
@@ -81,7 +96,6 @@
             success: true,
             user: user
           });
-
         }
 
       })(req, res, next);

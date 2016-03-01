@@ -7,9 +7,10 @@
 
   var UserStore = assign({}, BaseStore, {
     fetchedUsers: null,
-    logoutResult: null,
-    session: null,
+    signupResult: null,
     loginResult: null,
+    session: null,
+    logoutResult: null,
 
     setUsers: function(users) {
       this.fetchedUsers = users;
@@ -18,6 +19,15 @@
 
     getUsers: function() {
       return this.fetchedUsers;
+    },
+
+    setLoginResult: function(login) {
+      this.loginResult = login;
+      this.emitChange('login');
+    },
+
+    getLoginResult: function() {
+      return this.loginResult;
     },
 
     setSession: function(session) {
@@ -38,14 +48,15 @@
       return this.logoutResult;
     },
 
-    setLoginResult: function(login) {
-      this.loginResult = login;
-      this.emitChange('login');
+    setSignupResult: function(signup) {
+      this.signupResult = signup;
+      this.emitChange('signup');
     },
 
-    getLoginResult: function() {
-      return this.loginResult;
+    getSignupResult: function() {
+      return this.signupResult;
     }
+
   });
 
   AppDispatcher.register(function(action) {
@@ -60,7 +71,7 @@
         UserStore.setUsers(action.data);
         break;
       case TrimeConstants.USER_SIGNUP:
-        UserStore.setData(action.data);
+        UserStore.setSignupResult(action.data);
         break;
       case TrimeConstants.USER_SESSION:
         UserStore.setSession(action.data);
