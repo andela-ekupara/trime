@@ -43,8 +43,8 @@
       UserStore.addChangeListener(this.getSession);
       UserStore.addChangeListener(this.handleLogout);
       window.$('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 240,
-        edge: 'right', // Choose the horizontal origin
+        menuWidth: 300,
+        edge: 'right',
         closeOnClick: true
       });
     },

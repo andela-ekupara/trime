@@ -52,7 +52,7 @@
           this.setState({result: 'Success!'});
           this.history.pushState(null, '/dashboard');
         }
-    }
+      }
     },
 
     handleFieldChange: function(event) {
