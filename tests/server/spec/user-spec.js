@@ -3,14 +3,14 @@
 
   var request = require('supertest');
   var server = require('../../../index');
-  var seeder = require('../helpers/seeder');
+  var helper = require('../helpers/login');
 
   describe('User suite', function() {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     var token; 
 
     beforeAll(function(done) {
-      seeder.seed(function(result) {
+      helper.login(function(result) {
         token = result;
         done();
       });
@@ -20,7 +20,7 @@
       request(server)
         .post('/api/users')
         .send({
-          email: 'test@test.com',
+          email: 'brnkkoech@ymail.com',
           password: 'abc123',
           name: 'Another One'
         })
@@ -58,7 +58,7 @@
       request(server)
         .post('/api/users/login')
         .send({
-          email: 'test@test.com',
+          email: 'brnkkoech@ymail.com',
           password: 'abc124'
         })
         .set('Accept', 'application/json')
@@ -76,7 +76,7 @@
       request(server)
         .post('/api/users/login')
         .send({
-          email: 'edu@andela.com',
+          email: 'brnkkoech@ymail.com',
           password: 'password'
         })
         .set('Accept', 'application/json')
@@ -113,7 +113,7 @@
           expect(err).toBeNull();
           expect(res.status).toEqual(401);
           expect(res.body).toBeDefined();
-          expect(res.body.message).toBe('Failed to Authenticate');
+          expect(res.body.error).toBe('Failed to Authenticate');
           done();
         });
     });
