@@ -8,6 +8,7 @@
     get: function(url, actionType) {
       request
         .get(url)
+        .set('x-access-token', window.localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -20,6 +21,7 @@
       request
         .delete(url)
         .send(data || {})
+        .set('x-access-token', window.localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -32,6 +34,7 @@
       request
         .put(url)
         .send(data)
+        .set('x-access-token', window.localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -44,6 +47,7 @@
       request
         .post(url)
         .send(data)
+        .set('x-access-token', window.localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,

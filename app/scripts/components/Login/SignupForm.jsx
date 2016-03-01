@@ -44,13 +44,15 @@
 
     handleSignup: function() {
       var data = UserStore.getData();
-      if (data.error) {
-        window.Materialize.toast(data.error.message, 2000, 'error-toast');
-        this.setState({result: data.error.message});
-      } else {
-        this.setState({result: 'Success!'});
-        this.history.pushState(null, '/dashboard');
-      }
+      if (data) {
+        if (data.error) {
+          window.Materialize.toast(data.error.message, 2000, 'error-toast');
+          this.setState({result: data.error.message});
+        } else {
+          this.setState({result: 'Success!'});
+          this.history.pushState(null, '/dashboard');
+        }
+    }
     },
 
     handleFieldChange: function(event) {
