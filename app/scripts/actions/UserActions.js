@@ -11,6 +11,9 @@
     login: function(user) {
       BaseActions.post('/api/users/login', user, TrimeConstants.USER_LOGIN);
     },
+    logout: function(token) {
+      BaseActions.put('/api/users/logout', token, TrimeConstants.USER_LOGOUT);
+    },
 
     signup: function(user) {
       BaseActions.post('/api/users', user, TrimeConstants.USER_SIGNUP);
