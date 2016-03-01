@@ -5,7 +5,8 @@
   "scripts": {
     "prestart": "sequelize db:migrate",
     "start": "node index.js",
-    "test:bend": "sequelize db:seed:all && jasmine --verbose",
+    "pretest": "sequelize db:migrate && sequelize db:seed:all",
+    "test:bend": "jasmine --verbose",
     "test:fend": "jest --verbose",
     "test": "npm run test:bend && npm run test:fend"
   },
