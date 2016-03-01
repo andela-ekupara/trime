@@ -106,7 +106,6 @@
     },
 
     authenticate: function(req, res, next) {
-      //var token = req.headers['x-access-token'];
       var token = req.body.token || req.headers['x-access-token'];
       if (token) {
         var secretKey = req.app.get('superSecret');
