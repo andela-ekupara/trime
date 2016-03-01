@@ -21,18 +21,22 @@
     },
 
     componentDidMount: function() {
-      UserStore.addChangeListener(this.handleLogin);
+      UserStore.addChangeListener(this.handleLogin, 'login');
     },
 
     handleLogin: function() {
-      var data = UserStore.getData();
-      if(data.error) {
-        if(typeof data.error === 'string') {
-          window.Materialize.toast(data.error, 2000, 'error-toast');
+      var data = UserStore.getLoginResult();
+      if (data) {
+        if(data.error) {
+          if(typeof data.error === 'string') {
+            window.Materialize.toast(data.error, 2000, 'error-toast');
+          }
+        } else {
+          window.localStorage.setItem('token', data.token);
+          UserActions.session();
+          this.setState({result: 'successful'});
+          this.history.pushState(null, '/dashboard');
         }
-      } else {
-        this.setState({result: 'successful'});
-        //this.history.pushState(null, '/dashboard');
       }
     },
 
