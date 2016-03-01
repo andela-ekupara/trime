@@ -56,10 +56,7 @@
           user.token = token;
           user.save();
           user.password = null;
-          return res.send({
-            success: true,
-            user: user
-          }); 
+          return res.send(user); 
         }
 
       })(req, res, next);
@@ -92,10 +89,7 @@
           user.token = token;
           user.save();
           user.password = null;
-          return res.send({
-            success: true,
-            user: user
-          });
+          return res.send(user);
         }
 
       })(req, res, next);

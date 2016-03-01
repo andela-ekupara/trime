@@ -32,7 +32,7 @@
             window.Materialize.toast(data.error, 2000, 'error-toast');
           }
         } else {
-          window.localStorage.setItem('token', data.user.token);
+          window.localStorage.setItem('token', data.token);
           UserActions.session();
           this.setState({result: 'successful'});
           this.history.pushState(null, '/dashboard');
