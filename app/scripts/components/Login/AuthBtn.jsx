@@ -6,7 +6,7 @@
   module.exports = React.createClass({
     render: function() {
       return (
-        <div>
+        <div className="center-align">
           <p>or</p>
           <div className="row">
             <a href="/auth/github" className="waves-effect waves-light btn">

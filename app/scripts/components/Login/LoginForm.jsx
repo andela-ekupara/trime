@@ -78,7 +78,7 @@
               />
               <label htmlFor="password">Password</label>
             </div>
-            <div className="col s12">
+            <div className="col s12 center-align">
               <button className="btn waves-effect"
                   name="action"
                   type="submit"
