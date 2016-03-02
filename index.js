@@ -17,6 +17,7 @@
     config = require('./server/config')[env],
     passport = require('passport'),
     session = require('express-session'),
+    favicon = require('serve-favicon'),
     auth = require('./server/services/auth');
 
   // view engine setup
@@ -24,8 +25,8 @@
   app.set('view engine', 'jade');
   app.set('superSecret', config.secret);
 
-  // uncomment after placing your favicon in /public
-  //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  //uncomment after placing your favicon in /public
+  app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({

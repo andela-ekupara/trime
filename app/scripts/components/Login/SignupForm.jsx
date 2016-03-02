@@ -44,12 +44,13 @@
 
     handleSignup: function() {
       var data = UserStore.getSignupResult();
+          console.log(data);
       if (data) {
         if (data.error) {
           window.Materialize.toast(data.error.message, 2000, 'error-toast');
           this.setState({result: data.error.message});
         } else {
-          window.localStorage.setItem('token', data.user.token);
+          window.localStorage.setItem('token', data.token);
           UserActions.session();
           this.setState({result: 'Success!'});
           this.history.pushState(null, '/dashboard');
