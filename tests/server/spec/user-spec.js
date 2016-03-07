@@ -84,7 +84,6 @@
           expect(err).toBeNull();
           expect(res.status).toEqual(200);
           expect(res.body).toBeDefined();
-          expect(res.body.success).toEqual(true);
           expect(res.body.token).toBeDefined();
           done();
         });
