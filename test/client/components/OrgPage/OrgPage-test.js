@@ -18,8 +18,7 @@
         expect(org.find('.row')).to.have.length(3);
     });
     it('Renders accurate content', function() {
-      expect(enzyme.shallow(<Org />).text()).to.have.string('Organisation name');
-      expect(enzyme.shallow(<Org />).text()).to.have.string('Description');
+      expect(enzyme.shallow(<Org />).text()).to.have.string('Organisation NameDescriptionSubmitsend');
     });
     it('Renders child components', function() {
       var org = enzyme.shallow(<Org />);
