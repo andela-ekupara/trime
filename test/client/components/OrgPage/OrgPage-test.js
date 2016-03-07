@@ -10,17 +10,14 @@
   var OrgStore = require('../../../../app/scripts/stores/OrgStore');
   describe('Org', function() {
 
-    it('renders the Menu component', function() {
-        // Render Menu in the document
+    it('renders the Org component', function() {
         var org = enzyme.shallow(<Org />);
-        // Test the Menu state
-        // expect(menu.find('.dropdown-content')).to.have.length(menu.length);
-        // expect(menu.state().menu).to.have.length(6);
     });
     it('Calls a registered callback', function() {
       sinon.spy(OrgStore, 'addChangeListener');
       enzyme.mount(<Org />);
       expect(OrgStore.addChangeListener.called).to.equal(true);
+      expect(OrgStore.addChangeListener.callCount).to.equal(1);
     });
 });
 })();

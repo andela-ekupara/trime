@@ -1,5 +1,5 @@
 --require blanket
 --reporter mocha-lcov-reporter
---compilers .:tests/compiler.js
---require tests/testdom.js
-tests/client/**/*test.js
+--compilers .:test/compiler.js
+--require test/testdom.js
+test/client/**/*test.js
