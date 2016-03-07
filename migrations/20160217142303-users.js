@@ -36,6 +36,10 @@
             type: Sequelize.STRING,
             allowNull: true
           },
+          token: {
+            type: Sequelize.STRING,
+            defaultValue: null
+          },
           password: {
             type: Sequelize.STRING,
             allowNull: false

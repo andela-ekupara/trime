@@ -5,6 +5,7 @@
   "scripts": {
     "prestart": "sequelize db:migrate",
     "start": "node index.js",
+    "pretest": "sequelize db:migrate && sequelize db:seed:all",
     "test:bend": "jasmine --verbose",
     "test:fend": "jest --verbose",
     "test": "npm run test:bend && npm run test:fend"
@@ -61,9 +62,9 @@
     "sequelize-fixtures": "^0.4.8",
     "serve-favicon": "~2.3.0",
     "superagent": "^1.4.0",
+    "umzug": "^1.9.0",
     "vinyl-source-stream": "~1.1.0"
   },
-
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
@@ -89,6 +90,7 @@
     "jasmine": "^2.4.1",
     "jest-cli": "^0.8.2",
     "react-addons-test-utils": "^0.14.5",
+    "supertest": "^1.1.0",
     "sequelize-cli": "^2.3.1",
     "supertest": "^1.1.0"
   }
