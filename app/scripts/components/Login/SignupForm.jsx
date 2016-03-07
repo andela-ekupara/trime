@@ -43,7 +43,7 @@
     },
 
     handleSignup: function() {
-      var data = UserStore.getSignupResult();
+      var data = UserStore.getData();
           console.log(data);
       if (data) {
         if (data.error) {

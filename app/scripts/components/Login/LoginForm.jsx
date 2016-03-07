@@ -25,7 +25,7 @@
     },
 
     handleLogin: function() {
-      var data = UserStore.getLoginResult();
+      var data = UserStore.getData();
       if (data) {
         if(data.error) {
           if(typeof data.error === 'string') {
