@@ -11,9 +11,9 @@ module.exports = function(app, passport) {
   // If access was granted, the user will be logged in.
   // Otherwise, authentication has failed.
   app.get('/auth/github/callback', passport.authenticate('github', {
-    failureRedirect: '/users/login',
-    successRedirect: '/'
-    // session: true
-  }));
+    failureRedirect: '/users/login'}),
+    function(req, res) {
+      res.redirect('/?token='+req.session.user);
+    });
 
 };
