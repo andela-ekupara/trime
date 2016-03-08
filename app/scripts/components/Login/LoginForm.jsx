@@ -20,12 +20,19 @@
       };
     },
 
+    componentWillMount: function() {
+      var token = localStorage.getItem('token');
+      if (token) {
+        this.history.pushState(null, '/dashboard');
+      }
+    },
+
     componentDidMount: function() {
       UserStore.addChangeListener(this.handleLogin, 'login');
     },
 
     handleLogin: function() {
-      var data = UserStore.getLoginResult();
+      var data = UserStore.getData();
       if (data) {
         if(data.error) {
           if(typeof data.error === 'string') {
@@ -78,7 +85,7 @@
               />
               <label htmlFor="password">Password</label>
             </div>
-            <div className="col s12">
+            <div className="col s12 center-align">
               <button className="btn waves-effect"
                   name="action"
                   type="submit"

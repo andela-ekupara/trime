@@ -11,8 +11,11 @@
           <div className="nav-wrapper" id="nav">
             <a className="brand-logo" href="/">TRIME</a>
             <ul className="right" id="nav-mobile">
-              <li className="hide-on-med-and-down"><a href="/">Home</a></li>
-              <li className="hide-on-med-and-down"><a href="#">About</a></li>
+              <li className="hide-on-med-and-down"><a href="/">Home</a></li>{
+                this.props.user&&window.localStorage.getItem('token') ?
+                  <li className="hide-on-med-and-down"><a href="/dashboard">Dashboard</a></li>:
+                  <li className="hide-on-med-and-down"><a href="#">About</a></li>
+              }
               <li>
                   <Menu setUser={this.props.setUser} />
               </li>

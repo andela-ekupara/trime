@@ -6,9 +6,9 @@
 
   var BaseStore = assign({}, EventEmitter.prototype, {
       data: null,
-      setData: function(data) {
+      setData: function(data, event) {
         this.data = data;
-        this.emitChange();
+        this.emitChange(event);
       },
 
       getData: function() {
@@ -31,7 +31,7 @@
         }
       },
 
-      removeChangeListener: function(callback) {
+      removeChangeListener: function(callback, event) {
         if (event) {
           this.removeListener(event, callback);
         } else {

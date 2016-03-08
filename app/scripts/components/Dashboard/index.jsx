@@ -24,16 +24,18 @@
 
     render: function() {
       return (
-          <div className="container">
+          <div className="container top-padding">
             <div className="row">
-              <div className="col s12">TRIME DASHBOARD</div>
-              <div className="col s12 m4"><h6>ORGANISATIONS</h6></div>
-              <div className="col s12 m4 offset-m4">
-                <a className="waves-effect waves-light btn" href="/orgs">
+              <div className="col s6 m6 teal-text"><h4>DASHBOARD</h4></div>
+              <div className="col s6 m6">
+                <a className="waves-effect waves-light btn right" href="/orgs">
                   <i className="material-icons right">send</i>
                   Create Org
                 </a>
               </div>
+            </div>
+            <div className="row">
+              <h5 className="col s12 m12 grey-text">ORGANISATIONS</h5>
             </div>
             <div className = "row">
               <OrgsList orgs={this.state.orgs}/>
