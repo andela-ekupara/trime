@@ -44,7 +44,6 @@
 
     handleSignup: function() {
       var data = UserStore.getData();
-          console.log(data);
       if (data) {
         if (data.error) {
           window.Materialize.toast(data.error.message, 2000, 'error-toast');

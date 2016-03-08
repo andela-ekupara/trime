@@ -20,6 +20,13 @@
       };
     },
 
+    componentWillMount: function() {
+      var token = localStorage.getItem('token');
+      if (token) {
+        this.history.pushState(null, '/dashboard');
+      }
+    },
+
     componentDidMount: function() {
       UserStore.addChangeListener(this.handleLogin, 'login');
     },

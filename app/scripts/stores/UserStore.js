@@ -7,10 +7,7 @@
 
   var UserStore = assign({}, BaseStore, {
     fetchedUsers: null,
-    //signupResult: null,
-    //loginResult: null,
-    //session: null,
-    //logoutResult: null,
+    session: null,
 
     setUsers: function(users) {
       this.fetchedUsers = users;
@@ -29,7 +26,6 @@
     getSession: function() {
       return this.session;
     },
-
   });
 
   AppDispatcher.register(function(action) {
