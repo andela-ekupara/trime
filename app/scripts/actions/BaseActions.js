@@ -3,12 +3,13 @@
 
   var AppDispatcher = require('../dispatcher/AppDispatcher');
   var request = require('superagent');
+  var localStorage = require('localStorage');
 
   module.exports = {
     get: function(url, actionType) {
       request
         .get(url)
-        .set('x-access-token', window.localStorage.getItem('token'))
+        .set('x-access-token', localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -21,7 +22,7 @@
       request
         .delete(url)
         .send(data || {})
-        .set('x-access-token', window.localStorage.getItem('token'))
+        .set('x-access-token', localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -34,7 +35,7 @@
       request
         .put(url)
         .send(data)
-        .set('x-access-token', window.localStorage.getItem('token'))
+        .set('x-access-token', localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,
@@ -47,7 +48,7 @@
       request
         .post(url)
         .send(data)
-        .set('x-access-token', window.localStorage.getItem('token'))
+        .set('x-access-token', localStorage.getItem('token'))
         .end(function(err, result) {
           AppDispatcher.dispatch({
             actionType: actionType,

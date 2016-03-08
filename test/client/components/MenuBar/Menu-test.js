@@ -7,14 +7,12 @@
   var expect = require('chai').expect;
   var enzyme = require('enzyme');
   var sinon = require('sinon');
+  var localStorage = require('localStorage');
   var UserActions = require('../../../../app/scripts/actions/UserActions');
   var UserStore = require('../../../../app/scripts/stores/UserStore');
   describe('Menu', function() {
-
     it('renders the Menu component', function() {
-      // Render Menu in the document
       var menu = enzyme.shallow(<Menu />);
-      // Test the Menu state
       expect(menu.find('.dropdown-content')).to.have.length(menu.length);
       expect(menu.state().menu).to.have.length(6);
     });
@@ -24,6 +22,7 @@
       });
       sinon.spy(UserActions, 'session');
       sinon.spy(UserStore, 'addChangeListener');
+      sinon.stub(localStorage, 'getItem').returns(true);
       enzyme.mount(<Menu />);
       expect(UserActions.session.called).to.equal(true);
       expect(UserStore.addChangeListener.called).to.equal(true);
