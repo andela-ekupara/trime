@@ -5,27 +5,39 @@
   var assign = require('object-assign');
 
   var BaseStore = assign({}, EventEmitter.prototype, {
-    data: null,
-    setData: function(data) {
-      this.data = data;
-      this.emitChange();
-    },
+      data: null,
+      setData: function(data) {
+        this.data = data;
+        this.emitChange();
+      },
 
-    getData: function() {
-      return this.data;
-    },
+      getData: function() {
+        return this.data;
+      },
 
-    emitChange: function() {
-      this.emit('change');
-    },
+      emitChange: function(event) {
+        if (event) {
+          this.emit(event);
+        } else {
+          this.emit('change');
+        }
+      },
 
-    addChangeListener: function(callback) {
-      this.on('change', callback);
-    },
+      addChangeListener: function(callback, event) {
+        if (event) {
+          this.on(event, callback);
+        } else {
+          this.on('change', callback);
+        }
+      },
 
-    removeChangeListener: function(callback) {
-      this.removeListener('change', callback);
-    }
+      removeChangeListener: function(callback) {
+        if (event) {
+          this.removeListener(event, callback);
+        } else {
+          this.removeListener('change', callback);
+        }
+      }
   });
 
   module.exports = BaseStore;

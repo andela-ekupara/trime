@@ -1,8 +1,9 @@
 (function() {
   'use strict';
 
-  var passport = require('passport');
-  var Users = require('../models').Users;
+  var passport = require('passport'),
+    Users = require('../models').Users,
+    jwt = require('jsonwebtoken');
 
   module.exports = {
     all: function(req, res, next) {
@@ -20,14 +21,14 @@
       }
 
       Users.sync().then(function() {
-        return Users.findAll(query)
-          .then(function(users) {
-            return res.json(users);
-          });
-      })
-      .catch(function(err) {
-        return next(err);
-      });
+          return Users.findAll(query)
+            .then(function(users) {
+              return res.json(users);
+            });
+        })
+        .catch(function(err) {
+          return next(err);
+        });
     },
 
     signup: function(req, res, next) {
@@ -42,10 +43,22 @@
           return res.status(500).send({
             error: 'Error creating user.'
           });
+        } else {
+          // return the token to backend
+          var secretKey = req.app.get('superSecret');
+
+          var token = jwt.sign({
+            id: user.id,
+            email: user.email
+          }, secretKey, {
+            expiresIn: '86400h'
+          });
+          user.token = token;
+          user.save();
+          user.password = null;
+          return res.send(user); 
         }
 
-        user.password = null;
-        return res.json(user);
       })(req, res, next);
     },
 
@@ -53,39 +66,73 @@
     login: function(req, res, next) {
       passport.authenticate('login', function(err, user) {
         if (err) {
-          return res.status(401).send({
+          return res.status(500).send({
             error: err
           });
-        }
-        if (!user) {
-          return res.status(500).send({
+        } else if (!user) {
+          return res.status(401).send({
             error: 'Wrong email password combination'
           });
+        } else {
+          // create a token
+          // save the token to db
+          // return the token to backend
+          var secretKey = req.app.get('superSecret');
+
+          var token = jwt.sign({
+            id: user.id,
+            email: user.email
+          }, secretKey, {
+            expiresIn: '86400h'
+          });
+
+          user.token = token;
+          user.save();
+          user.password = null;
+          return res.send(user);
         }
-        // Initialize user password to null
-        user.password = null;
-        req.session.user = user;
-        res.json(user);
+
       })(req, res, next);
     },
 
     session: function(req, res) {
-      if (req.session.user) {
-        res.send(req.session.user);
-      } else {
-        res.status(401).send({
-          error: {} // You are not logged in.
-        });
-      }
+      Users.findOne({
+          where: {
+            id: req.decoded.id
+          }
+        })
+        .then(function(user) {
+          if (user && user.token === req.token) {
+              user.password = null;
+              return res.send(user);
+          }
+
+          res.status(401).send({
+            error: 'Failed to Authenticate User'
+          });
+      });
     },
 
     authenticate: function(req, res, next) {
-      if (!req.session.user) {
-        res.status(401).send({
-          error: 'You are not authorised! :('
+      var token = req.body.token || req.headers['x-access-token'];
+      if (token) {
+        var secretKey = req.app.get('superSecret');
+        jwt.verify(token, secretKey, function(err, decoded) {
+          if (!err) {
+            req.decoded = decoded;
+            req.token = token;
+            // check if token exists in the db
+            next();
+          } else {
+            return res.status(401).send({
+              error: 'Failed to Authenticate'
+            });
+          }
         });
       } else {
-        next();
+        return res.status(401).send({
+          error: 'You are not authenticated'
+        });
       }
     },
 
@@ -99,9 +146,25 @@
       }
     },
 
-    logout: function(req, res){
-      delete req.session.user;
-      res.redirect('/');
+    logout: function(req, res) {
+      // get user id from decoded token
+      Users.update({
+        token: null,
+      }, {
+        where: {
+          id: req.decoded.id
+        }
+      }).then(function(ok) {
+        if (ok) {
+          res.send({
+            message: 'You have been logged out successfully'
+          });
+        } else {
+          res.status(500).send({
+            error: 'could not logout'
+          });
+        }
+      });
     },
 
     orgAdmin: function(req, res, next) {

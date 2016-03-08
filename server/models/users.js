@@ -34,6 +34,10 @@
         password: {
           type: DataTypes.STRING,
           comment: 'Should be hashed'
+        },
+        token: {
+          type: DataTypes.STRING,
+          allowNull: true
         }
       },
 

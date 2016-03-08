@@ -21,7 +21,7 @@
               org_id: req.params.org_id
             })
             .then(function(project) {
-              Users.findById(req.session.user.id)
+              Users.findById(req.decoded.id)
                 .then(function(user) {
                   user.addProject(project, {
                       role: 'owner'
