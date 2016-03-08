@@ -25,7 +25,7 @@
 
     getSession: function() {
       return this.session;
-    },
+    }
   });
 
   AppDispatcher.register(function(action) {

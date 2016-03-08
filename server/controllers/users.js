@@ -149,7 +149,7 @@
     logout: function(req, res) {
       // get user id from decoded token
       Users.update({
-        token: null,
+        token: null
       }, {
         where: {
           id: req.decoded.id
