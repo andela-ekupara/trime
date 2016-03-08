@@ -27,7 +27,7 @@
                     // create a token and add it to db
                     var secretKey = req.app.get('superSecret');
 
-                     var token = jwt.sign({
+                    var token = jwt.sign({
                       id: user.id,
                       email: user.email
                     }, secretKey, {
@@ -37,7 +37,7 @@
                     user.token = token;
                     user.save();
                     user.github_auth_token = null;
-                    req.session.user =  user.token;
+                    req.token =  user.token;
                     return done(null, user);
                   })
                   .catch(function(err) {
@@ -57,8 +57,8 @@
                 user.token = token;
                 user.save();
                 user.github_auth_token = null;
+                req.token =  user.token;
                 // return user
-                req.session.user =  user.token;
                 done(null, user);
               }
             })

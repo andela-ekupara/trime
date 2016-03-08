@@ -8,6 +8,6 @@ module.exports = function(app, passport) {
   app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/users/login'}), 
     function(req, res) {
-      res.redirect('/?token='+req.session.user);
+      res.redirect('/?token=' + req.token);
     });
 };

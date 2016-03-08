@@ -34,7 +34,7 @@
                     user.token = token;
                     user.save();
                     user.google_auth_token = null;
-                    req.session.user =  user.token;
+                    req.token =  user.token;
                     return done(null, user);
                   })
                   .catch(function(err) {
@@ -53,7 +53,7 @@
                 user.google_auth_token = null;
                 user.save();
                 // return user
-                req.session.user =  user.token;
+                req.token =  user.token;
                 done(null, user);
               }
             })
