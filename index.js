@@ -17,7 +17,7 @@
     config = require('./server/config')[env],
     passport = require('passport'),
     session = require('express-session'),
-    favicon = require('serve-favicon'),
+    // favicon = require('serve-favicon'),
     auth = require('./server/services/auth');
 
   // view engine setup
