@@ -40,8 +40,8 @@
 
     componentDidMount: function() {
       UserActions.session();
-      UserStore.addChangeListener(this.getSession);
-      UserStore.addChangeListener(this.handleLogout);
+      UserStore.addChangeListener(this.getSession, 'session');
+      UserStore.addChangeListener(this.handleLogout, 'logout');
       window.$('.button-collapse').sideNav({
         menuWidth: 300,
         edge: 'right',
@@ -50,7 +50,7 @@
     },
 
     componentWillUnmount: function() {
-      UserStore.removeChangeListener(this.getSession);
+      UserStore.removeChangeListener(this.getSession, 'session');
     },
 
     getSession: function() {
@@ -80,7 +80,7 @@
     },
 
     handleLogout: function() {
-      var data = UserStore.getLogoutResult();
+      var data = UserStore.getData();
       if (data) {
         if(data.error) {
           window.Materialize.toast(data.error, 2000, 'error-toast');

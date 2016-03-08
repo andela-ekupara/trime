@@ -29,7 +29,7 @@
                 setUser={this.setUser}
                 user={this.state.user}
             />
-            <div className="text-center">
+            <div>
               {this.props.children}
             </div>
           </div>

@@ -43,13 +43,13 @@
     },
 
     handleSignup: function() {
-      var data = UserStore.getSignupResult();
+      var data = UserStore.getData();
       if (data) {
         if (data.error) {
           window.Materialize.toast(data.error.message, 2000, 'error-toast');
           this.setState({result: data.error.message});
         } else {
-          window.localStorage.setItem('token', data.user.token);
+          window.localStorage.setItem('token', data.token);
           UserActions.session();
           this.setState({result: 'Success!'});
           this.history.pushState(null, '/dashboard');
@@ -134,7 +134,7 @@
               />
               <label htmlFor="password">Confirm Password</label>
             </div>
-            <div className="col s12">
+            <div className="col s12 center-align">
               <button className="btn waves-effect waves-light"
                   name="action"
                   type="submit"
