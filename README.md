@@ -4,4 +4,4 @@
 
 trime project files
 Time Tracking application.
-Track #start, #create and #finish projects.
+Track #start, #create and #finish organization projects.
