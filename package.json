@@ -1,6 +1,10 @@
 {
   "name": "trime",
   "version": "0.0.0",
+  "engines": {
+    "node": "4.2.4",
+    "npm": "2.14.12"
+  },
   "private": true,
   "scripts": {
     "prestart": "sequelize db:migrate",
