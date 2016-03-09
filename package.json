@@ -7,7 +7,6 @@
   },
   "private": true,
   "scripts": {
-    //"prestart": "sequelize db:migrate",
     "start": "node index.js",
     "pretest": "sequelize db:migrate && sequelize db:seed:all",
     "test:bend": "jasmine --verbose",
