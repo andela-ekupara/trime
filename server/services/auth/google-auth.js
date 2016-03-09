@@ -51,7 +51,7 @@
 
                 user.token = token;
                 user.save();
-                // return user
+                
                 req.token =  user.token;
                 return done(null, user);
               }
