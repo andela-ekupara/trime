@@ -36,8 +36,8 @@
 
                     user.token = token;
                     user.save();
-                    user.github_auth_token = null;
                     req.token =  user.token;
+
                     return done(null, user);
                   })
                   .catch(function(err) {
@@ -56,10 +56,9 @@
 
                 user.token = token;
                 user.save();
-                user.github_auth_token = null;
                 req.token =  user.token;
                 // return user
-                done(null, user);
+                return done(null, user);
               }
             })
             .catch(function(err) {

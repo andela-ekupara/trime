@@ -33,8 +33,8 @@
 
                     user.token = token;
                     user.save();
-                    user.google_auth_token = null;
                     req.token =  user.token;
+                    
                     return done(null, user);
                   })
                   .catch(function(err) {
@@ -50,11 +50,10 @@
                 });
 
                 user.token = token;
-                user.google_auth_token = null;
                 user.save();
                 // return user
                 req.token =  user.token;
-                done(null, user);
+                return done(null, user);
               }
             })
             .catch(function(err) {
