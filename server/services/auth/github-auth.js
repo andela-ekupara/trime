@@ -3,7 +3,8 @@
 
   module.exports = function(passport, config) {
     var Users = require('../../models').Users,
-      GitHubStrategy = require('passport-github2').Strategy;
+      GitHubStrategy = require('passport-github2').Strategy,
+      jwt = require('jsonwebtoken');
 
     passport.use('github', new GitHubStrategy(config.auth.GITHUB,
       function(req, accessToken, refreshToken, profile, done) {
@@ -23,16 +24,41 @@
                     github_auth_token: accessToken
                   })
                   .then(function(user) {
-                    req.session.user = user;
+                    // create a token and add it to db
+                    var secretKey = req.app.get('superSecret');
+
+                    var token = jwt.sign({
+                      id: user.id,
+                      email: user.email
+                    }, secretKey, {
+                      expiresIn: '86400h'
+                    });
+
+                    user.token = token;
+                    user.save();
+                    req.token =  user.token;
+
                     return done(null, user);
                   })
                   .catch(function(err) {
                     return done(err);
                   });
               } else {
-                req.session.user = user;
-                // return user
-                done(null, user);
+                // create a token and add it to db
+                var secretKey = req.app.get('superSecret');
+                    
+                var token = jwt.sign({
+                  id: user.id,
+                  email: user.email
+                }, secretKey, {
+                  expiresIn: '86400h'
+                });
+
+                user.token = token;
+                user.save();
+                req.token =  user.token;
+               
+                return done(null, user);
               }
             })
             .catch(function(err) {
