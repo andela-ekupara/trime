@@ -44,6 +44,7 @@
     "karma": "^0.13.15",
     "keymirror": "^0.1.1",
     "morgan": "~1.6.1",
+    "mysql": "^2.10.2",
     "object-assign": "2.1.1",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9",
