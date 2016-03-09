@@ -16,6 +16,5 @@ var config = {
 module.exports = {
   'development': config,
   'test': config,
-  'production': config,
-  'staging': config
+  'production': config
 };
