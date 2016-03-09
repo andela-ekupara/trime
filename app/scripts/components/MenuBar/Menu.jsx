@@ -3,9 +3,11 @@
 
   var React = require('react'),
     UserStore = require('../../stores/UserStore'),
+    History = require('react-router').History,
     UserActions = require('../../actions/UserActions');
 
   var Menu = React.createClass({
+     mixins: [History],
     propTypes: {
       setUser: React.PropTypes.func
     },
@@ -38,20 +40,21 @@
 
     componentDidMount: function() {
       UserActions.session();
-      UserStore.addChangeListener(this.getSession);
+      UserStore.addChangeListener(this.getSession, 'session');
+      UserStore.addChangeListener(this.handleLogout, 'logout');
       window.$('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 240,
-        edge: 'right', // Choose the horizontal origin
+        menuWidth: 300,
+        edge: 'right',
         closeOnClick: true
       });
     },
 
     componentWillUnmount: function() {
-      UserStore.removeChangeListener(this.getSession);
+      UserStore.removeChangeListener(this.getSession, 'session');
     },
 
     getSession: function() {
-      var data = UserStore.getData();
+      var data = UserStore.getSession();
       if (data && !data.error) {
         this.props.setUser(data);
         this.setState({
@@ -70,17 +73,63 @@
               url: '#'
             },{
               name: 'Logout',
-              url: '/logout'
+              url: '#'
             }]
         });
       }
     },
 
+    handleLogout: function() {
+      var data = UserStore.getData();
+      if (data) {
+        if(data.error) {
+          window.Materialize.toast(data.error, 2000, 'error-toast');
+        } else {
+          window.localStorage.removeItem('token');
+          window.Materialize.toast(data.message, 2000, 'success-toast');
+          this.setState({
+          user: null,
+           menu: [{
+              name: 'Trime',
+              url: '#'
+            },{
+              name: 'About',
+              url: '#'
+            },{
+              name: 'Help',
+              url: '#'
+            },{
+              name: 'Settings',
+              url: '#'
+            },{
+              name: 'Contact us',
+              url: '#'
+            }, {
+              name: 'Start Triming',
+              url: '/join'
+            }]
+          });
+          this.history.pushState(null, '/');
+        }
+      }
+    },
+
+    handleLogoutAction: function(event) {
+      event.preventDefault();
+      var access_token = {
+        token: window.localStorage.getItem('token')
+      };
+      UserActions.logout(access_token);
+    },
+
     render: function() {
-      var menuNodes = this.state.menu.map(function(menuItem, index) {
+      var menuNodes = this.state.menu.map((menuItem, index) => {
         return (
           <li key={index}>
-            <a href={menuItem.url}>{menuItem.name}</a>
+            {menuItem.name == 'Logout'
+            ?  <a onClick={this.handleLogoutAction} href={menuItem.url}>{menuItem.name}</a>
+             :  <a href={menuItem.url}>{menuItem.name}</a>
+          }
           </li>
         );
       });

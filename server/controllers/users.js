@@ -43,10 +43,22 @@
           return res.status(500).send({
             error: 'Error creating user.'
           });
+        } else {
+          // return the token to backend
+          var secretKey = req.app.get('superSecret');
+
+          var token = jwt.sign({
+            id: user.id,
+            email: user.email
+          }, secretKey, {
+            expiresIn: '86400h'
+          });
+          user.token = token;
+          user.save();
+          user.password = null;
+          return res.send(user); 
         }
 
-        user.password = null;
-        return res.json(user);
       })(req, res, next);
     },
 
@@ -77,12 +89,7 @@
           user.token = token;
           user.save();
           user.password = null;
-          return res.send({
-            success: true,
-            user: user,
-            token: token
-          });
-
+          return res.send(user);
         }
 
       })(req, res, next);
@@ -107,8 +114,7 @@
     },
 
     authenticate: function(req, res, next) {
-      var token = req.headers['x-access-token'];
-
+      var token = req.body.token || req.headers['x-access-token'];
       if (token) {
         var secretKey = req.app.get('superSecret');
         jwt.verify(token, secretKey, function(err, decoded) {
@@ -141,8 +147,24 @@
     },
 
     logout: function(req, res) {
-      delete req.session.user;
-      res.redirect('/');
+      // get user id from decoded token
+      Users.update({
+        token: null
+      }, {
+        where: {
+          id: req.decoded.id
+        }
+      }).then(function(ok) {
+        if (ok) {
+          res.send({
+            message: 'You have been logged out successfully'
+          });
+        } else {
+          res.status(500).send({
+            error: 'could not logout'
+          });
+        }
+      });
     },
 
     orgAdmin: function(req, res, next) {

@@ -20,19 +20,30 @@
       };
     },
 
+    componentWillMount: function() {
+      var token = localStorage.getItem('token');
+      if (token) {
+        this.history.pushState(null, '/dashboard');
+      }
+    },
+
     componentDidMount: function() {
-      UserStore.addChangeListener(this.handleLogin);
+      UserStore.addChangeListener(this.handleLogin, 'login');
     },
 
     handleLogin: function() {
       var data = UserStore.getData();
-      if(data.error) {
-        if(typeof data.error === 'string') {
-          window.Materialize.toast(data.error, 2000, 'error-toast');
+      if (data) {
+        if(data.error) {
+          if(typeof data.error === 'string') {
+            window.Materialize.toast(data.error, 2000, 'error-toast');
+          }
+        } else {
+          window.localStorage.setItem('token', data.token);
+          UserActions.session();
+          this.setState({result: 'successful'});
+          this.history.pushState(null, '/dashboard');
         }
-      } else {
-        this.setState({result: 'successful'});
-        //this.history.pushState(null, '/dashboard');
       }
     },
 
@@ -74,7 +85,7 @@
               />
               <label htmlFor="password">Password</label>
             </div>
-            <div className="col s12">
+            <div className="col s12 center-align">
               <button className="btn waves-effect"
                   name="action"
                   type="submit"

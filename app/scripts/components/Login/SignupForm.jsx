@@ -24,7 +24,7 @@
 
     componentDidMount: function() {
       this.isPasswordValid();
-      UserStore.addChangeListener(this.handleSignup);
+      UserStore.addChangeListener(this.handleSignup, 'signup');
     },
 
     isPasswordValid: function(password, confirmPassword) {
@@ -44,12 +44,16 @@
 
     handleSignup: function() {
       var data = UserStore.getData();
-      if (data.error) {
-        window.Materialize.toast(data.error.message, 2000, 'error-toast');
-        this.setState({result: data.error.message});
-      } else {
-        this.setState({result: 'Success!'});
-        this.history.pushState(null, '/dashboard');
+      if (data) {
+        if (data.error) {
+          window.Materialize.toast(data.error.message, 2000, 'error-toast');
+          this.setState({result: data.error.message});
+        } else {
+          window.localStorage.setItem('token', data.token);
+          UserActions.session();
+          this.setState({result: 'Success!'});
+          this.history.pushState(null, '/dashboard');
+        }
       }
     },
 
@@ -130,7 +134,7 @@
               />
               <label htmlFor="password">Confirm Password</label>
             </div>
-            <div className="col s12">
+            <div className="col s12 center-align">
               <button className="btn waves-effect waves-light"
                   name="action"
                   type="submit"
