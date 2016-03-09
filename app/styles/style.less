@@ -1,8 +1,12 @@
 @primary-color: #009090;
 @accent-color: #999999;
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500|PT+Sans:400,500);
+html {
+  height: 100%;
+}
 
 body {
+   height: 100%;
   background: url("../images/background.png") repeat;
 }
 
@@ -139,9 +143,11 @@ nav .brand-logo {
 #ui-view {
   background-size: cover;
   // background-color: #000;
-  min-height: 600px;
-  max width: 600px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
   margin: 0;
+  padding-bottom: 180px;
 }
 
 #grid {
@@ -212,6 +218,9 @@ h5 {
 img {
   margin: 0;
   max-width: 100%;
+}
+footer.page-footer {
+  margin-top: -180px;
 }
 
 #box {
